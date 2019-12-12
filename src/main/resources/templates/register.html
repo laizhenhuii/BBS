@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>注册</title>
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form style="max-width: 400px;" class="form-signin" action="dashboard.html">
+    <img class="mb-4" src="asserts/img/bootstrap-solid.svg"  width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.register}">Please register first</h1>
+    <label style="width: 72px" class="label-br text-right" th:text="#{login.username}">Username</label>
+    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="text" class="form-control" th:placeholder="#{login.username}" >
+    <label style="width: 72px" class="label-br text-right" th:text="#{login.telephone}">Telephone</label>
+    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="text" class="form-control"  th:placeholder="#{login.telephone}" >
+    <label style="width: 72px" class="label-br text-right" th:text="#{login.password}"> Password</label>
+    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="password" class="form-control"  th:placeholder="#{login.password}" >
+    <div class="checkbox mb-3"> 
+        <label>
+            <input type="checkbox" value="remember-me"> [[#{login.remember}]]
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn-register}">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2019-2020</p>
+    <a class="btn btn-sm" th:href="@{/register.html(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/register.html(l='en_US')}">English</a>
+</form>
+
+</body>
+
+</html>
