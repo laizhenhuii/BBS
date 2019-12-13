@@ -14,12 +14,14 @@
 <form style="max-width: 400px;" class="form-signin" action="dashboard.html">
     <img class="mb-4" src="asserts/img/bootstrap-solid.svg"  width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.register}">Please register first</h1>
-    <label style="width: 72px" class="label-br text-right" th:text="#{login.username}">Username</label>
-    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="text" class="form-control" th:placeholder="#{login.username}" >
-    <label style="width: 72px" class="label-br text-right" th:text="#{login.telephone}">Telephone</label>
-    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="text" class="form-control"  th:placeholder="#{login.telephone}" >
-    <label style="width: 72px" class="label-br text-right" th:text="#{login.password}"> Password</label>
-    <input style="width: 280px;display: inline-block;margin: 10px 5px;" type="password" class="form-control"  th:placeholder="#{login.password}" >
+    <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.username}">Username</label>
+    <input style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block" th:placeholder="#{login.username}" >
+    <br>
+    <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.telephone}">Telephone</label>
+    <input style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block"  th:placeholder="#{login.telephone}" >
+    <br>
+    <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.password}"> Password</label>
+    <input style="width: 280px;margin: 10px 5px;" type="password" class="form-control d-inline-block"  th:placeholder="#{login.password}" >
     <div class="checkbox mb-3"> 
         <label>
             <input type="checkbox" value="remember-me"> [[#{login.remember}]]
