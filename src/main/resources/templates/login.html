@@ -5,19 +5,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>登录</title>
 		<!-- Bootstrap core CSS -->
-		<link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
-		<link href="asserts/css/signin.css" rel="stylesheet">
+		<link href="/asserts/css/signin.css" rel="stylesheet">
 	</head>
 
 	<body class="text-center">
-		<form class="form-signin" action="dashboard.html">
-			<img class="mb-4" src="asserts/img/bootstrap-solid.svg"  width="72" height="72">
+		<form class="form-signin" th:action="@{/user/login}" method="post">
+			<img class="mb-4" src="/asserts/img/bootstrap-solid.svg"  width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+<!--			提示错误登录信息-->
+			<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 			<label class="sr-only" >Telephone</label>
-			<input type="text" class="form-control" placeholder="Telephone" th:placeholder="#{login.telephone}" >
+			<input type="text" name="telephone" class="form-control" placeholder="Telephone" th:placeholder="#{login.telephone}" >
 			<label class="sr-only" >Password</label>
-			<input type="password" class="form-control" placeholder="Password" th:placeholder="#{login.password}" >
+			<input type="password" name="password" class="form-control" placeholder="Password" th:placeholder="#{login.password}" >
 			<div class="checkbox mb-3">
 				<label>
           <input type="checkbox" value="remember-me"> [[#{login.remember}]]
@@ -28,7 +30,5 @@
 			<a class="btn btn-sm" th:href="@{/login.html(l='zh_CN')}">中文</a>
 			<a class="btn btn-sm" th:href="@{/login.html(l='en_US')}">English</a>
 		</form>
-
 	</body>
-
 </html>

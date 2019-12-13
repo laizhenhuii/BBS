@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en" >
     <meta charset="UTF-8">
     <title>我的资料</title>
     <link rel="stylesheet" href="asserts/css/reset.css"/>
@@ -25,8 +25,8 @@
         <!-- 登入开始，未登入时以下隐藏-->
         <div class="lt_login">
             <ul>
-                <li><a href="">花开花落</a></li>
-                <li><a href="">退出</a></li>
+                <li><a href="" >[[${session.loginUser}]] </a></li>
+                <li><a href="" >退出</a></li>
             </ul>
         </div>
         <!-- 登入结束-->
@@ -56,7 +56,7 @@
                     昵称
                 </div>
                 <div class="baseCon_son_right">
-                    <input type="text"/>
+                    <input type="text">
                 </div>
             </div>
             <div class="baseCon_son">

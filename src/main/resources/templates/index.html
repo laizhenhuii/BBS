@@ -22,21 +22,21 @@
             <li><a href="">增值服务</a></li>
         </ul>
         <!--未登入开始-->
-        <div class="ltForm appear">
+        <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
             <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
-                <li><a href="login.html" th:href="@{login.html}">登入</a></li>
+                <li><a href="login.html" th:href="@{login.html}">登录</a></li>
                 <li><a href="register.html" th:href="@{register.html}">注册</a></li>
             </ul>
         </div>
         <!-- 未登入结束-->
         <!-- 登入开始，未登入时以下隐藏-->
-        <!--<div class="lt_login appear">-->
-        <!--<ul>-->
-        <!--<li><a href="">花开花落</a></li>-->
-        <!--<li><a href="">退出</a></li>-->
-        <!--</ul>-->
-        <!--</div>-->
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.loginUser)}">
+            <ul>
+                <li><a href="" th:text="${session.loginUser}"></a></li>
+                <li><a th:href="@{/index/exit}" >退出</a></li>
+            </ul>
+        </div>
         <!-- 登入结束-->
         <div class="navFix">
             <!--登入开始-->
