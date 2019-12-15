@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>论坛首页</title>
+    <title>BBS论坛</title>
     <link rel="stylesheet" href="asserts/css/reset.css"/>
     <link rel="stylesheet" href="asserts/css/public.css"/>
     <link rel="stylesheet" href="asserts/css/index.css"/>
@@ -12,18 +12,18 @@
     <div class="ltHead_cen">
         <a href=""><img src="asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
-            <li><a href="">首页</a></li>
-            <li><a href="">沪牌竞拍</a></li>
-            <li><a href="">拍王助手</a></li>
-            <li><a href="">深圳竞价摇号</a></li>
-            <li><a href="">广州竞价摇号</a></li>
+            <li><a href="" th:href="@{/}">首页</a></li>
+            <li><a href="">精品贴区</a></li>
+            <li><a href="">需求贴区</a></li>
+            <li><a href="">人气排行</a></li>
+            <li><a href="">积分商城</a></li>
             <li><a href="">杭州竞价摇号</a></li>
             <li><a href="">天津竞价摇号</a></li>
             <li><a href="">增值服务</a></li>
         </ul>
         <!--未登入开始-->
         <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
-            <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+            <a href="" th:href="@{login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
                 <li><a href="login.html" th:href="@{login.html}">登录</a></li>
                 <li><a href="register.html" th:href="@{register.html}">注册</a></li>
@@ -40,12 +40,12 @@
         <!-- 登入结束-->
         <div class="navFix">
             <!--登入开始-->
-            <a href="" class="navMe">花花</a>
+            <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.loginUser)}" th:href="@{/writePost}">发新帖</a>
             <!--登入结束-->
             <!--未登入开始-->
-            <!--<a href="" class="navLogin">登录</a>-->
+            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.loginUser)}">登录</a>
             <!--未登入结束-->
-            <a href="" class="navWrite">发新帖</a>
+
         </div>
     </div>
 </header>
@@ -60,49 +60,49 @@
         <div class="indexMain_left_con">
             <!--有主题图循环开始-->
             <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
+                <div class="indexCon_msg_pic">（头像）</div>
                 <div class="indexCon_msg_detail">
                     <a href="">
                         <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
+                            <span>（类别）竞拍</span>
+                            <p th:text="${post0.postTiltle}">（标题）关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
                         </div>
                     </a>
                     <div class="havePic">
-                        <a href=""><div class="havePic_head"></div></a>
+                        <a href=""><div class="havePic_head">（主题图）</div></a>
                     </div>
                     <div class="indexCon_msg_detail_other">
                         <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
+                            <li>（发帖人）花开花落</li>
+                            <li>（发表时间）1天前</li>
+                            <li>（浏览量）21</li>
+                            <li>（评论数）28</li>
                         </ul>
                     </div>
                 </div>
-                <div class="clear"></div>
+                <div class="clear">（分割线）</div>
             </div>
             <!--有主题图循环结束-->
             <!--无主题图循环开始-->
             <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
+                <div class="indexCon_msg_pic">（头像）</div>
                 <div class="indexCon_msg_detail">
                     <a href="">
                         <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
+                            <span>（类别）竞拍</span>
+                            <p>（标题）关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
                         </div>
                     </a>
                     <div class="indexCon_msg_detail_other">
                         <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
+                            <li>（发帖人）花开花落</li>
+                            <li>（时间）1天前</li>
+                            <li>（浏览量）21</li>
+                            <li>（评论数）28</li>
                         </ul>
                     </div>
                 </div>
-                <div class="clear"></div>
+                <div class="clear">（分割线）</div>
             </div>
             <!--无主题图循环结束-->
             <div class="indexCon_msg">
@@ -264,17 +264,19 @@
     </div>
     <div class="indexMain_right">
         <div class="indexMain_rightCon">
-            <a href="" class="newMsg">发新帖</a>
+            <a href="" class="newMsg" th:href="@{/writePost}">发新帖</a>
             <div class="pwfb">
                 <div class="pwfbHead">
-                    拍王发布
+                    (签到区头部）拍王发布
                 </div>
-                <div class="pwfbCon"></div>
-                <div class="pwfbFooter"></div>
+                <div class="pwfbCon">（签到区主体：日历）</div>
+                <div class="pwfbFooter">（签到区底部）</div>
             </div>
             <div class="indexSearch">
-                <input type="text" placeholder="请输入关键词"/>
-                <input type="submit" value="搜索"/>
+                <form action="" method="post">
+                    <input type="text" placeholder="请输入关键词"/>
+                    <input type="submit" value="搜索"/>
+                </form>
             </div>
             <div class="indexPublic">
                 <div class="indexPublic_head">
@@ -312,10 +314,10 @@
             </div>
         </div>
     </div>
-    <div class="clear"></div>
+    <div class="clear">(分割线)</div>
 </div>
 <footer class="publicFooter">
-    <p>Copyrigh &copy; 2017-2018 PaiWang 上海钦合投资管理有限公司版权所有 沪ICP备16032224号-2</p>
+    <p>Copyrigh &copy; 2019-2020 BBS论坛 南昌大学信息工程学院计算机科学与技术专业JavaWeb程序设计课程期末大作业版权所有 version：1.0.0</p>
 </footer>
 </body>
 </html>

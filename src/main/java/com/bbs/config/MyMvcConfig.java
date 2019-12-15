@@ -39,14 +39,13 @@ public class MyMvcConfig implements  WebMvcConfigurer {
 //    拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
+//        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+//                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
     }
 
     @Bean //向容器中添加组件
     public LocaleResolver localeResolver(){
         return new MyLocaleResolver();
     }
-
 
 }
