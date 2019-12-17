@@ -37,6 +37,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/home.html").setViewName("home");
         registry.addViewController("/base.html").setViewName("base");
         registry.addViewController("/upload_password.html").setViewName("upload_password");
+        registry.addViewController("/myWrite.html").setViewName("myWrite");
     }
 
 //    拦截器

@@ -2,7 +2,10 @@ package com.bbs.service;
 
 import com.bbs.entity.Post;
 import com.bbs.mapper.PostMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -43,6 +46,30 @@ public class PostService {
         return postMapper.findAll();
     }
 
+    //查询所有帖子按发帖时间降序排序
+    //然后分页查询，pageNum表示要查询第几页，pageSize表示每页查询多少条帖子
+    //返回查询页所有的帖子
+    public List<Post> findAllByPostTime(int pageNum, int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        return postMapper.findAllByPostTime(-1);
+    }
+
+    //查询所有帖子按浏览量降序排序
+    //然后分页查询，pageNum表示要查询第几页，pageSize表示每页查询多少条帖子
+    //返回查询页所有的帖子
+    public List<Post> findAllBypageView(int pageNum, int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        return postMapper.findAllBypageView(-1);
+    }
+
+    //查询所有帖子按最后回复时间降序排序
+    //然后分页查询，pageNum表示要查询第几页，pageSize表示每页查询多少条帖子
+    //返回查询页所有的帖子
+    public List<Post> findAllByLastPost(int pageNum, int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        return postMapper.findAllByLastPost(-1);
+    }
+
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
     public List<Post> findByUserID(String UserID){
         return postMapper.findByUserID(UserID);
@@ -51,6 +78,12 @@ public class PostService {
     //根据帖子ID查询帖子
     public Post findByPostID(int PostID){
         return postMapper.findByPostID(PostID);
+    }
+
+    //根据关键词模糊查询帖子（仅匹配标题）
+    public List<Post> findLikePostTitle(String postTitle){
+        String rePostTitle = "%" + postTitle + "%";
+        return postMapper.findLikePostTitle(rePostTitle);
     }
 
     //修改某条帖子信息

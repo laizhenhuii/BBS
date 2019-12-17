@@ -1,47 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8">
     <title>我的帖子</title>
-    <link rel="stylesheet" href="asserts/css/reset.css"/>
-    <link rel="stylesheet" href="asserts/css/homeHead.css"/>
-    <link rel="stylesheet" href="asserts/css/homePublic.css"/>
-    <link rel="stylesheet" href="asserts/css/myWrite.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homeHead.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homePublic.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/myWrite.css"/>
 </head>
 <body>
-<header class="zyHead">
-    <div class="zyHead_cen">
-        <a href=""><img src="asserts/img/per-con.png" alt="" class="headPic1"/></a>
-        <a href="" class="backIndex">返回首页</a>
-        <!--未登入开始-->
-        <!--<div class="ltForm">-->
-        <!--<a href=""><img src="img/indexForm_bg.png" alt="" class="headPic2"/></a>-->
-        <!--<ul>-->
-        <!--<li><a href="">登入</a></li>-->
-        <!--<li><a href="">注册</a></li>-->
-        <!--</ul>-->
-        <!--</div>-->
-        <!-- 未登入结束-->
-        <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login">
-            <ul>
-                <li><a href="">花开花落</a></li>
-                <li><a href="">退出</a></li>
-            </ul>
-        </div>
-        <!-- 登入结束-->
-    </div>
-</header>
+<div th:replace="common::#topbar"></div>
 <div class="homeCen">
-    <div class="homeCen_left">
-        <ul>
-            <li><a href="">我的主页</a></li>
-            <li><a href="">基本设置</a></li>
-            <li class="on"><a href="">我的贴子</a></li>
-            <li><a href="">我的消息</a></li>
-            <li><a href="">我的订单</a></li>
-        </ul>
-    </div>
+    <div th:replace="common::#sidebar(active='tiezi')"></div>
     <div class="homeCen_right">
         <div class="baseHead">
             <ul>
@@ -56,8 +26,8 @@
                 <div class="writeHead3">浏览量</div>
                 <div class="writeHead4">操作</div>
             </div>
-            <div class="writeFoot">
-                <div class="writeFoot1"><p><a href="">今天天气怎么样？</a></p></div>
+            <div class="writeFoot" th:each="i:${post}">
+                <div class="writeFoot1"><p><a href="" th:text="i.getPosterName()">今天天气怎么样？</a></p></div>
                 <div class="writeFoot2">2018.02.23 14:36:24</div>
                 <div class="writeFoot3">2601</div>
                 <div class="writeFoot4"><a href="javascript:">删除</a></div>
@@ -65,7 +35,7 @@
         </div>
         <div class="indexFooter">
             <div class="indexFooter_con">
-                <a href="javascript:"><</a>
+                <a href="javascript:"></a>
                 <a href="" class="on">1</a>
                 <a href="">2</a>
                 <a href="">3</a>

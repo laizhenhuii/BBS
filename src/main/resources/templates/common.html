@@ -29,9 +29,8 @@
     <ul>
         <li th:class="${active=='home'?'on':' '}"><a th:href="@{home.html}">我的主页</a></li>
         <li th:class="${active=='base'?'on':' '}"><a th:href="@{base.html}">基本设置</a></li>
-        <li th:class="${active=='tiezi'?'on':' '}"><a href="">我的贴子</a></li>
-        <li th:class="${active=='myMsg'?'on':' '}"><a href="">我的消息</a></li>
-        <li th:class="${active=='myOrder'?'on':' '}"><a href="">我的订单</a></li>
+        <li th:class="${active=='tiezi'?'on':' '}"><a th:href="@{myWrite.html}">我的贴子</a></li>
+        <li th:class="${active=='myMsg'?'on':' '}"><a th:href="@{myMsg.html}">我的消息</a></li>
     </ul>
 </div>
 

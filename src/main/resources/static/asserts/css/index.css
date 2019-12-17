@@ -303,15 +303,25 @@ body {
     border-radius: 10px;
     border-bottom: 1px solid #d8d8d8;
     font-size: 14px;
-    text-indent: 20px;
     line-height: 60px;
+    text-align: center;
 }
 
 .pwfbCon {
     width: 100%;
     height: 265px;
 }
-
+#box{
+    width: 100%;height: 100%;background-color: orangered;
+}
+#box_top{
+    font-size:23px;color:#fff;padding-top: 10px;padding-bottom: 20px;text-align: center;
+}
+#box_bottom{
+    width: 80%;height: 80%;background-color: yellow;margin: 0 auto;color: #fff;font-size: 100px;
+    /*伸缩布局*/
+    display: flex;justify-content: center;align-items: center;
+}
 .pwfbFooter {
     width: 100%;
     height: 60px;

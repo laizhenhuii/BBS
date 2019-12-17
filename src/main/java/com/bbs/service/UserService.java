@@ -11,10 +11,10 @@ import java.util.List;
 public class UserService {
     @Resource
     UserMapper userMapper;
-    public boolean registerUser(String tel,String password){     //注册，用账号密码注册
+    public boolean registerUser(String name,String tel,String password){     //注册，用账号密码注册
         User temp=userMapper.selectByTel(tel);
         if(temp==null){
-            userMapper.registerUser(tel,password);
+            userMapper.registerUser(name,tel,password);
             return true;
         }
         return false;
@@ -47,6 +47,13 @@ public class UserService {
     public User selectByTel(String tel){
         return ( userMapper.selectByTel(tel));//根据用户tel查询用户全部个人信息
     }
+
+    //根据关键词模糊查询用户（仅匹配用户名）
+    public List<User> findLikeUserName(String userName){
+        String reUserName = "%" + userName + "%";
+        return userMapper.findLikePostTitle(reUserName);
+    }
+
     public int selectIntegral(String tel){
         return (userMapper.selectIntegral(tel));//根据用户tel查询用户积分
     }

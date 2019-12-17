@@ -23,6 +23,8 @@ public class Post {
     private boolean postBoutique;//是否加精，为true时加精
     private int postIntegral;//积分数
     private String moduleType;//版块类型，如天健轶事
+    private Timestamp lastPost; //如果该贴是主贴，记录该贴的最后回帖时间
+    private String imageAddress; //帖子图片地址
 
     public Post(){}
 
@@ -141,5 +143,19 @@ public class Post {
         this.moduleType = moduleType;
     }
 
+    public Timestamp getLastPost() {
+        return lastPost;
+    }
 
+    public void setLastPost(Timestamp lastPost) {
+        this.lastPost = lastPost;
+    }
+
+    public String getImageAddress() {
+        return imageAddress;
+    }
+
+    public void setImageAddress(String imageAddress) {
+        this.imageAddress = imageAddress;
+    }
 }
