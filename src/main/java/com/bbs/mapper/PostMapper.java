@@ -32,21 +32,25 @@ public interface PostMapper {
     //查询所有帖子
     List<Post> findAll();
 
-    @Select("select * from post_table order by postTime DESC")
+    @Select("select * from post_table where mainPost = #{mainPost} order by postTime DESC")
     //查询所有帖子按发帖时间降序排序
-    List<Post> findAllByPostTime();
+    List<Post> findAllByPostTime(int mainPost);
 
-    @Select("select * from post_table order by pageView DESC")
+    @Select("select * from post_table where mainPost = #{mainPost} order by pageView DESC")
     //查询所有帖子按浏览量降序排序
-    List<Post> findAllBypageView();
+    List<Post> findAllBypageView(int mainPost);
 
-    @Select("select * from post_table order by lastPost DESC")
+    @Select("select * from post_table where mainPost = #{mainPost} order by lastPost DESC")
     //查询所有帖子按最后回复时间降序排序
-    List<Post> findAllByLastPost();
+    List<Post> findAllByLastPost(int mainPost);
 
     @Select("select * from post_table where posterID = #{posterID}")
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
     List<Post> findByUserID(String UserID);
+
+    @Select("select * from post_table where postTitle like #{arg}")
+    //根据关键词模糊查询帖子（仅匹配标题）
+    List<Post> findLikePostTitle(String postTitle);
 
     @Select("select * from post_table where postID = #{postID}")
     //根据帖子ID查询帖子

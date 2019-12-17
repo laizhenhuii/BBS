@@ -51,7 +51,7 @@ public class PostService {
     //返回查询页所有的帖子
     public List<Post> findAllByPostTime(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        return postMapper.findAllByPostTime();
+        return postMapper.findAllByPostTime(-1);
     }
 
     //查询所有帖子按浏览量降序排序
@@ -59,7 +59,7 @@ public class PostService {
     //返回查询页所有的帖子
     public List<Post> findAllBypageView(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        return postMapper.findAllBypageView();
+        return postMapper.findAllBypageView(-1);
     }
 
     //查询所有帖子按最后回复时间降序排序
@@ -67,7 +67,7 @@ public class PostService {
     //返回查询页所有的帖子
     public List<Post> findAllByLastPost(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        return postMapper.findAllByLastPost();
+        return postMapper.findAllByLastPost(-1);
     }
 
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
@@ -80,9 +80,10 @@ public class PostService {
         return postMapper.findByPostID(PostID);
     }
 
-    //分页查询帖子
-    public List<Post> getPost(Integer page, Integer limit){
-        return postMapper.findAll();
+    //根据关键词模糊查询帖子（仅匹配标题）
+    public List<Post> findLikePostTitle(String postTitle){
+        String rePostTitle = "%" + postTitle + "%";
+        return postMapper.findLikePostTitle(rePostTitle);
     }
 
     //修改某条帖子信息
