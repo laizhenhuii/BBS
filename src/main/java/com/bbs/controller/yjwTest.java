@@ -96,21 +96,21 @@ public class yjwTest {
     //测试成功
     @RequestMapping("findByPostTime")
     public List<Post> findByPage(){
-       List<Post> list = postService.findAllByPostTime(2, 5);
+       List<Post> list = postService.findAllByPostTime(1, 5);
        return list;
     }
 
     //测试成功
     @RequestMapping("findByPostView")
     public List<Post> findByPageView(){
-        List<Post> list = postService.findAllBypageView(2, 5);
+        List<Post> list = postService.findAllBypageView(1, 5);
         return list;
     }
 
     //测试成功
     @RequestMapping("findByLastPost")
     public List<Post> findByLastPost(){
-        List<Post> list = postService.findAllByLastPost(2, 5);
+        List<Post> list = postService.findAllByLastPost(1, 5);
         return list;
     }
 
