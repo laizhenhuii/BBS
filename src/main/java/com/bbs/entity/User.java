@@ -12,7 +12,7 @@ public class User {
     private String edu;     //用户学历
     private String job;     //用户工作
     private String workPlace;    //用户工作地点
-    private Timestamp registerTime;    //用户工作时间
+    private Timestamp registerTime;    //用户注册时间
     private Timestamp birthday;       //用户生日
     private String home;          //用户家乡
     private int integral;            //用户积分

@@ -1,15 +1,10 @@
 package com.bbs.controller;
 
 import com.bbs.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -51,7 +46,8 @@ public class LoginController {
             return "login";
         }else if(userService.login(telephone,password) == 1){
 //            登录成功
-            session.setAttribute("loginUser",userService.selectByTel(telephone).getName());
+            session.setAttribute("username",userService.selectByTel(telephone).getName());
+            session.setAttribute("tel",telephone);
             return "redirect:/index.html";
         }else if (userService.login(telephone,password) == 0){
 //            手机号不存在

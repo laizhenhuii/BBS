@@ -22,7 +22,7 @@
             <li><a href="">增值服务</a></li>
         </ul>
         <!--未登入开始，登录时以下隐藏-->
-        <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
+        <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
             <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
                 <li><a href="login.html" th:href="@{login.html}">登录</a></li>
@@ -31,15 +31,15 @@
         </div>
         <!-- 未登入结束-->
         <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login" th:if="${not #strings.isEmpty(session.loginUser)}">
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
             <ul>
-                <li><a th:text="${session.loginUser}" th:href="@{home.html}"></a></li>
+                <li><a th:text="${session.username}" th:href="@{home.html}"></a></li>
                 <li><a th:href="@{/index/exit}" >退出</a></li>
             </ul>
         </div>
         <!-- 登入结束-->
         <div class="navFix">
-            <a  class="navLogin" href="login.html" th:if="${#strings.isEmpty(session.loginUser)}">登录</a>
+            <a  class="navLogin" href="login.html" th:if="${#strings.isEmpty(session.username)}">登录</a>
             <a href="" class="navWrite">发新帖</a>
         </div>
     </div>

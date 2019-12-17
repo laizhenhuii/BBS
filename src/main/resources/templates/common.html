@@ -17,7 +17,7 @@
         <a th:href="@{index.html}" class="backIndex">返回首页</a>
         <div class="lt_login">
             <ul>
-                <li><a th:href="@{home.html}" th:text="${session.loginUser}"></a></li>
+                <li><a th:href="@{home.html}" th:text="${session.username}"></a></li>
                 <li><a th:href="@{/index/exit}">退出</a></li>
             </ul>
         </div>
