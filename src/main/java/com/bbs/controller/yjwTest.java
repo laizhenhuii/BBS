@@ -2,8 +2,10 @@ package com.bbs.controller;
 
 import com.bbs.entity.Information;
 import com.bbs.entity.Post;
+import com.bbs.entity.User;
 import com.bbs.service.InformationService;
 import com.bbs.service.PostService;
+import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,9 @@ public class yjwTest {
 
     @Autowired
     private InformationService informationService;
+
+    @Autowired
+    private UserService userService;
 
     //帖子数据库接口测试
 
@@ -109,6 +114,12 @@ public class yjwTest {
         return list;
     }
 
+    @RequestMapping("findLikePostTitle")
+    public List<Post> findLikePostTitle(){
+        return postService.findLikePostTitle("震惊");
+    }
+
+
 
     //测试成功
     @RequestMapping("update")
@@ -179,6 +190,12 @@ public class yjwTest {
     @RequestMapping("findByReceiverTel")
     public List<Information> findByReceiverTel(){
         return informationService.findByReceiverTel("15207972800");
+    }
+
+    @RequestMapping("findUserLikeName")
+    //用户数据库接口测试
+    public List<User> findUserLikeName(){
+        return userService.findLikeUserName("开心");
     }
 
 }

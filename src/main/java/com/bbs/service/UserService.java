@@ -44,6 +44,13 @@ public class UserService {
     public User selectByTel(String tel){
         return ( userMapper.selectByTel(tel));//根据用户tel查询用户全部个人信息
     }
+
+    //根据关键词模糊查询用户（仅匹配用户名）
+    public List<User> findLikeUserName(String userName){
+        String reUserName = "%" + userName + "%";
+        return userMapper.findLikePostTitle(reUserName);
+    }
+
     public int selectIntegral(String tel){
         return (userMapper.selectIntegral(tel));//根据用户tel查询用户积分
     }

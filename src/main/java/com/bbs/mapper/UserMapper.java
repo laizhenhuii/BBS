@@ -12,9 +12,16 @@ public interface UserMapper {
 //用于插入个人账号密码
     @Select("Select * from user_table")
     List<User> selectAll();
+
 //用于展示所有用户信息，供管理员调用
     @Select("Select * from user_table where tel = #{tel}")
     User selectByTel(String tel);
+
+    @Select("select * from user_table where name like #{arg}")
+    //根据关键词模糊查询用户（仅匹配用户名）
+    List<User> findLikePostTitle(String userName);
+
+
     //用于找到某个用户的积分
     @Select("Select Integral from user_table where tel = #{tel}")
     int selectIntegral(String tel);

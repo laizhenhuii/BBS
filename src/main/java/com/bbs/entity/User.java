@@ -1,7 +1,10 @@
 package com.bbs.entity;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.sql.Timestamp;
 
+@Mapper
 public class User {
     private String name;  //用户姓名
     private String password;  //用户密码，不可为空

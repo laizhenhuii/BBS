@@ -80,9 +80,10 @@ public class PostService {
         return postMapper.findByPostID(PostID);
     }
 
-    //分页查询帖子
-    public List<Post> getPost(Integer page, Integer limit){
-        return postMapper.findAll();
+    //根据关键词模糊查询帖子（仅匹配标题）
+    public List<Post> findLikePostTitle(String postTitle){
+        String rePostTitle = "%" + postTitle + "%";
+        return postMapper.findLikePostTitle(rePostTitle);
     }
 
     //修改某条帖子信息
