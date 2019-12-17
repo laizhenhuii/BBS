@@ -1,5 +1,7 @@
 package com.bbs.controller;
 
+import com.bbs.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -19,18 +21,45 @@ import java.util.Map;
  **/
 @Controller
 public class LoginController {
+    final
+    UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/user/register")
+    public  String register(@RequestParam("username") String username,
+                            @RequestParam("telephone") String telephone,
+                            @RequestParam("password") String password,
+                            Map<String,Object> map){
+        if (userService.registerUser(telephone,password)){
+            return "login";
+        }else {
+            map.put("msg","亲！您已经注册过了，快去登录吧！");
+            return "register";
+        }
+    }
 
     @PostMapping("/user/login")
     public String login(@RequestParam("telephone") String telephone,
                         @RequestParam("password") String password,
                         Map<String,Object> map, HttpSession session){
-        if(!StringUtils.isEmpty(telephone) && "123".equals(password)){
+        if (telephone == " "){
+//            输入不合法，手机号为空
+            map.put("msg","亲！请不要输入空手机号哦");
+            return "login";
+        }else if(userService.login(telephone,password) == 1){
 //            登录成功
-            session.setAttribute("loginUser",telephone);
+            session.setAttribute("loginUser",userService.selectByTel(telephone).getName());
             return "redirect:/index.html";
+        }else if (userService.login(telephone,password) == 0){
+//            手机号不存在
+            map.put("msg","未找到您的账户，请先注册或检查手机号是否输入正确");
+            return "login";
         }else {
-//            登录失败
-            map.put("msg","登录信息有误，请重新输入！");
+//            密码错误
+            map.put("msg","您输入的密码错误喔！请重新输入。");
             return "login";
         }
     }

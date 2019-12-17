@@ -36,14 +36,15 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/common.html").setViewName("common");
         registry.addViewController("/home.html").setViewName("home");
         registry.addViewController("/base.html").setViewName("base");
-        registry.addViewController("upload_password.html").setViewName("upload_password");
+        registry.addViewController("/upload_password.html").setViewName("upload_password");
     }
 
 //    拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
+                .excludePathPatterns("/webjars/**","/asserts/**","/","/index.html",
+                        "/register.html","/login.html","/user/login","/user/register");
     }
 
     @Bean //向容器中添加组件
