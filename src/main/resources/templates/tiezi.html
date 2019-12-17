@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8">
     <title>帖子</title>
-    <link rel="stylesheet" href="asserts/css/reset.css"/>
-    <link rel="stylesheet" href="asserts/css/public.css"/>
-    <link rel="stylesheet" href="asserts/css/index.css"/>
+    <link rel="stylesheet" href="/static/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/static/asserts/css/public.css"/>
+    <link rel="stylesheet" href="/static/asserts/css/index.css"/>
 </head>
 <body>
 <header class="ltHead">
     <div class="ltHead_cen">
-        <a href=""><img src="asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <a href=""><img src="/static/asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
-            <li><a href="">首页</a></li>
+            <li><a href="" th:href="@{/}">首页</a></li>
             <li><a href="">沪牌竞拍</a></li>
             <li><a href="">拍王助手</a></li>
             <li><a href="">深圳竞价摇号</a></li>
@@ -23,7 +23,7 @@
         </ul>
         <!--未登入开始-->
         <div class="ltForm">
-            <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+            <a href=""><img src="../static/asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
                 <li><a href="">登入</a></li>
                 <li><a href="">注册</a></li>
@@ -44,19 +44,19 @@
     <div class="indexMain_left">
         <div class="tzCon">
             <div class="tzCon_head">
-                <div class="tzCon_head_left"></div>
+                <div class="tzCon_head_left">（头像）</div>
                 <div class="tzCon_head_right">
-                    <h1>分享一些layim开发过程中的新增的一些东西</h1>
+                    <h1 th:text="${post.getPostTitle()}">(帖子标题)</h1>
                     <ul>
-                        <li>花开花落</li>
-                        <li>1天前</li>
-                        <li>21</li>
+                        <li th:text="${post.getPosterName()}">（发帖人）</li>
+                        <li th:text="${post.getPostTime()}">（发帖时间）</li>
+                        <li th:text="${post.getLikeNumber()}">（点赞量）</li>
                     </ul>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="tzCon_con">
-                cesh内容区
+            <div class="tzCon_con" th:text="${post.getPostContent()}">
+                (帖子内容）
             </div>
             <div class="tzCon_foot">
                 <div class="tzCollect">
