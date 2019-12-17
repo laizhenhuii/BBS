@@ -7,8 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user_table(tel,password) values(#{tel},#{password})")
-   int registerUser(String tel, String password);
+    @Insert("insert into user_table(name,tel,password) values(#{name},#{tel},#{password})")
+   int registerUser(String name,String tel, String password);
 //用于插入个人账号密码
     @Select("Select * from user_table")
     List<User> selectAll();

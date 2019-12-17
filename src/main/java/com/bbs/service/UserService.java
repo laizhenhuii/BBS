@@ -11,10 +11,10 @@ import java.util.List;
 public class UserService {
     @Resource
     UserMapper userMapper;
-    public boolean registerUser(String tel,String password){     //注册，用账号密码注册
+    public boolean registerUser(String name,String tel,String password){     //注册，用账号密码注册
         User temp=userMapper.selectByTel(tel);
         if(temp==null){
-            userMapper.registerUser(tel,password);
+            userMapper.registerUser(name,tel,password);
             return true;
         }
         return false;

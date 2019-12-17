@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head lang="en">
     <meta charset="UTF-8">
     <title>我的帖子</title>
-    <link rel="stylesheet" href="asserts/css/reset.css"/>
-    <link rel="stylesheet" href="asserts/css/homeHead.css"/>
-    <link rel="stylesheet" href="asserts/css/homePublic.css"/>
-    <link rel="stylesheet" href="asserts/css/myWrite.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homeHead.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homePublic.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/myWrite.css"/>
 </head>
 <body>
 <header class="zyHead">
     <div class="zyHead_cen">
-        <a href=""><img src="asserts/img/per-con.png" alt="" class="headPic1"/></a>
+        <a href=""><img src="../static/asserts/img/per-con.png" alt="" class="headPic1"/></a>
         <a href="" class="backIndex">返回首页</a>
         <!--未登入开始-->
         <!--<div class="ltForm">-->
@@ -37,7 +37,7 @@
         <ul>
             <li><a href="">我的主页</a></li>
             <li><a href="">基本设置</a></li>
-            <li class="on"><a href="">我的贴子</a></li>
+            <li class="on"><a href="#" th:href="@{/mypost/show}">我的贴子</a></li>
             <li><a href="">我的消息</a></li>
             <li><a href="">我的订单</a></li>
         </ul>
@@ -56,8 +56,8 @@
                 <div class="writeHead3">浏览量</div>
                 <div class="writeHead4">操作</div>
             </div>
-            <div class="writeFoot">
-                <div class="writeFoot1"><p><a href="">今天天气怎么样？</a></p></div>
+            <div class="writeFoot" th:each="i:${post}">
+                <div class="writeFoot1"><p><a href="" th:text="i.getPosterName()">今天天气怎么样？</a></p></div>
                 <div class="writeFoot2">2018.02.23 14:36:24</div>
                 <div class="writeFoot3">2601</div>
                 <div class="writeFoot4"><a href="javascript:">删除</a></div>
@@ -65,7 +65,7 @@
         </div>
         <div class="indexFooter">
             <div class="indexFooter_con">
-                <a href="javascript:"><</a>
+                <a href="javascript:"></a>
                 <a href="" class="on">1</a>
                 <a href="">2</a>
                 <a href="">3</a>
