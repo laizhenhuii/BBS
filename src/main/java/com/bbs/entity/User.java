@@ -1,20 +1,22 @@
 package com.bbs.entity;
 
+import java.sql.Timestamp;
+
 public class User {
-    private String name;
-    private String password;
-    private String tel;
-    private String sex;
-    private String sign;
-    private String head;
-    private String edu;
-    private String job;
-    private String workPlace;
-    private String registerTime;
-    private String birthday;
-    private String home;
-    private String integral;
-    private String reputationValue;
+    private String name;  //用户姓名
+    private String password;  //用户密码，不可为空
+    private String tel;      //用户手机号，不可为空
+    private String sex;     //用户性别
+    private String sign;    //用户签名
+    private String head;    //用户头像
+    private String edu;     //用户学历
+    private String job;     //用户工作
+    private String workPlace;    //用户工作地点
+    private Timestamp registerTime;    //用户工作时间
+    private Timestamp birthday;       //用户生日
+    private String home;          //用户家乡
+    private int integral;            //用户积分
+    private int reputationValue;         //用户信誉值
 
     public String getName() {
         return name;
@@ -88,19 +90,19 @@ public class User {
         this.workPlace = workPlace;
     }
 
-    public String getRegisterTime() {
+    public Timestamp getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(String registerTime) {
+    public void setRegisterTime(Timestamp registerTime) {
         this.registerTime = registerTime;
     }
 
-    public String getBirthday() {
+    public Timestamp getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Timestamp birthday) {
         this.birthday = birthday;
     }
 
@@ -112,19 +114,19 @@ public class User {
         this.home = home;
     }
 
-    public String getIntegral() {
+    public int getIntegral() {
         return integral;
     }
 
-    public void setIntegral(String integral) {
+    public void setIntegral(int integral) {
         this.integral = integral;
     }
 
-    public String getReputationValue() {
+    public int getReputationValue() {
         return reputationValue;
     }
 
-    public void setReputationValue(String reputationValue) {
+    public void setReputationValue(int reputationValue) {
         this.reputationValue = reputationValue;
     }
 }

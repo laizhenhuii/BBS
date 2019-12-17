@@ -1,9 +1,9 @@
 package com.bbs.entity;
 
 public class Manager {
-    private String id;
-    private String name;
-    private String password;
+    private String id;  //管理员id，不可为空
+    private String name;  //管理员姓名
+    private String password;  //管理员密码，不可为空
 
     public String getId() {
         return id;

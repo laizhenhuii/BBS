@@ -7,21 +7,25 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user_table(tel_number,user_password,user_name,user_sex,user_sign,user_head,user_edu,user_job,user_work_place,user_register_time,user_birthday,user_home,user_integral,user_reputation_value)values(#{tel},#{password}),#{name},#{sex},#{sign},#{head},#{edu},#{job},#{workPlace},#{registerTime},#{birthday},#{home},#{integral},#{reputationValue}")
-    int insertUser(User user);
-
+    @Insert("insert into user_table(tel,password) values(#{tel},#{password})")
+   int registerUser(String tel, String password);
+//用于插入个人账号密码
     @Select("Select * from user_table")
     List<User> selectAll();
-
-    @Select("Select * from user_table where tel_number = #{tel}")
-    User selectById(String tel);
-
-    @Delete("delete from user_table where tel_number=#{tel}")
+//用于展示所有用户信息，供管理员调用
+    @Select("Select * from user_table where tel = #{tel}")
+    User selectByTel(String tel);
+    //用于找到某个用户的积分
+    @Select("Select Integral from user_table where tel = #{tel}")
+    int selectIntegral(String tel);
+    //用于找到某个用户的信誉值
+    @Select("Select reputationValue from user_table where tel = #{tel}")
+    int selectValue(String tel);
+//根据tel找到该用户全部信息
+    @Delete("delete from user_table where tel=#{tel}")
     int deleteUser(String tel);
-
-    @Update("Update user_table Set user_password = #{password},user_name= #{name},user_sex=#{sex},user_sign=#{sign},user_head=#{head},user_edu=#{edu},user_job=#{job},user_work_place=#{workPlace},user_register_time=#{registerTime},user_birthday=#{birthday},user_home=#{home},user_integral=#{integral},user_reputation_value=#{reputationValue}where id = #{id}")
+//根据tel删除某个用户信息
+    @Update("Update user_table Set password = #{password},name= #{name},sex=#{sex},sign=#{sign},head=#{head},edu=#{edu},job=#{job},workPlace=#{workPlace},registerTime=#{registerTime},birthday=#{birthday},home=#{home},integral=#{integral},reputationValue=#{reputationValue}where id = #{user.id}")
     int updateInformation(User user);
-
-
-
+//更新个人信息，先用selectByTel找到该用户，再把想要修改的覆盖
 }

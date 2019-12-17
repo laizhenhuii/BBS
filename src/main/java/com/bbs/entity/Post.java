@@ -1,9 +1,13 @@
 package com.bbs.entity;
 
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.sql.Timestamp;
 
 //帖子实体类
+
+@Mapper
 public class Post {
     private String posterID; //发帖人ID（手机号）
     private String posterName;//发帖人用户名
@@ -13,29 +17,30 @@ public class Post {
     private Timestamp postTime; //发表时间
     private int likeNumber;//点赞数
     private int pageView;//浏览量
-    private String content;//帖子内容
-    private boolean homeTop; //是否首页置顶，为1时置顶
-    private boolean personalTop;//是否个人主页置顶，为1时置顶
-    private boolean postBoutique;//是否加精，为1时加精
+    private String postContent;//帖子内容
+    private boolean homeTop; //是否首页置顶，为true时置顶
+    private boolean personalTop;//是否个人主页置顶，为true时置顶
+    private boolean postBoutique;//是否加精，为true时加精
     private int postIntegral;//积分数
-    private String moudleType;//模块类型，如天健轶事
+    private String moduleType;//版块类型，如天健轶事
 
-    public Post(String posterID, String posterName, int postID, String postTitle, int mainPost, Timestamp postTime, int likeNumber, int pageView, String content, boolean homeTop, boolean personalTop, boolean postBoutique, int postIntegral, String moudleType) {
-        this.posterID = posterID;
-        this.posterName = posterName;
-        this.postID = postID;
-        this.postTitle = postTitle;
-        this.mainPost = mainPost;
-        this.postTime = postTime;
-        this.likeNumber = likeNumber;
-        this.pageView = pageView;
-        this.content = content;
-        this.homeTop = homeTop;
-        this.personalTop = personalTop;
-        this.postBoutique = postBoutique;
-        this.postIntegral = postIntegral;
-        this.moudleType = moudleType;
+    public Post(){}
+
+
+
+    public boolean isHomeTop() {
+        return homeTop;
     }
+
+    public boolean isPersonalTop() {
+        return personalTop;
+    }
+
+    public boolean isPostBoutique() {
+        return postBoutique;
+    }
+
+
 
     public String getPosterID() {
         return posterID;
@@ -69,28 +74,18 @@ public class Post {
         return pageView;
     }
 
-    public String getContent() {
-        return content;
+    public String getPostContent() {
+        return postContent;
     }
 
-    public boolean getHomeTop() {
-        return homeTop;
-    }
 
-    public boolean getPersonalTop() {
-        return personalTop;
-    }
-
-    public boolean getPostBoutique() {
-        return postBoutique;
-    }
 
     public int getPostIntegral() {
         return postIntegral;
     }
 
-    public String getMoudleType() {
-        return moudleType;
+    public String getModuleType() {
+        return moduleType;
     }
 
     public void setPosterID(String posterID) {
@@ -101,9 +96,6 @@ public class Post {
         this.posterName = posterName;
     }
 
-    public void setPostID(int postID) {
-        this.postID = postID;
-    }
 
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
@@ -125,8 +117,8 @@ public class Post {
         this.pageView = pageView;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
     }
 
     public void setHomeTop(boolean homeTop) {
@@ -145,7 +137,9 @@ public class Post {
         this.postIntegral = postIntegral;
     }
 
-    public void setMoudleType(String moudleType) {
-        this.moudleType = moudleType;
+    public void setModuleType(String moduleType) {
+        this.moduleType = moduleType;
     }
+
+
 }
