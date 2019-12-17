@@ -42,7 +42,7 @@ public class InformationService {
             return 0;
     }
 
-    //查询所有帖子
+    //查询所有消息
     public List<Information> findAll(){
         return informationMapper.findAll();
     }
