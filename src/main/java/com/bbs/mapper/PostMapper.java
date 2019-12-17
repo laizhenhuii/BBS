@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public interface PostMapper {
 
-    @Insert("insert into post_table(posterID, posterName, postTitle, mainPost, postTime, likeNumber, pageView, postContent, homeTop, personalTop, postBoutique, postIntegral, moduleType)" +
-            "values(#{posterID}, #{posterName}, #{postTitle}, #{mainPost}, #{postTime}, #{likeNumber}, #{pageView}, #{postContent}, #{homeTop}, #{personalTop}, #{postBoutique}, #{postIntegral}, #{moduleType})")
+    @Insert("insert into post_table(posterID, posterName, postTitle, mainPost, postTime, likeNumber, pageView, postContent, homeTop, personalTop, postBoutique, postIntegral, moduleType, lastPost)" +
+            "values(#{posterID}, #{posterName}, #{postTitle}, #{mainPost}, #{postTime}, #{likeNumber}, #{pageView}, #{postContent}, #{homeTop}, #{personalTop}, #{postBoutique}, #{postIntegral}, #{moduleType}, #{lastPost})")
     //添加一条新帖(返回1表示成功，0表示失败，下面类似)
     int addPost(Post post);
 
@@ -31,6 +31,18 @@ public interface PostMapper {
     @Select("select * from post_table")
     //查询所有帖子
     List<Post> findAll();
+
+    @Select("select * from post_table order by postTime DESC")
+    //查询所有帖子按发帖时间降序排序
+    List<Post> findAllByPostTime();
+
+    @Select("select * from post_table order by pageView DESC")
+    //查询所有帖子按浏览量降序排序
+    List<Post> findAllBypageView();
+
+    @Select("select * from post_table order by lastPost DESC")
+    //查询所有帖子按最后回复时间降序排序
+    List<Post> findAllByLastPost();
 
     @Select("select * from post_table where posterID = #{posterID}")
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
