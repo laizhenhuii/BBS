@@ -51,8 +51,7 @@ public class PostService {
     //返回查询页所有的帖子
     public List<Post> findAllByPostTime(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
-        List<Post> list = postMapper.findAllByPostTime();
-        return list;
+        return postMapper.findAllByPostTime();
     }
 
     //查询所有帖子按浏览量降序排序
