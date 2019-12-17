@@ -29,7 +29,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
 //    地址映射
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/").setViewName("index");
+//        registry.addViewController("/").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
         registry.addViewController("/login.html").setViewName("login");
         registry.addViewController("/register.html").setViewName("register");
@@ -37,11 +37,11 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     }
 
 //    拦截器
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
 //                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
-//    }
+    }
 
     @Bean //向容器中添加组件
     public LocaleResolver localeResolver(){
