@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>论坛首页</title>
+    <title>BBS论坛</title>
     <link rel="stylesheet" href="/asserts/css/reset.css"/>
     <link rel="stylesheet" href="/asserts/css/public.css"/>
     <link rel="stylesheet" href="/asserts/css/index.css"/>
@@ -10,7 +10,7 @@
 <body>
 <header class="ltHead">
     <div class="ltHead_cen">
-        <a href=""><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <a href="" th:href="'#footer0'"><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
             <li><a href="">首页</a></li>
             <li><a href="">沪牌竞拍</a></li>
@@ -23,7 +23,7 @@
         </ul>
         <!--未登入开始，登录时以下隐藏-->
         <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
-            <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+            <a th:href="@{login.html}"><img src="/asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
                 <li><a href="login.html" th:href="@{login.html}">登录</a></li>
                 <li><a href="register.html" th:href="@{register.html}">注册</a></li>
@@ -31,7 +31,7 @@
         </div>
         <!-- 未登入结束-->
         <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.loginUser)}">
             <ul>
                 <li><a th:text="${session.username}" th:href="@{/user/home}"></a></li>
                 <li><a th:href="@{/user/exit}" >退出</a></li>
@@ -40,7 +40,7 @@
         <!-- 登入结束-->
         <div class="navFix">
             <a  class="navLogin" href="login.html" th:if="${#strings.isEmpty(session.username)}">登录</a>
-            <a href="" class="navWrite">发新帖</a>
+            <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.loginUser)}" th:href="@{/writePost}">发新帖</a>
         </div>
     </div>
 </header>

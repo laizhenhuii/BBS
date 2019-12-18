@@ -30,9 +30,6 @@ public class UserService {
         }
         return -1;
     }
-
-
-
     public void deleteUser(String tel){
         userMapper.deleteUser(tel);
     } //删除某个用户信息，供管理员调用

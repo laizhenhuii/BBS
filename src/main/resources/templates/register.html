@@ -5,26 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>注册</title>
     <!-- Bootstrap core CSS -->
-    <link href="/asserts/css/bootstrap.min.css" rel="stylesheet">
+    <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/asserts/css/login.css" rel="stylesheet">
+    <link href="asserts/css/signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
-<form style="max-width: 400px;" class="form-signin" th:action="@{/user/register}" method="post">
-    <div class="div-index">我不注册，返回<a th:href="@{/index.html}">主页</a></div>
-    <div class="div-log">我已注册，现在就<a th:href="@{/login.html}">登录</a></div>
-    <img class="mb-4" src="/asserts/img/bootstrap-solid.svg"  width="72" height="72">
+<form style="max-width: 400px;" class="form-signin" action="dashboard.html">
+    <img class="mb-4" src="asserts/img/bootstrap-solid.svg"  width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.register}">Please register first</h1>
-    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.username}">Username</label>
-    <input name="username" style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block" th:placeholder="#{login.username}" >
+    <input style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block" th:placeholder="#{login.username}" >
     <br>
     <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.telephone}">Telephone</label>
-    <input name="telephone" style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block"  th:placeholder="#{login.telephone}" >
+    <input style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block"  th:placeholder="#{login.telephone}" >
     <br>
     <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.password}"> Password</label>
-    <input name="password" style="width: 280px;margin: 10px 5px;" type="password" class="form-control d-inline-block"  th:placeholder="#{login.password}" >
+    <input style="width: 280px;margin: 10px 5px;" type="password" class="form-control d-inline-block"  th:placeholder="#{login.password}" >
     <div class="checkbox mb-3"> 
         <label>
             <input type="checkbox" value="remember-me"> [[#{login.remember}]]

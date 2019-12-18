@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head lang="en" >
     <meta charset="UTF-8">
     <title>我的资料</title>
@@ -13,15 +13,45 @@
     <link rel="stylesheet" href="/asserts/css/base.css"/>
 </head>
 <body>
-<div th:replace="common::#topbar"></div>
+<header class="zyHead">
+    <div class="zyHead_cen">
+        <a href=""><img src="asserts/img/per-con.png" alt="" class="headPic1"/></a>
+        <a href="" class="backIndex">返回首页</a>
+        <!--未登入开始-->
+        <!--<div class="ltForm">-->
+        <!--<a href=""><img src="img/indexForm_bg.png" alt="" class="headPic2"/></a>-->
+        <!--<ul>-->
+        <!--<li><a href="">登入</a></li>-->
+        <!--<li><a href="">注册</a></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!-- 未登入结束-->
+        <!-- 登入开始，未登入时以下隐藏-->
+        <div class="lt_login">
+            <ul>
+                <li><a href="" >[[${session.loginUser}]] </a></li>
+                <li><a href="" >退出</a></li>
+            </ul>
+        </div>
+        <!-- 登入结束-->
+    </div>
+</header>
 <div class="homeCen">
-    <div th:replace="common::#sidebar(active='base')" ></div>
+    <div class="homeCen_left">
+        <ul>
+            <li><a href="">我的主页</a></li>
+            <li class="on"><a href="">基本设置</a></li>
+            <li><a href="">我的贴子</a></li>
+            <li><a href="">我的消息</a></li>
+            <li><a href="">我的订单</a></li>
+        </ul>
+    </div>
     <div class="homeCen_right">
         <div class="baseHead">
             <ul>
-                <li><a th:href="@{base.html}" class="on">我的资料</a></li>
+                <li><a href="" class="on">我的资料</a></li>
                 <li><a href="">头像</a></li>
-                <li><a th:href="@{upload_password.html}">密码</a></li>
+                <li><a href="">密码</a></li>
             </ul>
         </div>
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">

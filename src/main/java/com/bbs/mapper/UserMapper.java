@@ -32,7 +32,7 @@ public interface UserMapper {
     @Delete("delete from user_table where tel=#{tel}")
     int deleteUser(String tel);
 //根据tel删除某个用户信息
-    @Update("Update user_table Set password = #{password},name= #{name},sex=#{sex},sign=#{sign},head=#{head},edu=#{edu},job=#{job},workPlace=#{workPlace},registerTime=#{registerTime},birthday=#{birthday},home=#{home},integral=#{integral},reputationValue=#{reputationValue}where id = #{user.id}")
+    @Update("Update user_table Set password = #{password},name= #{name},sex=#{sex},sign=#{sign},head=#{head},email=#{email},studyArea=#{studyArea},registerTime=#{registerTime},birthday=#{birthday},home=#{home},integral=#{integral},reputationValue=#{reputationValue}where id = #{id}")
     int updateInformation(User user);
 //更新个人信息，先用selectByTel找到该用户，再把想要修改的覆盖
 }
