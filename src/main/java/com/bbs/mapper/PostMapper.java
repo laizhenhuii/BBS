@@ -33,16 +33,36 @@ public interface PostMapper {
     List<Post> findAll();
 
     @Select("select * from post_table where mainPost = #{mainPost} order by postTime DESC")
-    //查询所有帖子按发帖时间降序排序
+    //查询所有主帖子按发帖时间降序排序
     List<Post> findAllByPostTime(int mainPost);
+
+    @Select("select * from post_table where mainPost = #{mainPost} and homeTop = #{homeTop} order by postTime DESC")
+    //查询所有置顶帖子按回帖时间降序排序
+    List<Post> findAllHomeTop(int mainPost, boolean homeTop);
 
     @Select("select * from post_table where mainPost = #{mainPost} order by pageView DESC")
     //查询所有帖子按浏览量降序排序
-    List<Post> findAllBypageView(int mainPost);
+    List<Post> findAllByPageView(int mainPost);
 
     @Select("select * from post_table where mainPost = #{mainPost} order by lastPost DESC")
     //查询所有帖子按最后回复时间降序排序
     List<Post> findAllByLastPost(int mainPost);
+
+    @Select("select * from post_table where mainPost = #{mainPost} and postBoutique = #{postBoutique} order by lastPost DESC")
+    //查询所有加精帖按最后回复时间排序
+    List<Post> findAllBoutuque(int mainPost, boolean postBoutique);
+
+    @Select("select * from post_table where mainPost = #{mainPost} and postIntegral > 0 order by lastPost DESC")
+    //查询所有积分帖按最后回复时间排序
+    List<Post> findAllpostIntegral(int mainPost);
+
+    @Select("select * from post_table where mainPost = #{mainPost} order by likeNumber DESC")
+    //查询所有帖子按点赞数降序排序
+    List<Post> findAllByLikeNumber(int mainPost);
+
+    @Select("select * from post_table where mainPost = #{mainPost} and moduleType = #{moduleType} order by likeNumber DESC")
+    //查询所有对应模块的帖子
+    List<Post> findAllBymoduleType(int mainPost, String moduleType);
 
     @Select("select * from post_table where posterID = #{posterID}")
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
