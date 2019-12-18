@@ -13,11 +13,11 @@
 <!--topbar 公共顶部栏-->
 <header class="zyHead" id="topbar">
     <div class="zyHead_cen">
-        <a href=""><img src="asserts/img/per-con.png" alt="" class="headPic1"/></a>
-        <a th:href="@{index.html}" class="backIndex">返回首页</a>
+        <a href=""><img src="/asserts/img/per-con.png" alt="" class="headPic1"/></a>
+        <a th:href="@{/user/index}" class="backIndex">返回首页</a>
         <div class="lt_login">
             <ul>
-                <li><a th:href="@{home.html}" th:text="${session.username}"></a></li>
+                <li><a th:href="@{/user/home}" th:text="${session.username}"></a></li>
                 <li><a th:href="@{/index/exit}">退出</a></li>
             </ul>
         </div>
@@ -27,10 +27,10 @@
 <!--sidebar  公共侧边栏-->
 <div class="homeCen_left" id="sidebar">
     <ul>
-        <li th:class="${active=='home'?'on':' '}"><a th:href="@{home.html}">我的主页</a></li>
-        <li th:class="${active=='base'?'on':' '}"><a th:href="@{base.html}">基本设置</a></li>
-        <li th:class="${active=='tiezi'?'on':' '}"><a th:href="@{myWrite.html}">我的贴子</a></li>
-        <li th:class="${active=='myMsg'?'on':' '}"><a th:href="@{myMsg.html}">我的消息</a></li>
+        <li th:class="${active=='home'?'on':' '}"><a th:href="@{/user/home}">我的主页</a></li>
+        <li th:class="${active=='base'?'on':' '}"><a th:href="@{/user/base}">基本设置</a></li>
+        <li th:class="${active=='tiezi'?'on':' '}"><a th:href="@{/user/tiezi}">我的贴子</a></li>
+        <li th:class="${active=='myMsg'?'on':' '}"><a th:href="@{/user/myMsg}">我的消息</a></li>
     </ul>
 </div>
 

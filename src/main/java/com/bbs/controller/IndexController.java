@@ -1,11 +1,18 @@
 package com.bbs.controller;
 
+import com.bbs.entity.User;
+import com.bbs.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * @ClassName IndexController
@@ -16,9 +23,28 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    @GetMapping("/index/exit")
+    final
+    UserService userService;
+
+    public IndexController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @RequestMapping("/user/index")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/user/home")
+    public String home(HttpSession session, Map<String,Object> map){
+        String tel = (String)session.getAttribute("tel");
+        map.put("username",userService.selectByTel(tel).getName());
+        return "home";
+    }
+
+    @GetMapping("/user/exit")
     public String exit(HttpSession session){
         session.invalidate();
-        return "redirect:/index.html";
+        return "index";
     }
 }

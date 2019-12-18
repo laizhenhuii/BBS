@@ -1,5 +1,6 @@
 package com.bbs.controller;
 
+import com.bbs.entity.User;
 import com.bbs.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,7 @@ public class LoginController {
 //            登录成功
             session.setAttribute("username",userService.selectByTel(telephone).getName());
             session.setAttribute("tel",telephone);
-            return "redirect:/index.html";
+            return "index";
         }else if (userService.login(telephone,password) == 0){
 //            手机号不存在
             map.put("msg","未找到您的账户，请先注册或检查手机号是否输入正确");

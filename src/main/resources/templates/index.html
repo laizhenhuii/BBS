@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>论坛首页</title>
-    <link rel="stylesheet" href="asserts/css/reset.css"/>
-    <link rel="stylesheet" href="asserts/css/public.css"/>
-    <link rel="stylesheet" href="asserts/css/index.css"/>
+    <link rel="stylesheet" href="/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/asserts/css/public.css"/>
+    <link rel="stylesheet" href="/asserts/css/index.css"/>
 </head>
 <body>
 <header class="ltHead">
     <div class="ltHead_cen">
-        <a href=""><img src="asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <a href=""><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
             <li><a href="">首页</a></li>
             <li><a href="">沪牌竞拍</a></li>
@@ -33,8 +33,8 @@
         <!-- 登入开始，未登入时以下隐藏-->
         <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
             <ul>
-                <li><a th:text="${session.username}" th:href="@{home.html}"></a></li>
-                <li><a th:href="@{/index/exit}" >退出</a></li>
+                <li><a th:text="${session.username}" th:href="@{/user/home}"></a></li>
+                <li><a th:href="@{/user/exit}" >退出</a></li>
             </ul>
         </div>
         <!-- 登入结束-->
