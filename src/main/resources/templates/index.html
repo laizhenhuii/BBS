@@ -10,16 +10,16 @@
 <body onload="calendar()">
 <header class="ltHead">
     <div class="ltHead_cen">
-        <a href=""><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <a href="" th:href="'#footer0'"><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
             <li><a href="" th:href="@{/}">首页</a></li>
-            <li><a href="" th:href="@{/boutiquePost}">精品贴区</a></li>
-            <li><a href="">需求贴区</a></li>
-            <li><a href="">人气排行</a></li>
-            <li><a href="">积分商城</a></li>
-            <li><a href="">天健</a></li>
-            <li><a href="">休闲</a></li>
-            <li><a href="">医学院</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=2,indexType=1)}">精品贴区</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=3,indexType=1)}">需求贴区</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=4,indexType=1)}">人气排行</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=5,indexType=1)}">积分商城</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=6,indexType=1)}">天健园</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=7,indexType=1)}">休闲区</a></li>
+            <li><a href="" th:href="@{${#request.getRequestURI()}(postType=8,indexType=1)}">医学院</a></li>
         </ul>
         <!--未登入开始-->
         <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
@@ -53,8 +53,12 @@
     <div class="indexMain_left">
         <div class="indexMain_left_btn">
             <ul>
-                <li><a class="on" th:href="@{/}">最新</a></li>
-                <li><a class="on" th:href="@{/topPost}">置顶</a></li>
+                <li>
+                    <a class="on" th:href="@{/}" th:class="${not #strings.isEmpty(pageButton)}?'on'">最新</a>
+                </li>
+                <li>
+                    <a th:href="@{${#request.getRequestURI()}(postType=${postType},indexType=2)}" th:class="${#strings.isEmpty(pageButton)}?'on'">置顶</a>
+                </li>
             </ul>
         </div>
         <div class="indexMain_left_con">
@@ -62,7 +66,7 @@
             <div class="indexCon_msg" th:each="post:${Post}">
                 <div class="indexCon_msg_pic" th:text="${post.getPostID()}">（头像）</div>
                 <div class="indexCon_msg_detail">
-                    <a href="" th:href="@{/toPost/}+${post.getPostID()}">
+                    <a th:href="@{/toPost/}+${post.getPostID()}">
                         <div class="indexCon_msg_detail_tittle">
                             <span th:text="${post.getModuleType()}">（类别)</span>
                             <p th:text="${post.getPostTitle()}">（标题）</p>
@@ -84,12 +88,12 @@
             </div>
             <!--有主题图循环结束-->
         </div>
-        <div class="indexFooter" th:if="${not #strings.isEmpty(ms1)}">
+        <div class="indexFooter" th:if="${not #strings.isEmpty(pageButton)}">
             <div class="indexFooter_con">
                 <a href="javascript:"><</a>
-                <a href="" class="on" th:href="@{/newPost}">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
+                <a href="" class="on" th:href="@{${#request.getRequestURI()}(postType=${postType},page=1)}">1</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=2)}">2</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=3)}">3</a>
                 <a href="javascript:">></a>
             </div>
         </div>
@@ -112,45 +116,43 @@
                 </div>
             </div>
             <div class="indexSearch">
-                <form action="" method="post">
-                    <input type="text" placeholder="请输入关键词"/>
+                <form action="" th:action="@{/search}" method="post">
+                    <input type="text" placeholder="请输入关键词" name="keyword"/>
                     <input type="submit" value="搜索"/>
                 </form>
             </div>
             <div class="indexPublic">
                 <div class="indexPublic_head">
-                    本周热议（浏览量）
+                    本周热议（浏览量前9条）
                 </div>
                 <div class="indexPublic_con">
                     <ul class="weekHot">
-                        <li th:each="post1:${hotPost}" >
-                            <a href=""th:text="${post1.getPostTitle()}"></a>
-                            <span th:text="${post1.getPostID()}"></span>
+                        <li th:each="hot:${hotPost}" >
+                            <a href="" th:href="@{/toPost/}+${hot.getPostID()}" th:text="${hot.getPostTitle()}">
+                            </a>
+                            <span th:text="${hot.getPostID()}"></span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="indexPublic">
                 <div class="indexPublic_head">
-                    本周热点（点赞量）
+                    本周热点（点赞量前5条）
                 </div>
                 <div class="indexPublic_con">
                     <ul class="indexLink">
-                        <li th:each="post1:${hotPost}" >
-                            <a href="" th:text="${post1.getPostTitle()}"></a>
+                        <li th:each="popular:${popularPost}" >
+                            <a href="" th:href="@{/toPost/}+${popular.getPostID()}" th:text="${popular.getPostTitle()}"></a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <!--            <div class="indexWxpublic">-->
-            <!--                <p>关注微信公众号</p>-->
-            <!--            </div>-->
         </div>
     </div>
     <div class="clear"></div>
 </div>
 <footer class="publicFooter">
-    <p>Copyright &copy; 2019-2020 BBS论坛 南昌大学信息工程学院计算机科学与技术专业JavaWeb程序设计课程期末大作业版权所有 version：1.0.0</p>
+    <a name="footer0">Copyright &copy; 2019-2020 BBS论坛 南昌大学信息工程学院计算机科学与技术专业JavaWeb程序设计课程期末大作业版权所有 version：1.0.0</a>
 </footer>
 </body>
 </html>
