@@ -8,9 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +22,10 @@ public class HomePageController {
     @Autowired
     public PostService postService;
     //8080端口直接进入网站首页，同时显示网站首页的有关信息
-    @GetMapping({"/","/index.html","/newPost/{pageNumber}"})
-    public String toHomePage(Model model, Map<String,Object> map,@PathVariable("pageNumber") Integer pageNumber){
+    @GetMapping({"/","/index.html"})
+    public String toHomePage(Model model, Map<String,Object> map){
         //左边页面显示的内容，默认是“最新”，并查询数据库，按时间降序展示
-        if(pageNumber==null){
-            pageNumber=1;
-        }
-        List<Post> newPosts=postService.findAllByPostTime(pageNumber,9);
+        List<Post> newPosts=postService.findAllByPostTime(1,6);
         model.addAttribute("Post",newPosts);
         //判断“最新”、“置顶”,用于滚动栏的隐藏判断
         map.put("ms1","1");
@@ -42,7 +36,7 @@ public class HomePageController {
         return "index";
     }
     //点击“置顶”后，刷新首页，展示置顶帖
-    @GetMapping("")
+    @GetMapping("/topPost")
     public String toNewPost(Model model){
         //左边页面显示的内容，置顶帖
         List<Post> post=postService.findAll();
@@ -56,10 +50,10 @@ public class HomePageController {
     //点击“最新”后，重新加载首页，因为首页默认为最新所以链接地址为@{/}
     //点击“首页”后，重新加载首页，所以@{/}
     //点击“精品区”，按是否精品帖进行查询，并重新加载页面，并展示查询到的精品贴
-    @GetMapping("/boutiquePost")
-    public String toBoutiquePost(Model model){
-        return "index";
-    }
+//    @GetMapping("/boutiquePost")
+//    public String toBoutiquePost(Model model){
+//        return "index";
+//    }
     //点击“积分商城”，来到积分商城界面
 //    @GetMapping("/homePage/boutique")
 //    public String toBoutiquePost(Model model){
@@ -103,7 +97,7 @@ public class HomePageController {
     }
     //点击首页上某个帖子的标题时，获取该帖子ID，并跳转到该帖子的详细界面
     @GetMapping("/toPost/{postID}")
-    public String toPostPage(@PathVariable("postID") int postId,Model model){
+    public String toPostPage(@PathVariable("postID") int postId, Model model){
         Post post=postService.findByPostID(postId);
         model.addAttribute("post",post);
         //点击首页帖子标题跳转到该帖子详细界面
