@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.Map;
 
 /**
@@ -29,6 +30,7 @@ public class LoginController {
                             @RequestParam("telephone") String telephone,
                             @RequestParam("password") String password,
                             Map<String,Object> map){
+
         if (userService.registerUser(username, telephone,password)){
             return "login";
         }else {

@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user_table(name,tel,password,reputationValue,integral) values(#{name},#{tel},#{password},20,100)")
+    @Insert("insert into user_table(name,tel,password,reputationValue,integral,registerTime) values(#{name},#{tel},#{password},20,100)")
    int registerUser(String name,String tel, String password);
-//用于插入个人账号密码,并设置初始积分信誉值
+//用于插入个人账号密码,并设置初始积分信誉值和注册时间
     @Select("Select * from user_table")
     List<User> selectAll();
 
@@ -32,7 +32,7 @@ public interface UserMapper {
     @Delete("delete from user_table where tel=#{tel}")
     int deleteUser(String tel);
 //根据tel删除某个用户信息
-    @Update("Update user_table Set password = #{password},name= #{name},sex=#{sex},sign=#{sign},head=#{head},edu=#{edu},job=#{job},workPlace=#{workPlace},registerTime=#{registerTime},birthday=#{birthday},home=#{home},integral=#{integral},reputationValue=#{reputationValue}where id = #{user.id}")
+    @Update("Update user_table Set password = #{password},name= #{name},sex=#{sex},sign=#{sign},head=#{head},email=#{email},studyArea=#{studyArea},registerTime=#{registerTime},birthday=#{birthday},home=#{home},integral=#{integral},reputationValue=#{reputationValue} where tel = #{tel}")
     int updateInformation(User user);
 //更新个人信息，先用selectByTel找到该用户，再把想要修改的覆盖
 }

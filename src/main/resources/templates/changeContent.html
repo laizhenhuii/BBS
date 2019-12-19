@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>发表帖子</title>
+    <link rel="stylesheet" href="/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/asserts/css/public.css"/>
+    <link rel="stylesheet" href="/asserts/css/write.css"/>
+    <link rel="stylesheet" href="/asserts/layui/css/layui.css"  media="all">
+</head>
+<body>
+<header class="ltHead">
+    <div class="ltHead_cen">
+        <a href=""><img src="asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <ul class="headNav">
+            <li><a th:href="@{index}">首页</a></li>
+            <li><a href="">沪牌竞拍</a></li>
+            <li><a href="">拍王助手</a></li>
+            <li><a href="">深圳竞价摇号</a></li>
+            <li><a href="">广州竞价摇号</a></li>
+            <li><a href="">杭州竞价摇号</a></li>
+            <li><a href="">天津竞价摇号</a></li>
+            <li><a href="">增值服务</a></li>
+        </ul>
+
+        <!-- 登入开始，未登入时以下隐藏-->
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
+            <ul>
+                <li><a th:text="${session.username}" th:href="@{/user/home}"></a></li>
+                <li><a th:href="@{/user/exit}" >退出</a></li>
+            </ul>
+        </div>
+        <!-- 登入结束-->
+    </div>
+</header>
+<div class="writeCon">
+    <div class="writeCon_head">
+        <p>修改贴子内容</p>
+    </div>
+    <form method="post" th:action="@{/saveChange}">
+        <div class="writeCon_cen" th:each="p:${post}">
+            <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}" style="color: red;font-weight: bold;font-size: 30px;" ></p>
+            <div class="writePic">
+                <input type="file" accept=".jpeg, .jpg, .png" class="upload_file"/>
+            </div>
+            <div class="writeMsg" >
+                <!-- 标题最大字数15个-->
+                <input type="text" name="title" placeholder="❤标题❤" th:value="${p.postTitle}" maxlength="15" required/>
+            </div>
+
+            <div class="writeMsg" style="font-size:23px">
+                <label>🌄类型:</label>
+                <select style="width: auto" name="type" th:value="${p.moduleType}">
+                    <option value="天健">🙈天健</option>
+                    <option value="休闲">🙉休闲</option>
+                    <option value="医学院">🙊医学院</option>
+                </select>
+            </div>
+               <!-- <span name="id" th:text="${p.postID}" ></span>-->
+            <textarea name="id" th:text="${p.postID}" th:hidden="true" ></textarea>
+            <div>
+                <!-- 文本正文字数限制1000字-->
+                <textarea name="text" cols="78" rows="10" maxlength="1000" th:text="${p.postContent}" style="font-size: 20px;border:2px solid #9F9F9F;"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="reform" value="保存" style="font-weight: bold;font-size: 20px;"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
+<script src="/asserts/js/jquery-1.8.3.min.js"></script>
+<script src="/asserts/layui/layui.js" charset="utf-8"></script>
+<script>
+    $('[name="nice-select"]').click(function(e){
+        $('[name="nice-select"]').find('ul').hide();
+        $(this).find('ul').show();
+        e.stopPropagation();
+    });
+    $('[name="nice-select"] li').hover(function(e){
+        $(this).toggleClass('on');
+        e.stopPropagation();
+    });
+    $('[name="nice-select"] li').click(function(e){
+        var val = $(this).text();
+        var dataVal = $(this).attr("data-value");
+        $(this).parents('[name="nice-select"]').find('input').val(val);
+        $('[name="nice-select"] ul').hide();
+        e.stopPropagation();
+    });
+    $(document).click(function(){
+        $('[name="nice-select"] ul').hide();
+    });
+</script>
