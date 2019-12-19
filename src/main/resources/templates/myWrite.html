@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/asserts/css/homeHead.css"/>
     <link rel="stylesheet" href="../static/asserts/css/homePublic.css"/>
     <link rel="stylesheet" href="../static/asserts/css/myWrite.css"/>
+
 </head>
 <body>
 <div th:replace="common::#topbar"></div>
@@ -26,10 +27,11 @@
                 <div class="writeHead4">操作</div>
             </div>
             <div class="writeFoot" th:each="i:${posts}">
-                <div class="writeFoot1"><p><a onclick="readPost()" th:text="${i.postTitle}">今天天气怎么样？</a></p></div>
+                <div class="writeFoot1"><p><a th:href="@{/mytiezi.html}" onclick="readPost()" th:text="${i.postTitle}">今天天气怎么样？</a></p></div>
                 <div class="writeFoot2"><p><a th:text="${i.postTime}"></a></p></div>
                 <div class="writeFoot3"><p><a th:text="${i.pageView}"></a> </p>2601</div>
-                <div class="writeFoot4"><button class="btn btn-sm btn-danger deleteBtn" onclick="deletePost()">删除</button><span id="postID" th:text="${i.postID}"></span></div>
+                <div class="writeFoot4"><button class="btn btn-sm btn-danger deleteBtn" onclick="changePost()">修改</button><button class="btn btn-sm btn-danger deleteBtn" onclick="deletePost()">删除</button><span id="postID" th:text="${i.postID}" STYLE="display: none"></span></div>
+
             </div>
         </div>
         <div class="indexFooter">
@@ -48,8 +50,9 @@
 <script>
     function deletePost() {
         var $id = $('#postID').text();
-        var url = '/deletePost/' + $id;
         console.log($id);
+        var url = '/deletePost/' + $id;
+
         $(location).attr('href',url);
 
     }
