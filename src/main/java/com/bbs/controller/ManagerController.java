@@ -2,6 +2,7 @@ package com.bbs.controller;
 
 import com.bbs.entity.Post;
 import com.bbs.service.PostService;
+import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,18 +10,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/manages")
 public class ManagerController {
     @Autowired
-    public PostService postService;
+    private PostService postService;
 
+    @Autowired
+    private UserService userService;
 
+    //帖子页
     @RequestMapping("/postTable")
-    public List<Post> postTable(){
-//        System.out.println(postService.findAll());
-        return postService.findAll();
+    public String postTable(Map<String, Object> mp){
+        mp.put("post", postService.findAll());
+        return "postTable";
+    }
+
+    //用户页
+    @RequestMapping("/userTable")
+    public String userTable(Map<String, Object> mp){
+        mp.put("Users", userService.selectAll());
+        return "userTable";
     }
 
 }

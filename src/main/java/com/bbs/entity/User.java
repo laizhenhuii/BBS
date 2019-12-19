@@ -2,6 +2,7 @@ package com.bbs.entity;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Mapper
@@ -14,8 +15,8 @@ public class User {
     private String head;    //用户头像
     private String email;     //用户邮箱
     private String studyArea;    //用户学习区域
-    private Timestamp registerTime;    //用户工作时间
-    private Timestamp birthday;       //用户生日
+    private Timestamp registerTime;    //用户注册时间
+    private Date birthday;       //用户生日
     private String home;          //用户家乡
     private int integral;            //用户积分
     private int reputationValue;         //用户信誉值
@@ -92,11 +93,11 @@ public class User {
         this.registerTime = registerTime;
     }
 
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

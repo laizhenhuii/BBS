@@ -12,8 +12,9 @@
 <body>
 
 
+
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>所有帖子</legend>
+    <legend>所有用户</legend>
 </fieldset>
 
 <div class="layui-form">
@@ -26,21 +27,21 @@
         </colgroup>
         <thead>
         <tr>
-            <th>帖子ID</th>
-            <th>发帖人用户名</th>
-            <th>帖子标题</th>
-            <th>发表时间</th>
+            <th>用户名</th>
+            <th>用户邮箱</th>
+            <th>用户积分</th>
+            <th>用户信誉值</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
 
-        <div th:each="posts:${post}">
+        <div th:each="user:${Users}">
             <tr>
-                <td th:text="${posts.postID}">帖子ID</td>
-                <td th:text="${posts.posterName}">发帖人</td>
-                <td th:text="${posts.postTitle}">帖子标题</td>
-                <td th:text="${posts.postTime}">发帖时间</td>
+                <td th:text="${user.name}">用户名</td>
+                <td th:text="${user.email}">用户邮箱</td>
+                <td th:text="${user.integral}">用户积分</td>
+                <td th:text="${user.reputationValue}">用户信誉值</td>
                 <td lass="layui-elem-field site-demo-button" style="margin-top: 30px;" >
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-warm">修改</button>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-danger">删除</button>
@@ -55,18 +56,6 @@
 
 
 
-
-
-
-
-
-
-
-<script src="/layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-
-</script>
 
 </body>
 </html>
