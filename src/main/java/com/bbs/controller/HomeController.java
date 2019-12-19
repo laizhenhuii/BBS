@@ -1,5 +1,6 @@
 package com.bbs.controller;
 
+import com.bbs.entity.User;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.util.Map;
 
 /**
@@ -23,25 +25,27 @@ public class HomeController {
 
     @GetMapping("/user/home")
     public String home(HttpSession session, Map<String,Object> map){
-        String tel = (String)session.getAttribute("tel");
-        map.put("username",userService.selectByTel(tel).getName());
-        map.put("sex",userService.selectByTel(tel).getSex());
+        User user = userService.selectByTel((String)session.getAttribute("tel"));
+        map.put("username",user.getName());
+        map.put("sex",user.getSex());
         if(map.get("sex")==null)
             map.put("sex","未知性别");
-        map.put("email",userService.selectByTel(tel).getEmail());
+        map.put("email",user.getEmail());
         if(map.get("email")==null)
             map.put("email","未填写邮箱");
-        map.put("sign",userService.selectByTel(tel).getSign());
+        map.put("sign",user.getSign());
         if(map.get("sign")==null)
             map.put("sign","未设置个性签名");
-        map.put("studyArea",userService.selectByTel(tel).getStudyArea());
+        map.put("studyArea",user.getStudyArea());
         if(map.get("studyArea")==null)
             map.put("studyArea","未选择学区");
-        map.put("home",userService.selectByTel(tel).getHome());
+        map.put("home",user.getHome());
         if(map.get("home")==null)
             map.put("home","未填写家乡");
-        map.put("registerTime",userService.selectByTel(tel).getRegisterTime());
-        map.put("birthday",userService.selectByTel(tel).getBirthday());
+        map.put("registerTime",user.getRegisterTime());
+        map.put("integral",user.getIntegral());
+        map.put("reputationValue",user.getReputationValue());
+        map.put("birthday",user.getBirthday());
         if(map.get("birthday")==null)
             map.put("birthday","未选择生日");
         return "home";
@@ -49,7 +53,47 @@ public class HomeController {
 
     @RequestMapping("/user/base")
     public String base(HttpSession session,Map<String,Object> map){
-//        map.put("username",userService.selectByTel("1").getName());
+        User user = userService.selectByTel((String)session.getAttribute("tel"));
+        String tel = (String)session.getAttribute("tel");
+        map.put("username",user.getName());
+        map.put("email",userService.selectByTel(tel).getEmail());
+        if(map.get("email")==null)
+            map.put("email","未填写邮箱");
+        map.put("sign",userService.selectByTel(tel).getSign());
+        if(map.get("sign")==null)
+            map.put("sign","未设置个性签名");
+        map.put("studyArea",userService.selectByTel(tel).getStudyArea());
+        if(map.get("home")==null)
+            map.put("home","未填写家乡");
+        map.put("birthday",userService.selectByTel(tel).getBirthday());
+        if(map.get("birthday")==null)
+            map.put("birthday","未选择生日");
+        return "base";
+    }
+
+    @RequestMapping("/user/change")
+    public String change(@RequestParam("username") String username,
+                         @RequestParam("sex") String sex,
+                         @RequestParam("email") String email,
+                         @RequestParam("sign") String sign,
+                         @RequestParam("studyArea") String studyArea,
+//                         @RequestParam("birthday") Timestamp birthday,
+                         @RequestParam("home") String home,
+                         HttpSession session){
+        User user = userService.selectByTel((String) session.getAttribute("tel"));
+        user.setName(username);
+        session.setAttribute("username",username);
+        user.setSex(sex);
+        user.setEmail(email);
+        if (!sign.isEmpty())
+            user.setSign(sign);
+        if(!studyArea.isEmpty())
+            user.setStudyArea(studyArea);
+        if(!home.isEmpty())
+            user.setHome(home);
+//        user.setBirthday( birthday==null?null:birthday);
+//        System.out.println(birthday);
+        userService.updateInformation(user);
         return "base";
     }
 
