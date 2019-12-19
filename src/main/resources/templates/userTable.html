@@ -28,7 +28,7 @@
         <thead>
         <tr>
             <th>用户名</th>
-            <th>用户邮箱</th>
+            <th>用户手机号</th>
             <th>用户积分</th>
             <th>用户信誉值</th>
             <th>操作</th>
@@ -39,7 +39,7 @@
         <div th:each="user:${Users}">
             <tr>
                 <td th:text="${user.name}">用户名</td>
-                <td th:text="${user.email}">用户邮箱</td>
+                <td th:text="${user.email}">用户手机号</td>
                 <td th:text="${user.integral}">用户积分</td>
                 <td th:text="${user.reputationValue}">用户信誉值</td>
                 <td lass="layui-elem-field site-demo-button" style="margin-top: 30px;" >

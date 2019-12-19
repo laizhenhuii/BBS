@@ -9,30 +9,7 @@
     <link rel="stylesheet" href="/asserts/layui/css/layui.css"  media="all">
 </head>
 <body>
-<header class="ltHead">
-    <div class="ltHead_cen">
-        <a href=""><img src="asserts/img/logo.png" alt="" class="headPic1"/></a>
-        <ul class="headNav">
-            <li><a th:href="@{index}">首页</a></li>
-            <li><a href="">沪牌竞拍</a></li>
-            <li><a href="">拍王助手</a></li>
-            <li><a href="">深圳竞价摇号</a></li>
-            <li><a href="">广州竞价摇号</a></li>
-            <li><a href="">杭州竞价摇号</a></li>
-            <li><a href="">天津竞价摇号</a></li>
-            <li><a href="">增值服务</a></li>
-        </ul>
-
-        <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
-            <ul>
-                <li><a th:text="${session.username}" th:href="@{/user/home}"></a></li>
-                <li><a th:href="@{/user/exit}" >退出</a></li>
-            </ul>
-        </div>
-        <!-- 登入结束-->
-    </div>
-</header>
+<header th:replace="index::homePageTop"></header>
 <div class="writeCon">
     <div class="writeCon_head">
         <p>修改贴子内容</p>

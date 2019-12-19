@@ -16,7 +16,7 @@ public class User {
     private String email;     //用户邮箱
     private String studyArea;    //用户学习区域
     private Timestamp registerTime;    //用户注册时间
-    private Timestamp birthday;       //用户生日
+    private Date birthday;       //用户生日
     private String home;          //用户家乡
     private int integral;            //用户积分
     private int reputationValue;         //用户信誉值

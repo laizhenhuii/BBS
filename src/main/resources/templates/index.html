@@ -22,29 +22,25 @@
             <li><a href="" th:href="@{/(postType=8)}">医学院</a></li>
         </ul>
         <!--未登入开始-->
-        <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
-            <a href="" th:href="@{login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+        <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
+            <a href="" th:href="@{/login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
-                <li><a href="login.html" th:href="@{login.html}">登录</a></li>
-                <li><a href="register.html" th:href="@{register.html}">注册</a></li>
+                <li><a href="login.html" th:href="@{/login.html}">登录</a></li>
+                <li><a href="register.html" th:href="@{/register.html}">注册</a></li>
             </ul>
         </div>
         <!-- 未登入结束-->
         <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login" th:if="${not #strings.isEmpty(session.loginUser)}">
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
             <ul>
-                <li><a href="" th:text="${session.loginUser}" th:href="@{/toMyHome}"></a></li>
-                <li><a th:href="@{/index/exit}" >退出</a></li>
+                <li><a href="" th:text="${session.username}" th:href="@{/user/home}"></a></li>
+                <li><a th:href="@{/user/exit}" >退出</a></li>
             </ul>
         </div>
         <!-- 登入结束-->
         <div class="navFix">
-            <!--登入开始-->
-            <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.loginUser)}" th:href="@{/writePost}">发新帖</a>
-            <!--登入结束-->
-            <!--未登入开始-->
-            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.loginUser)}" th:href="@{login.html}">登录</a>
-            <!--未登入结束-->
+            <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.username)}" th:href="@{/user/writePost}">发新帖</a>
+            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.username)}" th:href="@{/login.html}">登录</a>
         </div>
     </div>
 </header>
@@ -144,7 +140,7 @@
         <div class="indexMain_rightCon">
             <a href="" class="newMsg" th:href="@{/writePost}">发新帖</a>
             <div class="pwfb" th:fragment="homePageRight0">
-                <div class="pwfbHead" th:text="${#strings.isEmpty(session.loginUser)}?'欢迎来到BBS论坛'">
+                <div class="pwfbHead" th:text="${#strings.isEmpty(session.username)}?'欢迎来到BBS论坛'">
                     (签到区顶部）
                 </div>
                 <div class="pwfbCon">

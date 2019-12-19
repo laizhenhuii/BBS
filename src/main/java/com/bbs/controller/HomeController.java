@@ -1,14 +1,23 @@
 package com.bbs.controller;
 
+import com.bbs.entity.Information;
+import com.bbs.service.InformationService;
 import com.bbs.entity.User;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +31,9 @@ public class HomeController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private InformationService informationService;
 
     @GetMapping("/user/home")
     public String home(HttpSession session, Map<String,Object> map){
@@ -77,9 +89,9 @@ public class HomeController {
                          @RequestParam("email") String email,
                          @RequestParam("sign") String sign,
                          @RequestParam("studyArea") String studyArea,
-//                         @RequestParam("birthday") Timestamp birthday,
+                         @RequestParam("birthday") String birthday,
                          @RequestParam("home") String home,
-                         HttpSession session){
+                         HttpSession session) throws ParseException {
         User user = userService.selectByTel((String) session.getAttribute("tel"));
         user.setName(username);
         session.setAttribute("username",username);
@@ -91,9 +103,14 @@ public class HomeController {
             user.setStudyArea(studyArea);
         if(!home.isEmpty())
             user.setHome(home);
-//        user.setBirthday( birthday==null?null:birthday);
-//        System.out.println(birthday);
-        userService.updateInformation(user);
+        if(!birthday.isEmpty()){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date birth = sdf.parse(birthday);
+            java.sql.Date date1 = new java.sql.Date(birth.getTime());
+            user.setBirthday(date1);
+            userService.updateInformation(user);
+        }
+
         return "base";
     }
 
@@ -128,8 +145,35 @@ public class HomeController {
         return "myWrite";
     }
 
+//    @RequestMapping("/user/myMsg")
+//    public String myMsg(){
+//        return "myMsg";
+//    }
+
     @RequestMapping("/user/myMsg")
-    public String myMsg(){
+    /*
+     * @Description 用户消息展示
+     * @Author Huang
+     * @Date 2019/12/19 8：56
+     *  */
+    public String myMsg(HttpSession session, Model model){
+        String tel=(String)session.getAttribute("tel");       //用户ID（手机号）
+        List<Information> information=informationService.findByReceiverTel(tel);    //获取用户的所有信息
+
+        model.addAttribute("information",information);
+        return "myMsg";
+    }
+
+    @RequestMapping("/user/myMsg/delete")
+    /*
+     * @Description 用户消息清空
+     * @Author Huang
+     * @Date 2019/12/19 10：23
+     *  */
+    public String myMsgDelete(HttpSession session){
+        String tel=(String)session.getAttribute("tel");       //用户ID（手机号）
+        int i= informationService.deleteByUserID(tel);
         return "myMsg";
     }
 }
+

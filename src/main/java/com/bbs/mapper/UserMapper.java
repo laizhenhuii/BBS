@@ -3,6 +3,7 @@ package com.bbs.mapper;
 import com.bbs.entity.User;
 import org.apache.ibatis.annotations.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper

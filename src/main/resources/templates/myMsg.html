@@ -7,54 +7,30 @@
     <link rel="stylesheet" href="/asserts/css/homeHead.css"/>
     <link rel="stylesheet" href="/asserts/css/homePublic.css"/>
     <link rel="stylesheet" href="/asserts/css/myMsg.css"/>
+    <link rel="stylesheet" href="/asserts/layui/css/layui.css"  media="all">
 </head>
 <body>
 <div th:replace="common::#topbar"></div>
 <div class="homeCen">
     <div th:replace="common::#sidebar(active='myMsg')"></div>
-    <div class="homeCen_right layui-side-scroll" >
+    <div class="homeCen_right layui-side-scroll" style="position: absolute;left:400px;width: 1000px;">
         <div class="baseHead">
             <p>我的消息</p>
         </div>
-        <div class="myWrite_con">
-            <div class="myMsgCon">
-                <div class="myMsgCon_pic"></div>
-                <div class="myMsgCon_detail">
-                    <a href="">xxx回复你:我觉得你说的不对</a>
+        <a href="/user/myMsg/delete" class="layui-btn layui-btn-danger">一键清空</a>
+            <div class="myMsgCon" th:each="infor:${information}">
+                <div class="myMsgCon_pic">
                 </div>
-                <p class="myMsgCon_time">15:30:46</p>
-            </div>
-            <div class="myMsgCon">
-                <div class="myMsgCon_pic"></div>
                 <div class="myMsgCon_detail">
-                    <a href="">xxx回复你:我觉得你说的不对</a>
+                    <p th:text="${'消息正文👉'+infor.getReason()}"></p>
+                    <p th:text="${'原帖标题❤“'+infor.getOriginTitle()+'”'}"></p>
+
                 </div>
-                <p class="myMsgCon_time">15:30:46</p>
-            </div>
-            <div class="myMsgCon">
-                <div class="myMsgCon_pic"></div>
-                <div class="myMsgCon_detail">
-                    <a href="">xxx回复你:我觉得你说的不对</a>
-                </div>
-                <p class="myMsgCon_time">15:30:46</p>
-            </div>
-            <div class="myMsgCon">
-                <div class="myMsgCon_pic"></div>
-                <div class="myMsgCon_detail">
-                    <a href="">xxx回复你:我觉得你说的不对</a>
-                </div>
-                <p class="myMsgCon_time">2018-3-27 15:30:46</p>
+                <p class="myMsgCon_time" th:text="${infor.getPostTime()}"></p>
+
             </div>
         </div>
-        <div class="indexFooter">
-            <div class="indexFooter_con">
-                <a href="javascript:"><</a>
-                <a href="" class="on">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="javascript:">></a>
-            </div>
-        </div>
+
     </div>
 </div>
 </body>
