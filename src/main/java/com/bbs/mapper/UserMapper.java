@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user_table(name,tel,password) values(#{name},#{tel},#{password})")
+    @Insert("insert into user_table(name,tel,password,reputationValue,integral) values(#{name},#{tel},#{password},20,100)")
    int registerUser(String name,String tel, String password);
-//用于插入个人账号密码
+//用于插入个人账号密码,并设置初始积分信誉值
     @Select("Select * from user_table")
     List<User> selectAll();
 
