@@ -76,6 +76,10 @@ public interface PostMapper {
     //根据帖子ID查询帖子
     Post findByPostID(int postID);
 
+    @Select("select * from post_table where mainPost = #{postID}")
+    //根据主贴id查找评论帖
+    List<Post> findPostByMainID(int postID);
+
 
     @Update("update post_table set posterID = #{posterID}, posterName = #{posterName}, postTitle = #{postTitle}, mainPost = #{mainPost}, postTime = #{postTime}, " +
             "likeNumber = #{likeNumber}, pageView = #{pageView}, postContent = #{postContent}, homeTop = #{homeTop}, postBoutique = #{postBoutique}, " +

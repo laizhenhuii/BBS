@@ -34,14 +34,16 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/login.html").setViewName("login");
         registry.addViewController("/register.html").setViewName("register");
         registry.addViewController("/base.html").setViewName("base");
+        registry.addViewController("/manages.html").setViewName("manages");
+        registry.addViewController("/postTable.html").setViewName("postTable");
     }
 
 //    拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-//                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+////        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+////                .excludePathPatterns("/webjars/**","/asserts/**","/index.html","/register.html","/","/login.html","/user/login");
+//    }
 
     @Bean //向容器中添加组件
     public LocaleResolver localeResolver(){

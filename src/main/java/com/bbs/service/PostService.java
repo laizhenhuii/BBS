@@ -98,6 +98,11 @@ public class PostService {
         return postMapper.findByPostID(PostID);
     }
 
+    //根据主贴id查找评论帖
+    public List<Post> findPostByMainID(int PostID){
+        return postMapper.findPostByMainID(PostID);
+    }
+
     //根据关键词模糊查询帖子（仅匹配标题）
     public List<Post> findLikePostTitle(String postTitle){
         String rePostTitle = "%" + postTitle + "%";

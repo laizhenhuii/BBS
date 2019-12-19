@@ -140,6 +140,10 @@ public class yjwTest {
         return postService.findLikePostTitle("震惊");
     }
 
+    @RequestMapping("findPostByMainID")
+    public List<Post> findPostByMainID(){
+        return postService.findPostByMainID(1);
+    }
 
 
     //测试成功
