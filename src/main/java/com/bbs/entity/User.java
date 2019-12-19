@@ -2,6 +2,7 @@ package com.bbs.entity;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Mapper
@@ -92,13 +93,13 @@ public class User {
         this.registerTime = registerTime;
     }
 
-    public Timestamp getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Timestamp birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
+}
 
     public String getHome() {
         return home;

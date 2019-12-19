@@ -93,25 +93,46 @@ public class yjwTest {
         return postService.findByPostID(1);
     }
 
-    //测试成功
-    @RequestMapping("findByPostTime")
-    public List<Post> findByPage(){
-       List<Post> list = postService.findAllByPostTime(1, 5);
-       return list;
+
+
+    @RequestMapping("findByPageType1")
+    public List<Post> findByPageType1(){
+        return postService.findAllByPage(1, 1, 5);
     }
 
-    //测试成功
-    @RequestMapping("findByPostView")
-    public List<Post> findByPageView(){
-        List<Post> list = postService.findAllBypageView(1, 5);
-        return list;
+    @RequestMapping("findByPageType2")
+    public List<Post> findByPageType2(){
+        return postService.findAllByPage(2, 1, 5);
     }
 
-    //测试成功
-    @RequestMapping("findByLastPost")
-    public List<Post> findByLastPost(){
-        List<Post> list = postService.findAllByLastPost(1, 5);
-        return list;
+    @RequestMapping("findByPageType3")
+    public List<Post> findByPageType3(){
+        return postService.findAllByPage(3, 1, 5);
+    }
+
+    @RequestMapping("findByPageType4")
+    public List<Post> findByPageType4(){
+        return postService.findAllByPage(4, 1, 5);
+    }
+    @RequestMapping("findByPageType5")
+    public List<Post> findByPageType5(){
+        return postService.findAllByPage(5, 1, 5);
+    }
+    @RequestMapping("findByPageType6")
+    public List<Post> findByPageType6(){
+        return postService.findAllByPage(6, 1, 5);
+    }
+    @RequestMapping("findByPageType7")
+    public List<Post> findByPageType7(){
+        return postService.findAllByPage(7, 1, 5);
+    }
+    @RequestMapping("findByPageType8")
+    public List<Post> findByPageType8(){
+        return postService.findAllByPage(8, 1, 5);
+    }
+    @RequestMapping("findByPageType9")
+    public List<Post> findByPageType9(){
+        return postService.findAllByPage(9, 1, 5);
     }
 
     @RequestMapping("findLikePostTitle")
@@ -119,6 +140,10 @@ public class yjwTest {
         return postService.findLikePostTitle("震惊");
     }
 
+    @RequestMapping("findPostByMainID")
+    public List<Post> findPostByMainID(){
+        return postService.findPostByMainID(1);
+    }
 
 
     //测试成功

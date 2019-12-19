@@ -2,45 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>论坛首页</title>
+    <title>BBS论坛</title>
     <link rel="stylesheet" href="/asserts/css/reset.css"/>
     <link rel="stylesheet" href="/asserts/css/public.css"/>
     <link rel="stylesheet" href="/asserts/css/index.css"/>
 </head>
-<body>
-<header class="ltHead">
+<body onload="calendar()">
+<header class="ltHead" th:fragment="homePageTop">
     <div class="ltHead_cen">
-        <a href=""><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
+        <a href="" th:href="'#footer0'"><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
         <ul class="headNav">
-            <li><a href="">首页</a></li>
-            <li><a href="">沪牌竞拍</a></li>
-            <li><a href="">拍王助手</a></li>
-            <li><a href="">深圳竞价摇号</a></li>
-            <li><a href="">广州竞价摇号</a></li>
-            <li><a href="">杭州竞价摇号</a></li>
-            <li><a href="">天津竞价摇号</a></li>
-            <li><a href="">增值服务</a></li>
+            <li><a href="" th:href="@{/}">首页</a></li>
+            <li><a href="" th:href="@{/(postType=2)}">精品贴区</a></li>
+            <li><a href="" th:href="@{/(postType=3)}">需求贴区</a></li>
+            <li><a href="" th:href="@{/(postType=4)}">人气排行</a></li>
+            <li><a href="" th:href="@{/(postType=5)}">积分排行</a></li>
+            <li><a href="" th:href="@{/(postType=6)}">天健园</a></li>
+            <li><a href="" th:href="@{/(postType=7)}">休闲区</a></li>
+            <li><a href="" th:href="@{/(postType=8)}">医学院</a></li>
         </ul>
-        <!--未登入开始，登录时以下隐藏-->
-        <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
-            <a href=""><img src="../static/asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+        <!--未登入开始-->
+        <div class="ltForm appear" th:if="${#strings.isEmpty(session.loginUser)}">
+            <a href="" th:href="@{login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
-                <li><a href="login.html" th:href="@{/user/login}">登录</a></li>
-                <li><a href="register.html" th:href="@{/user/register}">注册</a></li>
+                <li><a href="login.html" th:href="@{login.html}">登录</a></li>
+                <li><a href="register.html" th:href="@{register.html}">注册</a></li>
             </ul>
         </div>
         <!-- 未登入结束-->
         <!-- 登入开始，未登入时以下隐藏-->
-        <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
+        <div class="lt_login" th:if="${not #strings.isEmpty(session.loginUser)}">
             <ul>
-                <li><a th:text="${session.username}" th:href="@{/user/home}"></a></li>
-                <li><a th:href="@{/user/exit}" >退出</a></li>
+                <li><a href="" th:text="${session.loginUser}" th:href="@{/toMyHome}"></a></li>
+                <li><a th:href="@{/index/exit}" >退出</a></li>
             </ul>
         </div>
         <!-- 登入结束-->
         <div class="navFix">
-            <a  class="navLogin" th:href="@{/user/login}" th:if="${#strings.isEmpty(session.username)}">登录</a>
-            <a href="" class="navWrite">发新帖</a>
+            <!--登入开始-->
+            <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.loginUser)}" th:href="@{/writePost}">发新帖</a>
+            <!--登入结束-->
+            <!--未登入开始-->
+            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.loginUser)}" th:href="@{login.html}">登录</a>
+            <!--未登入结束-->
         </div>
     </div>
 </header>
@@ -48,278 +52,154 @@
     <div class="indexMain_left">
         <div class="indexMain_left_btn">
             <ul>
-                <li><a href="javascript:">置顶</a></li>
-                <li><a href="javascript:" class="on">最新</a></li>
+                <li>
+                    <a th:href="@{${#request.getRequestURI()}(postType=${postType},indexType=1)}" th:class="${not #strings.isEmpty(pageButton)}?'on'">最新</a>
+                </li>
+                <li th:if="${postType==1}">
+                    <a th:href="@{${#request.getRequestURI()}(postType=1,indexType=2)}" th:class="${#strings.isEmpty(pageButton)}?'on'">置顶</a>
+                </li>
             </ul>
         </div>
         <div class="indexMain_left_con">
             <!--有主题图循环开始-->
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
+            <div class="indexCon_msg" th:each="post:${Post}" th:if="${postType!=4&&postType!=5}">
+                <div class="indexCon_msg_pic" th:text="${post.getPostID()}">（头像）</div>
                 <div class="indexCon_msg_detail">
-                    <a href="">
+                    <a th:href="@{/toPost(postId=${post.getPostID()})}">
                         <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
+                            <span th:text="${post.getModuleType()}">（类别)</span>
+                            <p th:text="${post.getPostTitle()}">（标题）</p>
                         </div>
                     </a>
-                    <div class="havePic">
-                        <a href=""><div class="havePic_head"></div></a>
+                    <div class="havePic" th:if="${post.getImageAddress()!=null}">
+                        <a href=""><div class="havePic_head">（主题图）</div></a>
                     </div>
                     <div class="indexCon_msg_detail_other">
                         <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
+                            <li th:text="${post.getPosterName()}">（发帖人）</li>
+                            <li th:text="${post.getPostTime()}">（发表时间）</li>
+                            <li th:text="${post.getLikeNumber()}">（点赞量）</li>
+                            <li>（评论数）</li>
                         </ul>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
             <!--有主题图循环结束-->
-            <!--无主题图循环开始-->
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
+            <!--排名人气前10循环开始-->
+            <div class="indexCon_msg" th:each="post1,postStart:${Post}" th:if="${postType==4}">
+                <div style="height: 46px;float: left;color: red;margin-left: 11px;margin-top: 14px;overflow: hidden;" th:text="'第'+${postStart.count}+'名:'"></div>
                 <div class="indexCon_msg_detail">
-                    <a href="">
+<!--                    <a th:href="@{/toPost/}+${post1.getPostID()}">-->
+                    <a th:href="@{/toPost(postId=${post1.getPostID()})}">
                         <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
+                            <span th:text="${post1.getModuleType()}">（类别)</span>
+                            <p th:text="${post1.getPostTitle()}">（标题）</p>
                         </div>
                     </a>
                     <div class="indexCon_msg_detail_other">
                         <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <!--无主题图循环结束-->
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="havePic">
-                        <a href=""><div class="havePic_head"></div></a>
-                    </div>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="havePic">
-                        <a href=""><div class="havePic_head"></div></a>
-                    </div>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="indexCon_msg">
-                <div class="indexCon_msg_pic"></div>
-                <div class="indexCon_msg_detail">
-                    <a href="">
-                        <div class="indexCon_msg_detail_tittle">
-                            <span>竞拍</span>
-                            <p>关注上海车牌竞拍方面的资讯，对当月竞拍分析发表独到见解</p>
-                        </div>
-                    </a>
-                    <div class="indexCon_msg_detail_other">
-                        <ul>
-                            <li>花开花落</li>
-                            <li>1天前</li>
-                            <li>21</li>
-                            <li>28</li>
+                            <li th:text="${post1.getPosterName()}">（发帖人）</li>
+                            <li th:text="${post1.getPostTime()}">（发表时间）</li>
+                            <li th:text="${post1.getLikeNumber()}">（点赞量）</li>
+                            <li>（评论数）</li>
                         </ul>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="indexFooter">
+            <!--排名人气前10循环结束-->
+            <!--排名积分前10循环开始-->
+            <div class="indexCon_msg" th:each="user1,userStart:${user}" th:if="${postType==5}">
+            <div style="height: 46px;float: left;color: red;margin-left: 11px;margin-top: 14px;overflow: hidden;" th:text="'第'+${userStart.count}+'名:'"></div>
+            <div class="indexCon_msg_pic" th:text="${user1.getHead()}">（头像）</div>
+            <div class="indexCon_msg_detail">
+                <a href="">
+                    <div class="indexCon_msg_detail_tittle">
+                        <span th:text="${user1.getName()}">用户名</span>
+                        <p th:text="${user1.getIntegral()}">积分</p>
+                    </div>
+                </a>
+                <div class="indexCon_msg_detail_other">
+                    <ul>
+                        <li th:text="${user1.getSign()}">（用户签名）</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--排名积分前10循环结束-->
+        <div class="indexFooter" th:if="${not #strings.isEmpty(pageButton)}">
             <div class="indexFooter_con">
-                <a href="javascript:"><</a>
-                <a href="" class="on">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="javascript:">></a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=1)}" th:class="${page==1}?'on'">1</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=2)}" th:class="${page==2}?'on'">2</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=3)}" th:class="${page==3}?'on'">3</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=4)}" th:class="${page==4}?'on'">4</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=5)}" th:class="${page==5}?'on'">5</a>
             </div>
         </div>
     </div>
     <div class="indexMain_right">
         <div class="indexMain_rightCon">
-            <a href="" class="newMsg">发新帖</a>
-            <div class="pwfb">
-                <div class="pwfbHead">
-                    拍王发布
+            <a href="" class="newMsg" th:href="@{/writePost}">发新帖</a>
+            <div class="pwfb" th:fragment="homePageRight0">
+                <div class="pwfbHead" th:text="${#strings.isEmpty(session.loginUser)}?'欢迎来到BBS论坛'">
+                    (签到区顶部）
                 </div>
-                <div class="pwfbCon"></div>
-                <div class="pwfbFooter"></div>
+                <div class="pwfbCon">
+                    <div id="box">
+                        <div id="box_top"></div>
+                        <div id="box_bottom"></div>
+                    </div>
+                </div>
+                <div class="pwfbFooter">
+                    <button id="theButton">签到</button>
+                </div>
             </div>
-            <div class="indexSearch">
-                <input type="text" placeholder="请输入关键词"/>
-                <input type="submit" value="搜索"/>
+            <div class="indexSearch" th:fragment="homePageRight1">
+                <form th:action="@{/search}" method="get">
+                    <input type="text" placeholder="请输入标题关键词" name="keyword"/>
+                    <input type="submit" value="搜索"/>
+                </form>
             </div>
-            <div class="indexPublic">
+            <div class="indexPublic"  th:fragment="homePageRight2">
                 <div class="indexPublic_head">
-                    本周热议
+                    本周热议（浏览量前9条）
                 </div>
                 <div class="indexPublic_con">
                     <ul class="weekHot">
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
-                        <li><a href="">关注上海车牌竞拍方面的资讯</a><span>29</span></li>
+                        <li th:each="hot:${hotPost}" >
+                            <a href="" th:href="@{/toPost(postId=${hot.getPostID()})}" th:text="${hot.getPostTitle()}">
+                            </a>
+                            <span th:text="${hot.getPostID()}"></span>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="indexPublic">
+            <div class="indexPublic" th:fragment="homePageRight3">
                 <div class="indexPublic_head">
-                    友情链接
+                    本周热点（点赞量前6条）
                 </div>
                 <div class="indexPublic_con">
                     <ul class="indexLink">
-                        <li><a href="">拍王淘宝链接</a></li>
-                        <li><a href="">拍王网站</a></li>
-                        <li><a href="">拍王助手</a></li>
-                        <li><a href="">沪牌模拟</a></li>
-                        <li><a href="">拍王合作咨询</a></li>
-                        <li><a href="">快法务</a></li>
-                        <li><a href="">国拍网</a></li>
+                        <li th:each="popular:${popularPost}" >
+                            <a href="" th:href="@{/toPost(postId=${popular.getPostID()})}" th:text="${popular.getPostTitle()}"></a>
+                        </li>
                     </ul>
                 </div>
-            </div>
-            <div class="indexWxpublic">
-                <p>关注微信公众号</p>
             </div>
         </div>
     </div>
     <div class="clear"></div>
 </div>
 <footer class="publicFooter">
-    <p>Copyrigh &copy; 2017-2018 PaiWang 上海钦合投资管理有限公司版权所有 沪ICP备16032224号-2</p>
+    <a name="footer0">Copyright &copy; 2019-2020 BBS论坛 南昌大学信息工程学院计算机科学与技术专业JavaWeb程序设计课程期末大作业版权所有 version：1.0.0</a>
 </footer>
 </body>
 </html>
-<script src="../static/asserts/js/jquery-1.8.3.min.js"></script>
+<script src="/asserts/js/jquery-1.8.3.min.js"></script>
 <script>
-    $(".indexMain_left_btn li a").click(function(){
-        $(".indexMain_left_btn li a").removeClass("on");
-        $(this).addClass("on");
-    });
     window.onscroll=function(){
         var scrolls=document.body.scrollTop||document.documentElement.scrollTop;
         var slided=60;
@@ -332,5 +212,17 @@
             $(".navFix").hide();
             $(".ltHead").removeClass("navTop");
         }
+    };
+    //动态日历js
+    function calendar(){
+        /*1.获取时间*/
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+
+        /*2.获取标签动态改变内容*/
+        document.getElementById('box_top').innerText = y + '年' + m + '月';
+        document.getElementById('box_bottom').innerText = d;
     };
 </script>
