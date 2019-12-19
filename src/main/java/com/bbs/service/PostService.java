@@ -27,10 +27,9 @@ public class PostService {
 
     //按照帖子ID删除一条帖子
     public int deleteByPostID(int PostID){
-        if(postMapper.deleteByPostID(PostID) != 0)
-            return 1;
-        else
-            return 0;
+       if(postMapper.deleteByPostID(PostID)!=0)
+           return 1;
+       else return 0;
     }
 
     //按照发帖人ID删除帖子

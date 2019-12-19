@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" >
     <meta charset="UTF-8">
     <title>我的帖子</title>
     <link rel="stylesheet" href="../static/asserts/css/reset.css"/>
@@ -11,12 +11,11 @@
 <body>
 <div th:replace="common::#topbar"></div>
 <div class="homeCen">
-    <div th:replace="common::#sidebar(active='tiezi')"></div>
+    <div th:replace="common::#sidebar(active='tiezi')" ></div>
     <div class="homeCen_right">
         <div class="baseHead">
             <ul>
                 <li><a href="" class="on">我的发帖</a></li>
-                <li><a href="">我收藏的贴</a></li>
             </ul>
         </div>
         <div class="myWrite_con">
@@ -26,11 +25,11 @@
                 <div class="writeHead3">浏览量</div>
                 <div class="writeHead4">操作</div>
             </div>
-            <div class="writeFoot" th:each="i:${post}">
-                <div class="writeFoot1"><p><a href="" th:text="i.getPosterName()">今天天气怎么样？</a></p></div>
-                <div class="writeFoot2">2018.02.23 14:36:24</div>
-                <div class="writeFoot3">2601</div>
-                <div class="writeFoot4"><a href="javascript:">删除</a></div>
+            <div class="writeFoot" th:each="i:${posts}">
+                <div class="writeFoot1"><p><a onclick="readPost()" th:text="${i.postTitle}">今天天气怎么样？</a></p></div>
+                <div class="writeFoot2"><p><a th:text="${i.postTime}"></a></p></div>
+                <div class="writeFoot3"><p><a th:text="${i.pageView}"></a> </p>2601</div>
+                <div class="writeFoot4"><button class="btn btn-sm btn-danger deleteBtn" onclick="deletePost()">删除</button><span id="postID" th:text="${i.postID}"></span></div>
             </div>
         </div>
         <div class="indexFooter">
@@ -44,5 +43,34 @@
         </div>
     </div>
 </div>
+<script th:src="@{/static/asserts/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/static/asserts/js/1.js}"></script>
+<script>
+    function deletePost() {
+        var $id = $('#postID').text();
+        var url = '/deletePost/' + $id;
+        console.log($id);
+        $(location).attr('href',url);
+
+    }
+</script>
+<script>
+    function readPost() {
+        var $id = $('#postID').text();
+        var url = '/readPost/' + $id;
+        console.log($id);
+        $(location).attr('href',url);
+
+    }
+</script>
+<script>
+    function changePost() {
+        var $id = $('#postID').text();
+        var url = '/changePost/' + $id;
+        console.log($id);
+        $(location).attr('href',url);
+
+    }
+</script>
 </body>
 </html>
