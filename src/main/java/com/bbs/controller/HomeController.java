@@ -97,6 +97,30 @@ public class HomeController {
         return "base";
     }
 
+    @RequestMapping("/user/Password")
+    public String Password(){
+        return "upload_password";
+    }
+
+    @RequestMapping("/user/changePassword")
+    public String changePassword(@RequestParam("old") String old,
+                                 @RequestParam("new1") String new1,
+                                 @RequestParam("new2") String new2,
+                                 Map<String,Object> map,
+                                 HttpSession session){
+        User user = userService.selectByTel((String) session.getAttribute("tel"));
+        if(!old.equals(user.getPassword())){
+            map.put("msg","原输入密码错误！请重新输入！");
+        } else if(!new1.equals(new2)){
+            map.put("msg","两次密码不一致！请重新输入！");
+        }else {
+            map.put("msg","修改密码成功！");
+            user.setPassword(new1);
+            userService.updateInformation(user);
+        }
+        return "upload_password";
+    }
+
     @RequestMapping("/user/myWrite")
     public String tiezi(){
         return "myWrite";
