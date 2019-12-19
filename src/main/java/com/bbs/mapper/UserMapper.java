@@ -17,7 +17,6 @@ public interface UserMapper {
 //用于展示所有用户信息，供管理员调用
     @Select("Select * from user_table where tel = #{tel}")
     User selectByTel(String tel);
-
     @Select("select * from user_table where name like #{arg}")
     //根据关键词模糊查询用户（仅匹配用户名）
     List<User> findLikePostTitle(String userName);

@@ -34,6 +34,7 @@
                 <label class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
                     <input  type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" th:placeholder="${username}" autocomplete="off" class="layui-input">
+                    <div class="layui-form-mid layui-word-aux">必填项</div>
                 </div>
             </div>
 <!--            <div class="layui-form-item">-->
@@ -55,6 +56,7 @@
                 <label class="layui-form-label">邮箱</label>
                 <div class="layui-input-inline">
                     <input type="text" name="email" lay-verify="email" th:placeholder="${email}" autocomplete="on" class="layui-input">
+                    <div class="layui-form-mid layui-word-aux">必填项</div>
                 </div>
             </div>
             <div class="layui-form-item">
