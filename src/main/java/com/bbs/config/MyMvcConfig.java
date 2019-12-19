@@ -36,6 +36,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/base.html").setViewName("base");
         registry.addViewController("/manages.html").setViewName("manages");
         registry.addViewController("/postTable.html").setViewName("postTable");
+        registry.addViewController("/userTable.html").setViewName("userTable");
     }
 
 //    拦截器
