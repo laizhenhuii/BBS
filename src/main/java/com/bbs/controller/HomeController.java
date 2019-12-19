@@ -111,6 +111,8 @@ public class HomeController {
         User user = userService.selectByTel((String) session.getAttribute("tel"));
         if(!old.equals(user.getPassword())){
             map.put("msg","原输入密码错误！请重新输入！");
+        }else if (new1.isEmpty()){
+            map.put("msg","密码不能为空！请重新输入！");
         } else if(!new1.equals(new2)){
             map.put("msg","两次密码不一致！请重新输入！");
         }else {
