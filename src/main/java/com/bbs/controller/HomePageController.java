@@ -123,6 +123,7 @@ public class HomePageController {
     @GetMapping("/toPost")
     public String toPostPage(@RequestParam("postId") int postId, Model model,Map<String,Object> map){
         map.put("postId",postId);
+        System.out.println(postId);
         //查询该postID对应的帖子
         Post post=postService.findByPostID(postId);
         model.addAttribute("post",post);
@@ -144,14 +145,16 @@ public class HomePageController {
     //帖子页面点击发表评论
     @PostMapping("/writeComment")
     public String addCommit(@RequestParam("comment") String comment,@RequestParam("postId") int postId, HttpSession session){
+        System.out.println(postId);
         //新建一个评论对象
         Post newComment=new Post();
-        newComment.setPosterID((String)session.getAttribute("tel"));
-        newComment.setPosterName((String)session.getAttribute("username"));
+        newComment.setPosterID("1376879");
+        newComment.setPosterName("hhhjk");
         newComment.setMainPost(postId);
         newComment.setPostTime(new Timestamp((new Date()).getTime()));
         newComment.setPostContent(comment);
         postService.addPost(newComment);//将新建的评论对象存入帖子表
-        return "redirect:/toPost";
+
+        return "redirect:/toPost?postId="+postId;
     }
 }

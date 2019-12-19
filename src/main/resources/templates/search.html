@@ -28,7 +28,7 @@
         <div class="indexCon_msg" th:each="likelyPost0:${likelyPost}">
             <div class="indexCon_msg_pic" th:text="${likelyPost0.getPostID()}">头像</div>
             <div class="indexCon_msg_detail">
-                <a th:href="@{/toPost/}+${likelyPost0.getPostID()}">
+                <a th:href="@{/toPost(postId=${likelyPost0.getPostID()})}">
                     <div class="indexCon_msg_detail_tittle">
                         <span th:text="${likelyPost0.getModuleType()}">类别</span>
                         <p th:text="${likelyPost0.getPostTitle()}">帖子标题</p>
