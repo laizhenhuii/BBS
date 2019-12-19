@@ -3,12 +3,13 @@ package com.bbs.mapper;
 import com.bbs.entity.User;
 import org.apache.ibatis.annotations.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user_table(name,tel,password,reputationValue,integral) values(#{name},#{tel},#{password},20,100)")
-   int registerUser(String name,String tel, String password);
+    @Insert("insert into user_table(name,tel,password,reputationValue,integral,registerTime) values(#{name},#{tel},#{password},20,100,#{registerTime})")
+   int registerUser(String name, String tel, String password, Timestamp registerTime);
 //用于插入个人账号密码,并设置初始积分信誉值
     @Select("Select * from user_table")
     List<User> selectAll();
