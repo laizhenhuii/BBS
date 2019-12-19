@@ -35,12 +35,6 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/user/home")
-    public String home(HttpSession session, Map<String,Object> map){
-        String tel = (String)session.getAttribute("tel");
-        map.put("username",userService.selectByTel(tel).getName());
-        return "home";
-    }
 
     @GetMapping("/user/exit")
     public String exit(HttpSession session){

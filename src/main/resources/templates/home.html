@@ -26,26 +26,55 @@
                 <div class="layui-col-md6">
                     <div class="layui-card">
                         <div class="layui-card-header">用户名</div>
-                        <div class="layui-card-body" th:text="${username}">
-
-                        </div>
+                        <div class="layui-card-body" th:text="${username}"></div>
                     </div>
                 </div>
                 <div class="layui-col-md6">
                     <div class="layui-card">
-                        <div class="layui-card-header">卡片面板</div>
-                        <div class="layui-card-body">
-                            结合 layui 的栅格系统<br>
-                            轻松实现响应式布局
-                        </div>
+                        <div class="layui-card-header">手机号</div>
+                        <div class="layui-card-body" th:text="${session.tel}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">性别</div>
+                        <div class="layui-card-body" th:text="${sex}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">邮箱</div>
+                        <div class="layui-card-body" th:text="${email}"></div>
                     </div>
                 </div>
                 <div class="layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header">标题</div>
-                        <div class="layui-card-body">
-                            内容
-                        </div>
+                        <div class="layui-card-header">个性签名</div>
+                        <div class="layui-card-body" th:text="${sign}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">我的学区</div>
+                        <div class="layui-card-body" th:text="${studyArea}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">我的家乡</div>
+                        <div class="layui-card-body" th:text="${home}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">注册时间</div>
+                        <div class="layui-card-body" th:text="${registerTime}"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">我的生日</div>
+                        <div class="layui-card-body" th:text="${birthday}"></div>
                     </div>
                 </div>
             </div>
