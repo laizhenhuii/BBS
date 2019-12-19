@@ -12,9 +12,8 @@ public class User {
     private String sex;     //用户性别
     private String sign;    //用户签名
     private String head;    //用户头像
-    private String edu;     //用户学历
-    private String job;     //用户工作
-    private String workPlace;    //用户工作地点
+    private String email;     //用户邮箱
+    private String studyArea;    //用户学习区域
     private Timestamp registerTime;    //用户注册时间
     private Timestamp birthday;       //用户生日
     private String home;          //用户家乡
@@ -69,28 +68,20 @@ public class User {
         this.head = head;
     }
 
-    public String getEdu() {
-        return edu;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEdu(String edu) {
-        this.edu = edu;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getJob() {
-        return job;
+    public String getStudyArea() {
+        return studyArea;
     }
 
-    public void setJob(String job) {
-        this.job = job;
-    }
-
-    public String getWorkPlace() {
-        return workPlace;
-    }
-
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
+    public void setStudyArea(String studyArea) {
+        this.studyArea = studyArea;
     }
 
     public Timestamp getRegisterTime() {

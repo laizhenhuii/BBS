@@ -23,10 +23,10 @@
         </ul>
         <!--未登入开始，登录时以下隐藏-->
         <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
-            <a href=""><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+            <a href=""><img src="../static/asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
-                <li><a href="login.html" th:href="@{login.html}">登录</a></li>
-                <li><a href="register.html" th:href="@{register.html}">注册</a></li>
+                <li><a href="login.html" th:href="@{/user/login}">登录</a></li>
+                <li><a href="register.html" th:href="@{/user/register}">注册</a></li>
             </ul>
         </div>
         <!-- 未登入结束-->
@@ -39,7 +39,7 @@
         </div>
         <!-- 登入结束-->
         <div class="navFix">
-            <a  class="navLogin" href="login.html" th:if="${#strings.isEmpty(session.username)}">登录</a>
+            <a  class="navLogin" th:href="@{/user/login}" th:if="${#strings.isEmpty(session.username)}">登录</a>
             <a href="" class="navWrite">发新帖</a>
         </div>
     </div>
@@ -314,7 +314,7 @@
 </footer>
 </body>
 </html>
-<script src="asserts/js/jquery-1.8.3.min.js"></script>
+<script src="../static/asserts/js/jquery-1.8.3.min.js"></script>
 <script>
     $(".indexMain_left_btn li a").click(function(){
         $(".indexMain_left_btn li a").removeClass("on");

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Map;
 
 /**
@@ -30,8 +32,7 @@ public class LoginController {
                             @RequestParam("telephone") String telephone,
                             @RequestParam("password") String password,
                             Map<String,Object> map){
-
-        if (userService.registerUser(username, telephone,password)){
+        if (userService.registerUser(username, telephone,password,new Timestamp((new Date().getTime())))){
             return "login";
         }else {
             map.put("msg","亲！您已经注册过了，快去登录吧！");

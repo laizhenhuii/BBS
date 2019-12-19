@@ -21,7 +21,7 @@ public class Post {
     private boolean homeTop; //是否首页置顶，为true时置顶
     private boolean personalTop;//是否个人主页置顶，为true时置顶
     private boolean postBoutique;//是否加精，为true时加精
-    private int postIntegral;//积分数
+    private int postIntegral;//积分数,是否为需求贴
     private String moduleType;//版块类型，如天健轶事
     private Timestamp lastPost; //如果该贴是主贴，记录该贴的最后回帖时间
     private String imageAddress; //帖子图片地址

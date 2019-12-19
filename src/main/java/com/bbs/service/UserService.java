@@ -5,16 +5,18 @@ import com.bbs.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
 public class UserService {
     @Resource
     UserMapper userMapper;
-    public boolean registerUser(String name,String tel,String password){     //注册，用账号密码注册
+    public boolean registerUser(String name, String tel, String password, Timestamp registerTime){     //注册，用账号密码注册
         User temp=userMapper.selectByTel(tel);
         if(temp==null){
-            userMapper.registerUser(name,tel,password);
+            userMapper.registerUser(name,tel,password,registerTime);
             return true;
         }
         return false;
@@ -30,9 +32,6 @@ public class UserService {
         }
         return -1;
     }
-
-
-
     public void deleteUser(String tel){
         userMapper.deleteUser(tel);
     } //删除某个用户信息，供管理员调用
