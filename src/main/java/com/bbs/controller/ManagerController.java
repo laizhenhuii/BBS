@@ -71,7 +71,7 @@ public class ManagerController {
     //帖子页
     @RequestMapping("/administrator/postTable")
     public String postTable(Map<String, Object> map){
-        map.put("posts", postService.findAll());
+        map.put("posts", postService.findAllByPage(1,1,10));
         return "administratorPost";
     }
 
