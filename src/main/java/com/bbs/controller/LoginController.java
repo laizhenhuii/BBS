@@ -34,7 +34,10 @@ public class LoginController {
                             @RequestParam("telephone") String telephone,
                             @RequestParam("password") String password,
                             Map<String,Object> map){
-        if (userService.registerUser(username, telephone,password,new Timestamp((new Date().getTime())))){
+        if(username.isEmpty()||telephone.isEmpty()||password.isEmpty()){
+            map.put("msg","亲！每个都是必填项，不要为空！");
+            return  "register";
+        }else if (userService.registerUser(username, telephone,password,new Timestamp((new Date().getTime())))){
             return "login";
         }else {
             map.put("msg","亲！您已经注册过了，快去登录吧！");
