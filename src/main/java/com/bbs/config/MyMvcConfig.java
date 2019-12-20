@@ -41,9 +41,8 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/tiezi.html").setViewName("tiezi");
         registry.addViewController("/changeContent.html").setViewName("changeContent");
         registry.addViewController("/mytiezi.html").setViewName("mytiezi");
-        registry.addViewController("/manages.html").setViewName("manages");
-        registry.addViewController("/postTable.html").setViewName("postTable");
-        registry.addViewController("/userTable.html").setViewName("userTable");
+        registry.addViewController("/administrator.html").setViewName("administrator");
+        registry.addViewController("/administratorPost.html").setViewName("administratorPost");
         registry.addViewController("/myMsg.html").setViewName("myMsg");
     }
 
