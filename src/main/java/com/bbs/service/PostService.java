@@ -32,6 +32,8 @@ public class PostService {
        else return 0;
     }
 
+
+
     //按照发帖人ID删除帖子
     public int deleteByUserID(String UserID){
         if(postMapper.deleteByUserID(UserID) != 0)
@@ -43,6 +45,11 @@ public class PostService {
     //查询所有帖子
     public List<Post> findAll(){
         return postMapper.findAll();
+    }
+
+    //查询所有主贴
+    public List<Post> findAllMainPost(){
+        return postMapper.findAllMainPost(-1);
     }
 
 

@@ -12,7 +12,7 @@
 
 <body class="text-center">
 <form style="max-width: 400px;" class="form-signin" th:action="@{/user/register}" method="post">
-    <div class="div-index">我不注册，返回<a th:href="@{/user/index}">主页</a></div>
+    <div class="div-index">我不注册，返回<a th:href="@{/index.html}">主页</a></div>
     <div class="div-log">我已注册，现在就<a th:href="@{/login.html}">登录</a></div>
     <img class="mb-4" src="/asserts/img/bootstrap-solid.svg"  width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.register}">Please register first</h1>
@@ -21,7 +21,7 @@
     <input name="username" style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block" th:placeholder="#{login.username}" >
     <br>
     <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.telephone}">Telephone</label>
-    <input name="telephone" style="width: 280px;margin: 10px 5px;" type="text" class="form-control d-inline-block"  th:placeholder="#{login.telephone}" >
+    <input name="telephone" style="width: 280px;margin: 10px 5px;" type="tel" class="form-control d-inline-block"  th:placeholder="#{login.telephone}" >
     <br>
     <label style="width: 72px" class="label-br text-right d-inline-block" th:text="#{login.password}"> Password</label>
     <input name="password" style="width: 280px;margin: 10px 5px;" type="password" class="form-control d-inline-block"  th:placeholder="#{login.password}" >

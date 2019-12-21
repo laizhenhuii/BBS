@@ -10,23 +10,23 @@
 <body onload="calendar()">
 <header class="ltHead" th:fragment="homePageTop">
     <div class="ltHead_cen">
-        <a href="" th:href="'#footer0'"><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>
+<!--        <a href="" th:href="'#footer0'"><img src="/asserts/img/logo.png" alt="" class="headPic1"/></a>-->
         <ul class="headNav">
-            <li><a href="" th:href="@{/}">首页</a></li>
-            <li><a href="" th:href="@{/(postType=2)}">精品贴区</a></li>
-            <li><a href="" th:href="@{/(postType=3)}">需求贴区</a></li>
-            <li><a href="" th:href="@{/(postType=4)}">人气排行</a></li>
-            <li><a href="" th:href="@{/(postType=5)}">积分排行</a></li>
-            <li><a href="" th:href="@{/(postType=6)}">天健园</a></li>
-            <li><a href="" th:href="@{/(postType=7)}">休闲区</a></li>
-            <li><a href="" th:href="@{/(postType=8)}">医学院</a></li>
+            <li><a href="" th:href="@{/(postType=1,signIn=${signIn0})}">首页</a></li>
+            <li><a href="" th:href="@{/(postType=2,signIn=${signIn0})}">精品贴区</a></li>
+            <li><a href="" th:href="@{/(postType=3,signIn=${signIn0})}">需求贴区</a></li>
+            <li><a href="" th:href="@{/(postType=4,signIn=${signIn0})}">人气排行</a></li>
+            <li><a href="" th:href="@{/(postType=5,signIn=${signIn0})}">积分排行</a></li>
+            <li><a href="" th:href="@{/(postType=6,signIn=${signIn0})}">天健园</a></li>
+            <li><a href="" th:href="@{/(postType=7,signIn=${signIn0})}">休闲区</a></li>
+            <li><a href="" th:href="@{/(postType=8,signIn=${signIn0})}">医学院</a></li>
         </ul>
         <!--未登入开始-->
         <div class="ltForm appear" th:if="${#strings.isEmpty(session.username)}">
-            <a href="" th:href="@{/login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
+            <a href="" th:href="@{login.html}"><img src="asserts/img/indexForm_bg.png" alt="" class="headPic2"/></a>
             <ul>
-                <li><a href="login.html" th:href="@{/login.html}">登录</a></li>
-                <li><a href="register.html" th:href="@{/register.html}">注册</a></li>
+                <li><a  th:href="@{/user/login}">登录</a></li>
+                <li><a th:href="@{/register.html}">注册</a></li>
             </ul>
         </div>
         <!-- 未登入结束-->
@@ -39,8 +39,12 @@
         </div>
         <!-- 登入结束-->
         <div class="navFix">
+            <!--登入开始-->
             <a href="" class="navWrite" th:if="${not #strings.isEmpty(session.username)}" th:href="@{/user/writePost}">发新帖</a>
-            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.username)}" th:href="@{/login.html}">登录</a>
+            <!--登入结束-->
+            <!--未登入开始-->
+            <a href="" class="navLogin" th:if="${#strings.isEmpty(session.username)}" th:href="@{login.html}">登录</a>
+            <!--未登入结束-->
         </div>
     </div>
 </header>
@@ -52,14 +56,16 @@
                     <a th:href="@{${#request.getRequestURI()}(postType=${postType},indexType=1)}" th:class="${not #strings.isEmpty(pageButton)}?'on'">最新</a>
                 </li>
                 <li th:if="${postType==1}">
-                    <a th:href="@{${#request.getRequestURI()}(postType=1,indexType=2)}" th:class="${#strings.isEmpty(pageButton)}?'on'">置顶</a>
+                    <a th:href="@{/(postType=1,indexType=2)}" th:class="${#strings.isEmpty(pageButton)}?'on'">置顶</a>
                 </li>
             </ul>
         </div>
         <div class="indexMain_left_con">
             <!--有主题图循环开始-->
             <div class="indexCon_msg" th:each="post:${Post}" th:if="${postType!=4&&postType!=5}">
-                <div class="indexCon_msg_pic" th:text="${post.getPostID()}">（头像）</div>
+                <div class="indexCon_msg_pic">
+                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                </div>
                 <div class="indexCon_msg_detail">
                     <a th:href="@{/toPost(postId=${post.getPostID()})}">
                         <div class="indexCon_msg_detail_tittle">
@@ -74,8 +80,8 @@
                         <ul>
                             <li th:text="${post.getPosterName()}">（发帖人）</li>
                             <li th:text="${post.getPostTime()}">（发表时间）</li>
-                            <li th:text="${post.getLikeNumber()}">（点赞量）</li>
-                            <li>（评论数）</li>
+                            <li th:text="${post.getPageView()}">（浏览量）</li>
+<!--                            <li th:text="${post}">（评论数）</li>-->
                         </ul>
                     </div>
                 </div>
@@ -86,7 +92,7 @@
             <div class="indexCon_msg" th:each="post1,postStart:${Post}" th:if="${postType==4}">
                 <div style="height: 46px;float: left;color: red;margin-left: 11px;margin-top: 14px;overflow: hidden;" th:text="'第'+${postStart.count}+'名:'"></div>
                 <div class="indexCon_msg_detail">
-<!--                    <a th:href="@{/toPost/}+${post1.getPostID()}">-->
+                    <!--                    <a th:href="@{/toPost/}+${post1.getPostID()}">-->
                     <a th:href="@{/toPost(postId=${post1.getPostID()})}">
                         <div class="indexCon_msg_detail_tittle">
                             <span th:text="${post1.getModuleType()}">（类别)</span>
@@ -97,7 +103,7 @@
                         <ul>
                             <li th:text="${post1.getPosterName()}">（发帖人）</li>
                             <li th:text="${post1.getPostTime()}">（发表时间）</li>
-                            <li th:text="${post1.getLikeNumber()}">（点赞量）</li>
+                            <li th:text="${post1.getPageView()}">（点赞量）</li>
                             <li>（评论数）</li>
                         </ul>
                     </div>
@@ -105,11 +111,13 @@
                 <div class="clear"></div>
             </div>
         </div>
-            <!--排名人气前10循环结束-->
-            <!--排名积分前10循环开始-->
-            <div class="indexCon_msg" th:each="user1,userStart:${user}" th:if="${postType==5}">
+        <!--排名人气前10循环结束-->
+        <!--排名积分前10循环开始-->
+        <div class="indexCon_msg" th:each="user1,userStart:${user}" th:if="${postType==5 && userStart.index < 10}">
             <div style="height: 46px;float: left;color: red;margin-left: 11px;margin-top: 14px;overflow: hidden;" th:text="'第'+${userStart.count}+'名:'"></div>
-            <div class="indexCon_msg_pic" th:text="${user1.getHead()}">（头像）</div>
+            <div class="indexCon_msg_pic">
+                <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+            </div>
             <div class="indexCon_msg_detail">
                 <a href="">
                     <div class="indexCon_msg_detail_tittle">
@@ -128,19 +136,19 @@
         <!--排名积分前10循环结束-->
         <div class="indexFooter" th:if="${not #strings.isEmpty(pageButton)}">
             <div class="indexFooter_con">
-                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=1)}" th:class="${page==1}?'on'">1</a>
-                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=2)}" th:class="${page==2}?'on'">2</a>
-                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=3)}" th:class="${page==3}?'on'">3</a>
-                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=4)}" th:class="${page==4}?'on'">4</a>
-                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=5)}" th:class="${page==5}?'on'">5</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=1,signIn=${signIn0})}" th:class="${page==1}?'on'">1</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=2,signIn=${signIn0})}" th:class="${page==2}?'on'">2</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=3,signIn=${signIn0})}" th:class="${page==3}?'on'">3</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=4,signIn=${signIn0})}" th:class="${page==4}?'on'">4</a>
+                <a th:href="@{${#request.getRequestURI()}(postType=${postType},pageNumber=5,signIn=${signIn0})}" th:class="${page==5}?'on'">5</a>
             </div>
         </div>
     </div>
     <div class="indexMain_right">
         <div class="indexMain_rightCon">
             <a href="" class="newMsg" th:href="@{/writePost}">发新帖</a>
-            <div class="pwfb" th:fragment="homePageRight0">
-                <div class="pwfbHead" th:text="${#strings.isEmpty(session.username)}?'欢迎来到BBS论坛'">
+            <div class="pwfb" th:fragment="homePageRight0" th:if="${#strings.isEmpty(session.username)}">
+                <div class="pwfbHead" th:text="${'欢迎来到BBS论坛'}">
                     (签到区顶部）
                 </div>
                 <div class="pwfbCon">
@@ -150,7 +158,33 @@
                     </div>
                 </div>
                 <div class="pwfbFooter">
-                    <button id="theButton">签到</button>
+                    <a th:href="@{/addIntegral}"><button id="theButton">签到</button></a>
+                </div>
+            </div>
+            <div class="myMsg" th:fragment="homePageRight0" th:if="${not #strings.isEmpty(session.username)}">
+                <div class="myMsg_con">
+                    <div class="indexCon_msg_pic">
+                        <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                    </div>
+                    <p th:text="${session.username}">用户名</p>
+                </div>
+                <div  class="myMsg_footer">
+                    <ul>
+<!--                        <li>-->
+<!--                            <p>主题数</p>-->
+<!--                            <p>23</p>-->
+<!--                        </li>-->
+                        <li th:if="${signIn0==0}"><a th:href="@{/(signIn=1)}">
+                            <button class="theButton1">签到</button>
+                        </a></li>
+                        <li th:if="${signIn0==1}">
+                            <button class="theButton1">签到成功</button>
+                        </li>
+<!--                        <li>-->
+<!--                            <p>信誉值</p>-->
+<!--                            <p>23</p>-->
+<!--                        </li>-->
+                    </ul>
                 </div>
             </div>
             <div class="indexSearch" th:fragment="homePageRight1">

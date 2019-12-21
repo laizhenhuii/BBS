@@ -32,6 +32,9 @@ public interface PostMapper {
     //查询所有帖子
     List<Post> findAll();
 
+    @Select("select * from post_table where mainPost = #{mainPost}")
+    List<Post> findAllMainPost(int mainPost);
+
     @Select("select * from post_table where mainPost = #{mainPost} order by postTime DESC")
     //查询所有主帖子按发帖时间降序排序
     List<Post> findAllByPostTime(int mainPost);

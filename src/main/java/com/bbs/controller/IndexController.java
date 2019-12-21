@@ -39,6 +39,6 @@ public class IndexController {
     @GetMapping("/user/exit")
     public String exit(HttpSession session){
         session.invalidate();
-        return "index";
+        return "redirect:/index.html";
     }
 }

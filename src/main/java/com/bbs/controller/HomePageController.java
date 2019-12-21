@@ -7,10 +7,7 @@ import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,11 +31,7 @@ public class HomePageController {
     public UserService userService;
     //首页URL通用：localhost：8080，根据所传参数来判断跳转到哪个页面
     @GetMapping({"/","/index.html"})
-    public String indexPost(Model model, Map<String,Object> map, @RequestParam(name = "postType",required = false,defaultValue ="1" )Integer postType, @RequestParam(name = "indexType",required = false,defaultValue = "1")Integer indexType, @RequestParam(name="pageNumber" ,required = false,defaultValue = "1") Integer pageNumber){
-        System.out.println("帖子类型："+postType);
-        System.out.println("排序方式："+indexType);
-        System.out.println("页数："+pageNumber);
-
+    public String indexPost(Model model, Map<String,Object> map, HttpSession session,@RequestParam(name = "postType",required = false,defaultValue ="1" )Integer postType, @RequestParam(name = "indexType",required = false,defaultValue = "1")Integer indexType, @RequestParam(name="pageNumber" ,required = false,defaultValue = "1") Integer pageNumber,@RequestParam(name = "signIn",required = false,defaultValue = "0")int signIn){
         //判断“置顶”、“最新”，是否有翻页，以及按钮变色
         if(postType==4||postType==5){
             indexType=2;
@@ -46,9 +39,18 @@ public class HomePageController {
         if(indexType==1){
             map.put("pageButton","exit");
         }
+        if (signIn!=0){
+            User user = userService.selectByTel(session.getAttribute("tel").toString());
+            user.setIntegral(user.getIntegral() + 10);
+            user.setReputationValue(user.getReputationValue() + 1);
+            userService.updateInformation(user);
+            session.setAttribute("signNum","1");
+            map.put("signIn0",signIn);
+        }
         map.put("postType",postType);
         map.put("page",pageNumber);
         if(postType==1) {
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"首页"
             if (indexType == 1) {
                 //左边页面显示的内容，查询所有帖子，并按时间排序--》“最新”
@@ -60,37 +62,44 @@ public class HomePageController {
                 model.addAttribute("Post", newPosts);
             }
         }else if(postType==2){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"精品帖区"
             //左边页面显示的内容，查询所有加精帖子，并按时间排序--》“最新”
             List<Post> newPosts = postService.findAllByPage(3,pageNumber,6);
             model.addAttribute("Post", newPosts);
         } else if(postType==3){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"需求帖区"
             //左边页面显示的内容，查询所有需求帖子，并按时间排序--》“最新”
             List<Post> newPosts = postService.findAllByPage(4,pageNumber,6);
             model.addAttribute("Post", newPosts);
         }else if(postType==4){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"人气排行"
             //左边页面显示的内容，查询所有帖子，并按点赞数排序--》“最新”
-            List<Post> newPosts = postService.findAllByPage(5,1,10);
+            List<Post> newPosts = postService.findAllByPage(6,1,10);
             model.addAttribute("Post", newPosts);
         }else if(postType==5){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"积分排行"
             //左边页面显示的内容，查询所有用户，并按积分排序--》“最新”
             List<User> users0 =userService.selectAll() ;
-//            List<User>  users1= users0.stream().sorted((a, b) -> a.getIntegral() - b.getIntegral()).collect(Collectors.toList());
-            model.addAttribute("user", users0);
+            List<User> users1= users0.stream().sorted((a, b) -> b.getIntegral() - a.getIntegral()).collect(Collectors.toList());
+            model.addAttribute("user", users1);
         }else if(postType==6){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"天健园"
             //左边页面显示的内容，查询所有天健园帖子，并按时间排序--》“最新”
             List<Post> newPosts = postService.findAllByPage(7,pageNumber,6);
             model.addAttribute("Post", newPosts);
         }else if(postType==7){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"休闲区"
             //左边页面显示的内容，查询所有休闲区帖子，并按时间排序--》“最新”
             List<Post> newPosts = postService.findAllByPage(8,pageNumber,6);
             model.addAttribute("Post", newPosts);
         }else if(postType==8){
+            map.put("signIn0",signIn);
             //左边页面显示的内容，"医学院"
             //左边页面显示的内容，查询所有医学院帖子，并按时间排序--》“最新”
             List<Post> newPosts = postService.findAllByPage(9,pageNumber,6);
@@ -130,13 +139,20 @@ public class HomePageController {
         //查询该postID相应的评论
         List<Post> comments=postService.findPostByMainID(postId);
         model.addAttribute("comments",comments);
+        //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
+        List<Post> hotMostPost=postService.findAllByPage(6,1,9);
+        model.addAttribute("hotPost",hotMostPost);
+        //右边页面显示的内容，查询点赞数最高的前6条帖子，在本周热点栏展示
+        List<Post> popularMostPost=postService.findAllByPage(5,1,6);
+        model.addAttribute("popularPost",popularMostPost);
         //点击首页帖子标题跳转到该帖子详细界面
+        post.setPageView(post.getPageView() + 1);
+        postService.updatePost(post);
         return "tiezi";
     }
     //点击搜素按钮,根据输入关键字进行模糊查询；
     @GetMapping("/search")
     public String toSearch(@RequestParam("keyword") String keyword, Model model, Map<String,Object> map, HttpServletRequest request){
-        System.out.println(keyword);
         map.put("keyword",keyword);
         List<Post> likelyPost=postService.findLikePostTitle(keyword);
         model.addAttribute("likelyPost",likelyPost);
@@ -145,16 +161,41 @@ public class HomePageController {
     //帖子页面点击发表评论
     @PostMapping("/writeComment")
     public String addCommit(@RequestParam("comment") String comment,@RequestParam("postId") int postId, HttpSession session){
-        System.out.println(postId);
+        if(session.getAttribute("username")==null){
+            return "/login.html";
+        }
         //新建一个评论对象
         Post newComment=new Post();
-        newComment.setPosterID("1376879");
-        newComment.setPosterName("hhhjk");
+        newComment.setPosterID(session.getAttribute("tel").toString());
+        newComment.setPosterName(session.getAttribute("username").toString());
         newComment.setMainPost(postId);
         newComment.setPostTime(new Timestamp((new Date()).getTime()));
         newComment.setPostContent(comment);
         postService.addPost(newComment);//将新建的评论对象存入帖子表
-
         return "redirect:/toPost?postId="+postId;
     }
+    //点击签到按钮
+    @GetMapping("/addIntegral")
+    public String addIntegral(HttpSession session){
+        return "redirect:/";
+    }
+
+    //    积分
+    @RequestMapping(value = "/tiezi/cn",method = RequestMethod.GET)
+    public String cn(Map<String,Object> map,HttpServletRequest request){
+        User user= userService.selectByTel(request.getParameter("tel"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        int jf = postService.findByPostID(id).getPostIntegral();
+        Post post = postService.findByPostID(id);
+        post.setPostIntegral(0);
+        map.put("cn","已采纳！");
+        user.setIntegral(user.getIntegral()+jf);
+        postService.updatePost(post);
+        userService.updateInformation(user);
+        System.out.println( postService.findByPostID(id).getPostIntegral());
+        System.out.println(jf);
+        System.out.println(666666);
+        return "redirect:/toPost?postId="+id;
+    }
+
 }

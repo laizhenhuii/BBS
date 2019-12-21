@@ -16,10 +16,6 @@
     </div>
     <form method="post" th:action="@{/saveChange}">
         <div class="writeCon_cen" th:each="p:${post}">
-            <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}" style="color: red;font-weight: bold;font-size: 30px;" ></p>
-            <div class="writePic">
-                <input type="file" accept=".jpeg, .jpg, .png" class="upload_file"/>
-            </div>
             <div class="writeMsg" >
                 <!-- 标题最大字数15个-->
                 <input type="text" name="title" placeholder="❤标题❤" th:value="${p.postTitle}" maxlength="15" required/>
@@ -28,12 +24,12 @@
             <div class="writeMsg" style="font-size:23px">
                 <label>🌄类型:</label>
                 <select style="width: auto" name="type" th:value="${p.moduleType}">
-                    <option value="天健">🙈天健</option>
-                    <option value="休闲">🙉休闲</option>
+                    <option value="天健园">🙈天健</option>
+                    <option value="休闲区">🙉休闲</option>
                     <option value="医学院">🙊医学院</option>
                 </select>
             </div>
-               <!-- <span name="id" th:text="${p.postID}" ></span>-->
+            <!-- <span name="id" th:text="${p.postID}" ></span>-->
             <textarea name="id" th:text="${p.postID}" th:hidden="true" ></textarea>
             <div>
                 <!-- 文本正文字数限制1000字-->

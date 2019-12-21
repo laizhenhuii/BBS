@@ -41,9 +41,8 @@ public class MyMvcConfig implements  WebMvcConfigurer {
         registry.addViewController("/tiezi.html").setViewName("tiezi");
         registry.addViewController("/changeContent.html").setViewName("changeContent");
         registry.addViewController("/mytiezi.html").setViewName("mytiezi");
-        registry.addViewController("/manages.html").setViewName("manages");
-        registry.addViewController("/postTable.html").setViewName("postTable");
-        registry.addViewController("/userTable.html").setViewName("userTable");
+        registry.addViewController("/administrator.html").setViewName("administrator");
+        registry.addViewController("/administratorPost.html").setViewName("administratorPost");
         registry.addViewController("/myMsg.html").setViewName("myMsg");
     }
 
@@ -52,7 +51,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/webjars/**","/asserts/**","/","/index.html",
-                        "/register.html","/login.html","/user/login","/user/register","/user/index");
+                        "/register.html","/login.html","/user/login","/user/register","/user/index","/toPost","/search","/index/exit","/writeComment");
     }
 
     @Bean //向容器中添加组件

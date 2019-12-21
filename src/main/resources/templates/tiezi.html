@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="/asserts/css/reset.css"/>
     <link rel="stylesheet" href="/asserts/css/public.css"/>
     <link rel="stylesheet" href="/asserts/css/index.css"/>
+    <link rel="stylesheet" href="/asserts/css/bootstrap.min.css">
+    <style>
+        #pre{
+            word-break:break-all;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
 <header th:replace="index::homePageTop"></header>
@@ -13,7 +20,9 @@
     <div class="indexMain_left">
         <div class="tzCon">
             <div class="tzCon_head">
-                <div class="tzCon_head_left">（头像）</div>
+                <div class="tzCon_head_left">
+                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                </div>
                 <div class="tzCon_head_right">
                     <h1 th:text="${post.getPostTitle()}">(帖子标题)</h1>
                     <ul>
@@ -24,83 +33,16 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="tzCon_con" th:text="${post.getPostContent()}">
+            <div class="tzCon_con" id="pre" th:utext="${post.getPostContent()}">
                 (帖子内容）
             </div>
-<!--            <div class="tzCon_foot">-->
-<!--                <div class="tzCollect">-->
-<!--                    <div class="tzCollect_left">收藏</div>-->
-<!--                    <div class="tzCollect_right">131</div>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
-        <div class="newPending">
-            <div class="newPending_head">
-                <div class="tzHeng"></div>
-                <div class="newPending_head_tittle" th:text="'全部评论'+${comments.size()}">最新评论(52)</div>
-            </div>
-            <!--楼主可以删除评论、自己可以删除自己的评论删除按钮酌情出现-->
-            <div class="newPending_son" th:each="comment:${comments}">
-                <div class="pendPic">评论者头像</div>
-                <div class="pendDetail">
-                    <div class="pendDetail_head">
-                        <p>评论者id<span>评论时间</span></p>
-                        <i>2楼</i>
-                    </div>
-                    <div class="pendDetail_con">
-                        <p th:text="${comment.getPostContent()}">评论内容</p>
-                    </div>
-                    <div class="pendDetail_btn">
-                        <ul>
-                            <li>361</li>
-                            <li class="replayBtn">278</li>
-                            <li class="delateBtn">删除</li>
-                        </ul>
-                    </div>
-                    <div class="pendDetail_action">
-                        <input type="text" value="回复XXX:"/>
-                        <button>评论</button>
-                        <button>取消</button>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-<!--            &lt;!&ndash;回复后的情况&ndash;&gt;-->
-<!--            <div class="newPending_son">-->
-<!--                <div class="pendPic"></div>-->
-<!--                <div class="pendDetail">-->
-<!--                    <div class="pendDetail_head">-->
-<!--                        <p>花开花落 <span>1天前</span></p>-->
-<!--                        <i>2楼</i>-->
-<!--                    </div>-->
-<!--                    <div class="pendDetail_con">-->
-<!--                        <p>测试一下图片,4文档和3文档差别很大测试一下图片,4文档和3文档差别很大</p>-->
-<!--                    </div>-->
-<!--                    <div class="pendDetail_replayCon">-->
-<!--                        <p>回复桃花朵朵开：确实，正确的。</p>-->
-<!--                    </div>-->
-<!--                    <div class="pendDetail_btn">-->
-<!--                        <ul>-->
-<!--                            <li>361</li>-->
-<!--                            <li class="delateBtn">删除</li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="clear"></div>-->
-<!--            </div>-->
-            <!--测试内容-->
-            <!--……-->
-            <!--测试内容结束、十条内容分页-->
-        </div>
-<!--        <div class="indexFooter">-->
-<!--            <div class="indexFooter_con">-->
-<!--                <a href="javascript:"><</a>-->
-<!--                <a href="" class="on">1</a>-->
-<!--                <a href="">2</a>-->
-<!--                <a href="">3</a>-->
-<!--                <a href="javascript:">></a>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--            <div class="tzCon_foot">-->
+        <!--                <div class="tzCollect">-->
+        <!--                    <div class="tzCollect_left">收藏</div>-->
+        <!--                    <div class="tzCollect_right">131</div>-->
+        <!--                </div>-->
+        <!--            </div>-->
         <div class="writePending">
             <div class="newPending_head">
                 <div class="tzHeng"></div>
@@ -112,31 +54,41 @@
                 <input type="submit" value="评论"/>
             </form>
         </div>
+        <div class="newPending">
+            <div class="newPending_head">
+                <div class="tzHeng"></div>
+                <div class="newPending_head_tittle" th:text="'全部评论'+${comments.size()}">最新评论(52)</div>
+            </div>
+            <div class="newPending_son" th:each="comment,commentStart:${comments}">
+                <div class="pendPic">
+                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                </div>
+                <div class="pendDetail">
+                    <div class="pendDetail_head">
+                        <p th:text="${comment.getPosterName()}">评论者id<span th:text="${comment.getPostTime()}">评论时间</span></p>
+                        <i th:text="${commentStart.count}+'楼'"></i>
+                    </div>
+                    <div class="pendDetail_con">
+                        <p style="text-align: left" th:utext="${comment.getPostContent()}">评论内容</p>
+                    </div>
+                    <div class="pendDetail_btn">
+                        <ul>
+                            <li th:text="${comment.getPageView()}">浏览量</li>
+                        </ul>
+                        <a th:href="@{/tiezi/cn(tel=${comment.getPosterID()},id=${post.getPostID()})}" th:if="${not #lists.isEmpty(post.getPostIntegral())}">
+                            <button class="btn-sm btn-danger" th:text="采纳"
+                                    th:if="${session.tel == post.getPosterID()}" > </button>
+                        </a>
+                        <p style="color: red"  th:if="${#lists.isEmpty(post.getPostIntegral())}">已采纳</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
     </div>
     <div class="indexMain_right">
-        <a href="" class="newMsg">发新帖</a>
-        <div class="myMsg" th:replace="index::homePageRight0">
-<!--            <div class="myMsg_con">-->
-<!--                <div class="myMsg_conPic"></div>-->
-<!--                <p>花开花落</p>-->
-<!--            </div>-->
-<!--            <div  class="myMsg_footer">-->
-<!--                <ul>-->
-<!--                    <li><a href="">-->
-<!--                        <p>主题数</p>-->
-<!--                        <p>23</p>-->
-<!--                    </a></li>-->
-<!--                    <li><a href="">-->
-<!--                        <p>精华数</p>-->
-<!--                        <p>23</p>-->
-<!--                    </a></li>-->
-<!--                    <li><a href="">-->
-<!--                        <p>注册排名</p>-->
-<!--                        <p>23</p>-->
-<!--                    </a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-        </div>
+        <a th:href="@{/user/writePost}" class="newMsg">发新帖</a>
+        <div class="myMsg" th:replace="index::homePageRight0"></div>
         <div th:replace="index::homePageRight1"></div>
         <div th:replace="index::homePageRight2"></div>
         <div th:replace="index::homePageRight3"></div>
@@ -148,8 +100,18 @@
 </footer>
 </body>
 </html>
-<script src="js/jquery-1.8.3.min.js"></script>
-<script src="js/tiezi.js"></script>
+<script src="/asserts/js/jquery-1.8.3.min.js"></script>
 <script>
+    //动态日历js
+    function calendar(){
+        /*1.获取时间*/
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
 
+        /*2.获取标签动态改变内容*/
+        document.getElementById('box_top').innerText = y + '年' + m + '月';
+        document.getElementById('box_bottom').innerText = d;
+    };
 </script>
