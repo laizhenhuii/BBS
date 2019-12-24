@@ -114,6 +114,12 @@ public class HomeController {
         return "base";
     }
 
+    @RequestMapping("/user/headImage")
+    public String headImage(){
+        return "uploadImage";
+    }
+
+
     @RequestMapping("/user/Password")
     public String Password(){
         return "upload_password";

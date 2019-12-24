@@ -7,19 +7,29 @@ import com.bbs.service.InformationService;
 import com.bbs.service.PostService;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 //严捷伟Post数据库测试类
 //也是数据库接口调用示范类
 
 
-@RestController
-@RequestMapping("/yjwtest")
+@Controller
+@RequestMapping("yjwtest")
 
 public class yjwTest {
     @Autowired
@@ -30,6 +40,8 @@ public class yjwTest {
 
     @Autowired
     private UserService userService;
+
+    public final static String IMG_PATH_PREFIX = "static/images/";
 
     //帖子数据库接口测试
 
@@ -221,6 +233,48 @@ public class yjwTest {
     //用户数据库接口测试
     public List<User> findUserLikeName(){
         return userService.findLikeUserName("开心");
+    }
+
+
+    public static File getImgDirFile(String imgPath){
+        // 构建上传文件的存放 "文件夹" 路径s
+        String fileDirPath = new String("src/main/resources/" + imgPath);
+        File fileDir = new File(fileDirPath);
+        if(!fileDir.exists()){
+            // 递归生成文件夹
+            fileDir.mkdirs();
+        }
+        return fileDir;
+    }
+
+
+
+
+    @RequestMapping("uploadbase")
+    @ResponseBody
+    public Map<String, Object> uploadbase(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
+        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+        Iterator<?> iter = multiRequest.getFileNames();
+        MultipartFile mf = multiRequest.getFile(iter.next().toString());
+        System.out.println(mf);
+        String filename = mf.getOriginalFilename();
+        File fileDir = getImgDirFile(IMG_PATH_PREFIX);
+        String absolutePath = fileDir.getAbsolutePath();//获得当前图片所在文件夹的绝对路径
+        String imgname = UUID.randomUUID() + filename; //图片新名称
+        String imgpath = "/images/" + imgname;//图片新路径
+        String usertel = session.getAttribute("tel").toString(); //找到用户并且替换头像路径
+        User user = userService.selectByTel(usertel);
+        user.setHead(imgpath);
+        userService.updateInformation(user);
+        mf.transferTo(new File(absolutePath + "/" + imgname));//写入绝对路径
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("mag", "");
+        Map<String, Object> data = new HashMap<>();
+        data.put("src", imgpath);
+        map.put("data", data);
+        System.out.println(imgpath);
+        return map;
     }
 
 }

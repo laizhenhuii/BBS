@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>修改头像</title>
+    <link rel="stylesheet" href="/asserts/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/asserts/css/homeHead.css"/>
+    <link rel="stylesheet" href="/asserts/css/homePublic.css"/>
+    <link rel="stylesheet" href="/asserts/css/base.css"/>
+    <link rel="stylesheet" href="/asserts/layui/easyCropper/cropper.css"/>
+</head>
+<body>
+<div th:replace="common::#topbar"></div>
+<div class="homeCen">
+    <div th:replace="common::#sidebar(active='base')"></div>
+    <div class="homeCen_right">
+        <div class="baseHead">
+            <ul>
+                <li><a th:href="@{/user/base}">我的资料</a></li>
+                <li><a href="" class="on">头像</a></li>
+                <li><a th:href="@{/user/Password}">密码</a></li>
+            </ul>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>头像上传</legend>
+        </fieldset>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">新头像</label>
+            <div class="layui-input-inline">
+                <div class="layui-upload-list" style="margin:0">
+                    <img width="150" height="150" id="srcimgurl" class="layui-upload-img">
+                </div>
+            </div>
+            <div class="layui-input-inline layui-btn-container" style="width: auto;">
+                <button class="layui-btn layui-btn-primary" id="editimg">修改图片</button >
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script src="/asserts/layui/easyCropper/cropper.js"></script>
+<script src="/asserts/layui/easyCropper/easyCropper.js"></script>
+<script src="/asserts/layui/dist/layui.js" charset="utf-8"></script>
+<script src="/asserts/layui/cropper/cropper.js"></script>
+<script src="/asserts/layui/cropper/croppers.js"></script>
+
+<script>
+    layui.config({
+        base: '/static/cropper/' //layui自定义layui组件目录
+    }).use(['form','croppers'], function () {
+        var $ = layui.jquery
+            ,form = layui.form
+            ,croppers = layui.croppers
+            ,layer= layui.layer;
+
+        //创建一个头像上传组件
+        croppers.render({
+            elem: '#editimg'
+            ,acceptMime: 'image/*'
+            ,field: 'mf'
+            ,size: '1024'
+            ,saveW:150     //保存宽度
+            ,saveH:150
+            ,mark:1/1    //选取比例
+            ,area:'900px'  //弹窗宽度
+            ,url: '/yjwtest/uploadbase'  //图片上传接口返回和（layui 的upload 模块）返回的JOSN一样
+            ,done: function(url){ //上传完毕回调
+                // $("#inputimgurl").val(url);
+                $("#srcimgurl").attr('src',url);
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
