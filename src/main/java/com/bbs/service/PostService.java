@@ -99,6 +99,11 @@ public class PostService {
         return postMapper.findByUserID(UserID);
     }
 
+    //根据发帖人ID查询所发的主贴
+    public List<Post> findMainByUserID(String UserID){
+        return postMapper.findMainByUserID(UserID);
+    }
+
     //根据帖子ID查询帖子
     public Post findByPostID(int PostID){
         return postMapper.findByPostID(PostID);
