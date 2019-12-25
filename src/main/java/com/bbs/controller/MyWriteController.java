@@ -27,7 +27,7 @@ public class MyWriteController {
     //展示个人贴子页面
     @RequestMapping("/user/tiezi")
     public String showPoster(Model model, HttpSession session){
-        List<Post> posts=postService.findByUserID(session.getAttribute("tel").toString());
+        List<Post> posts=postService.findMainByUserOrder(session.getAttribute("tel").toString());
         // String A = request.getSession().getAttribute("tel").toString();
         //System.out.println(A);
         model.addAttribute("posts",posts);

@@ -71,6 +71,12 @@ public interface PostMapper {
     //根据发帖人ID查询帖子（查询某个发帖人所有帖子）
     List<Post> findByUserID(String UserID);
 
+    @Select("select * from post_table where posterID = #{posterID} and mainPost = -1")
+    List<Post> findMainByUserID(String UserID);
+
+    @Select("select * from post_table where posterID = #{posterID} and mainPost = -1 order by postTime DESC")
+    List<Post> findMainByUserOrder(String UserID);
+
     @Select("select * from post_table where postTitle like #{arg}")
     //根据关键词模糊查询帖子（仅匹配标题）
     List<Post> findLikePostTitle(String postTitle);

@@ -24,6 +24,9 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images");
+        String path = "C:\\Users\\75812\\OneDrive\\作业\\大三上\\web程序设计\\期末大作业 (1)\\bbs\\BBS\\src\\main\\resources\\static\\images\\";
+        registry.addResourceHandler("/images/**").addResourceLocations("file:" + path);
     }
 
 //    地址映射
@@ -51,7 +54,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/webjars/**","/asserts/**","/","/index.html",
-                        "/register.html","/login.html","/user/login","/user/register","/user/index","/toPost","/search","/index/exit","/writeComment");
+                        "/register.html","/login.html","/user/login","/user/register","/user/index","/toPost","/search","/index/exit","/writeComment","images/**");
     }
 
     @Bean //向容器中添加组件
