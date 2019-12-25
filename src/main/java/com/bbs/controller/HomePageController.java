@@ -31,7 +31,13 @@ public class HomePageController {
     public UserService userService;
     //首页URL通用：localhost：8080，根据所传参数来判断跳转到哪个页面
     @GetMapping({"/","/index.html"})
-    public String indexPost(Model model, Map<String,Object> map, HttpSession session,@RequestParam(name = "postType",required = false,defaultValue ="1" )Integer postType, @RequestParam(name = "indexType",required = false,defaultValue = "1")Integer indexType, @RequestParam(name="pageNumber" ,required = false,defaultValue = "1") Integer pageNumber,@RequestParam(name = "signIn",required = false,defaultValue = "0")int signIn){
+    public String indexPost(Model model,
+                            Map<String,Object> map,
+                            HttpSession session,
+                            @RequestParam(name = "postType",required = false,defaultValue ="1" )Integer postType,
+                            @RequestParam(name = "indexType",required = false,defaultValue = "1")Integer indexType,
+                            @RequestParam(name="pageNumber" ,required = false,defaultValue = "1") Integer pageNumber,
+                            @RequestParam(name = "signIn",required = false,defaultValue = "0")int signIn){
         //判断“置顶”、“最新”，是否有翻页，以及按钮变色
         if(postType==4||postType==5){
             indexType=2;
@@ -185,7 +191,7 @@ public class HomePageController {
     public String cn(Map<String,Object> map,HttpServletRequest request){
         User user= userService.selectByTel(request.getParameter("tel"));
         int id = Integer.parseInt(request.getParameter("id"));
-        int jf = postService.findByPostID(id).getPostIntegral();
+        int jf = postService.findByPostID(id).getPostIntegral();    //积分
         Post post = postService.findByPostID(id);
         post.setPostIntegral(0);
         map.put("cn","已采纳！");

@@ -57,7 +57,7 @@
         <div class="newPending">
             <div class="newPending_head">
                 <div class="tzHeng"></div>
-                <div class="newPending_head_tittle" th:text="'全部评论'+${comments.size()}">最新评论(52)</div>
+                <div class="newPending_head_tittle" th:text="'全部评论'+${comments.size()}"></div>
             </div>
             <div class="newPending_son" th:each="comment,commentStart:${comments}">
                 <div class="pendPic">
@@ -75,7 +75,9 @@
                         <ul>
                             <li th:text="${comment.getPageView()}">浏览量</li>
                         </ul>
-                        <a th:href="@{/tiezi/cn(tel=${comment.getPosterID()},id=${post.getPostID()})}" th:if="${not #lists.isEmpty(post.getPostIntegral())}">
+                        <a th:href="@{/tiezi/cn(tel=${comment.getPosterID()},id=${post.getPostID()})}" th:if="${(post.getPostIntegral()>0) && (post.getPosterID()!=comment.getPosterID())}" >
+<!--                           <p th:text="${post.getPosterID()}"></p>-->
+<!--                            <p th:text="${comment.getPosterID()}"></p>-->
                             <button class="btn-sm btn-danger" th:text="采纳"
                                     th:if="${session.tel == post.getPosterID()}" > </button>
                         </a>
