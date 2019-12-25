@@ -63,7 +63,8 @@ public class PostPublish {
             return "write";
 
         }else if(userService.selectByTel(posterID).getIntegral()<reward){
-            map.put("msg","⁉亲，积分没那么多，悬赏不到哦~😁");
+            System.out.println(reward + " " + userService.selectByTel(posterID).getIntegral());
+            map.put("msg","亲，积分没那么多，悬赏不到哦~😁");
             return "write";//积分不足
         }else{
            //更新用户积分

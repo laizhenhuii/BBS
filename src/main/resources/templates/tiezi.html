@@ -55,6 +55,8 @@
             </div>
             <form class="writePending_con" th:action="@{/writeComment}" method="post">
                 <input type="text" placeholder="写下你的评论..." name="comment"/>
+
+
                 <input type="hidden" th:value="${postId}" name="postId">
                 <input type="submit" value="评论"/>
             </form>
@@ -90,6 +92,7 @@
                 <div class="clear"></div>
             </div>
         </div>
+
     </div>
     <div class="indexMain_right">
         <a th:href="@{/user/writePost}" class="newMsg">发新帖</a>
