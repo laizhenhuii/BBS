@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/asserts/css/reset.css"/>
     <link rel="stylesheet" href="/asserts/css/public.css"/>
     <link rel="stylesheet" href="/asserts/css/index.css"/>
+    <link rel="stylesheet" href="/asserts/layui/css/layui.css">
+    <link rel="stylesheet" href="/asserts/layui/css/global.css">
 </head>
 <body onload="calendar()">
 <header class="ltHead" th:fragment="homePageTop">
@@ -64,7 +66,7 @@
             <!--有主题图循环开始-->
             <div class="indexCon_msg" th:each="post:${Post}" th:if="${postType!=4&&postType!=5}">
                 <div class="indexCon_msg_pic">
-                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                    <img src="" class="indexCon_msg_pic_img ">
                 </div>
                 <div class="indexCon_msg_detail">
                     <a th:href="@{/toPost(postId=${post.getPostID()})}">

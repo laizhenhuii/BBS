@@ -247,12 +247,35 @@ public class yjwTest {
         return fileDir;
     }
 
-
-
-
-    @RequestMapping("uploadbase")
+    @RequestMapping("uploadimage")
     @ResponseBody
-    public Map<String, Object> uploadbase(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
+    public Map<String, Object> uploadimage(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
+        MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+        Iterator<?> iter = multiRequest.getFileNames();
+        MultipartFile mf = multiRequest.getFile(iter.next().toString());
+        System.out.println(mf);
+        String filename = mf.getOriginalFilename();
+        File fileDir = getImgDirFile(IMG_PATH_PREFIX);
+        String absolutePath = fileDir.getAbsolutePath();//获得当前图片所在文件夹的绝对路径
+        String imgname = UUID.randomUUID() + filename; //图片新名称
+        String imgpath = "/images/" + imgname;//图片新路径
+        mf.transferTo(new File(absolutePath + "/" + imgname));//写入绝对路径
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", 0);
+        map.put("mag", "上传成功");
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("url", imgpath);
+        map.put("url", imgpath);
+        System.out.println(imgpath);
+        return map;
+    }
+
+
+
+
+    @RequestMapping("uploadhead")
+    @ResponseBody
+    public Map<String, Object> uploadhead(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
         MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
         Iterator<?> iter = multiRequest.getFileNames();
         MultipartFile mf = multiRequest.getFile(iter.next().toString());

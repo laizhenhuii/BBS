@@ -50,44 +50,49 @@ public class PostPublish {
                            @RequestParam(value = "text",required = false) String text,
                            @RequestParam(value = "type",required = false) String type,
                            @RequestParam(value = "reward",required = false) int reward,
-                           @RequestParam(value = "file",required = false) MultipartFile file,
                            HttpSession session,Map<String,Object>map)throws Exception{
 
+        System.out.println(title + " " + text + " " + type + " "+ reward);
+
         String posterID=(String)session.getAttribute("tel"); //发帖人ID（手机号）
-        int postIntegral=reward;                                //悬赏分
-
-        //首先判断信誉值（小于10点，禁止发贴）
-        if(userService.selectByTel(posterID).getReputationValue()<10){
-            map.put("msg","‼亲，您的信誉值过低，暂时不能发帖哦~😥");
-            return "write";
-
-        }else if(userService.selectByTel(posterID).getIntegral()<reward){
-            map.put("msg","⁉亲，积分没那么多，悬赏不到哦~😁");
-            return "write";//积分不足
-        }else{
-           //更新用户积分
+//        int postIntegral=reward;                                //悬赏分
+//
+//        //首先判断信誉值（小于10点，禁止发贴）
+//        if(userService.selectByTel(posterID).getReputationValue()<10){
+//            map.put("msg","‼亲，您的信誉值过低，暂时不能发帖哦~😥");
+//            return "write";
+//
+//        }else if(userService.selectByTel(posterID).getIntegral()<reward){
+//            map.put("msg","⁉亲，积分没那么多，悬赏不到哦~😁");
+//            return "write";//积分不足
+//        }else{
+//           //更新用户积分
             User user=userService.selectByTel(posterID);
-            int num=user.getIntegral()-reward;  //临时变量
-            user.setIntegral(num);
-            int i=userService.updateInformation(user);
-
-            //以下帖子内容初始化
+//            int num=user.getIntegral()-reward;  //临时变量
+//            user.setIntegral(num);
+//            int i=userService.updateInformation(user);
+//
+//            //以下帖子内容初始化
             String posterName=userService.selectByTel(posterID).getName();//发帖人用户名/
             String postTitle=title;//帖子标题
             int mainPost=-1;//是否是主贴，该字段为-1时是主贴
             Timestamp postTime=new Timestamp(new Date().getTime()); //发表时间
             int likeNumber=0;//点赞数
             int pageView=0;//浏览量
-            String temp=text.replace("\n","<br/>");//帖子格式化临时变量
-            String postContent=temp.replace(" ","&nbsp");//帖子内容
+//            String temp=text.replace("\n","<br/>");//帖子格式化临时变量
+//            String temp = text.replace("[", "<");
+//            temp = temp.replace("]", ">");
+//            String postContent=temp.replace(" ","&nbsp");//帖子内容
+            String postContent = text;
             boolean homeTop=false; //是否首页置顶，为true时置顶
             boolean personalTop=false;//是否个人主页置顶，为true时置顶
             boolean postBoutique=false;//是否加精，为true时加精
             String moduleType=type;//版块类型，如天健轶事
             Timestamp lastPost=new Timestamp(new Date().getTime()); //如果该贴是主贴，记录该贴的最后回帖时间
-            String imageAddress=null; //帖子图片地址
+//            String imageAddress=null; //帖子图片地址
+//            String postContent = text;
 
-            //将获取到的帖子信息放到实体类中
+//            //将获取到的帖子信息放到实体类中
             Post post=new Post();
             post.setPosterID(posterID);
             post.setPosterName(posterName);
@@ -100,13 +105,13 @@ public class PostPublish {
             post.setPostTime(postTime);
             post.setPersonalTop(personalTop);
             post.setPostBoutique(postBoutique);
-            post.setPostIntegral(postIntegral);
+//            post.setPostIntegral(postIntegral);
             post.setModuleType(moduleType);
-            post.setImageAddress(imageAddress);
+//            post.setImageAddress(imageAddress);
             post.setLastPost(lastPost);
-
+//
             postService.addPost(post);          //在数据库中插入新的帖子信息
             return "redirect:/index.html";
-        }
+//        }
     }
 }
