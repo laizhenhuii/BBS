@@ -104,6 +104,11 @@ public class PostService {
         return postMapper.findMainByUserID(UserID);
     }
 
+    //根据发帖人ID查询所发的主贴(按照时间排序）
+    public List<Post> findMainByUserOrder(String UserID){
+        return postMapper.findMainByUserOrder(UserID);
+    }
+
     //根据帖子ID查询帖子
     public Post findByPostID(int PostID){
         return postMapper.findByPostID(PostID);
