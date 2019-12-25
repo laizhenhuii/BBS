@@ -55,22 +55,22 @@ public class PostPublish {
         System.out.println(title + " " + text + " " + type + " "+ reward);
 
         String posterID=(String)session.getAttribute("tel"); //发帖人ID（手机号）
-//        int postIntegral=reward;                                //悬赏分
-//
-//        //首先判断信誉值（小于10点，禁止发贴）
-//        if(userService.selectByTel(posterID).getReputationValue()<10){
-//            map.put("msg","‼亲，您的信誉值过低，暂时不能发帖哦~😥");
-//            return "write";
-//
-//        }else if(userService.selectByTel(posterID).getIntegral()<reward){
-//            map.put("msg","⁉亲，积分没那么多，悬赏不到哦~😁");
-//            return "write";//积分不足
-//        }else{
-//           //更新用户积分
+        int postIntegral=reward;                                //悬赏分
+
+        //首先判断信誉值（小于10点，禁止发贴）
+        if(userService.selectByTel(posterID).getReputationValue()<10){
+            map.put("msg","‼亲，您的信誉值过低，暂时不能发帖哦~😥");
+            return "write";
+
+        }else if(userService.selectByTel(posterID).getIntegral()<reward){
+            map.put("msg","⁉亲，积分没那么多，悬赏不到哦~😁");
+            return "write";//积分不足
+        }else{
+           //更新用户积分
             User user=userService.selectByTel(posterID);
-//            int num=user.getIntegral()-reward;  //临时变量
-//            user.setIntegral(num);
-//            int i=userService.updateInformation(user);
+            int num=user.getIntegral()-reward;  //临时变量
+            user.setIntegral(num);
+            int i=userService.updateInformation(user);
 //
 //            //以下帖子内容初始化
             String posterName=userService.selectByTel(posterID).getName();//发帖人用户名/
@@ -79,10 +79,6 @@ public class PostPublish {
             Timestamp postTime=new Timestamp(new Date().getTime()); //发表时间
             int likeNumber=0;//点赞数
             int pageView=0;//浏览量
-//            String temp=text.replace("\n","<br/>");//帖子格式化临时变量
-//            String temp = text.replace("[", "<");
-//            temp = temp.replace("]", ">");
-//            String postContent=temp.replace(" ","&nbsp");//帖子内容
             String postContent = text;
             boolean homeTop=false; //是否首页置顶，为true时置顶
             boolean personalTop=false;//是否个人主页置顶，为true时置顶
@@ -112,6 +108,6 @@ public class PostPublish {
 //
             postService.addPost(post);          //在数据库中插入新的帖子信息
             return "redirect:/index.html";
-//        }
+        }
     }
 }
