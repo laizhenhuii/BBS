@@ -166,7 +166,9 @@ public class HomePageController {
     }
     //帖子页面点击发表评论
     @PostMapping("/writeComment")
-    public String addCommit(@RequestParam("comment") String comment,@RequestParam("postId") int postId, HttpSession session){
+    public String addCommit(@RequestParam("comment") String comment,
+                            @RequestParam("postId") int postId,
+                            HttpSession session){
         if(session.getAttribute("username")==null){
             return "/login.html";
         }

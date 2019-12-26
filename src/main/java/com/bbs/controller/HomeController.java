@@ -1,8 +1,10 @@
 package com.bbs.controller;
 
 import com.bbs.entity.Information;
+import com.bbs.entity.Post;
 import com.bbs.service.InformationService;
 import com.bbs.entity.User;
+import com.bbs.service.PostService;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
@@ -34,6 +36,9 @@ public class HomeController {
 
     @Autowired
     private InformationService informationService;
+
+    @Autowired
+    PostService postService;
 
     @GetMapping("/user/home")
     public String home(HttpSession session, Map<String,Object> map){
@@ -180,6 +185,35 @@ public class HomeController {
         String tel=(String)session.getAttribute("tel");       //用户ID（手机号）
         int i= informationService.deleteByUserID(tel);
         return "myMsg";
+    }
+
+    @RequestMapping("/user/myMsg/detail")
+    /*
+     * @Description 用户消息帖子详情
+     * @Author Huang
+     * @Date 2019/12/26 10：23
+     *  */
+    public String myMsgDetail(@RequestParam("postId") int postId,
+                              Model model,
+                              Map<String,Object> map){
+        map.put("postId",postId);
+        System.out.println(postId);
+        //查询该postID对应的帖子
+        Post post=postService.findByPostID(postId);
+        model.addAttribute("post",post);
+        //查询该postID相应的评论
+        List<Post> comments=postService.findPostByMainID(postId);
+        model.addAttribute("comments",comments);
+        //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
+        List<Post> hotMostPost=postService.findAllByPage(6,1,9);
+        model.addAttribute("hotPost",hotMostPost);
+        //右边页面显示的内容，查询点赞数最高的前6条帖子，在本周热点栏展示
+        List<Post> popularMostPost=postService.findAllByPage(5,1,6);
+        model.addAttribute("popularPost",popularMostPost);
+        //点击首页帖子标题跳转到该帖子详细界面
+        post.setPageView(post.getPageView() + 1);
+        postService.updatePost(post);
+        return "tiezi";
     }
 }
 

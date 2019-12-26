@@ -16,6 +16,8 @@ public class Information {
     private String originTitle;//原贴标题
     private boolean haveRead;//是否已读
     private int informationID;//消息id
+//    private String posterID;    //
+//    private String postID;      //
 
     public Information(){};
 

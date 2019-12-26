@@ -102,7 +102,7 @@ public class PostPublish {
             post.setPostTime(postTime);
             post.setPersonalTop(personalTop);
             post.setPostBoutique(postBoutique);
-//            post.setPostIntegral(postIntegral);
+            post.setPostIntegral(postIntegral);
             post.setModuleType(moduleType);
 //            post.setImageAddress(imageAddress);
             post.setLastPost(lastPost);

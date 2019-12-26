@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body>
+<body style="margin: 0">
 <header th:replace="index::homePageTop"></header>
 <div class="indexMain">
     <div class="indexMain_left">
@@ -55,8 +55,6 @@
             </div>
             <form class="writePending_con" th:action="@{/writeComment}" method="post">
                 <input type="text" placeholder="写下你的评论..." name="comment"/>
-
-
                 <input type="hidden" th:value="${postId}" name="postId">
                 <input type="submit" value="评论"/>
             </form>

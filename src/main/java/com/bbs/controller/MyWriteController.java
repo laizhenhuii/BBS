@@ -42,8 +42,10 @@ public class MyWriteController {
     }
     //阅读贴子
     @GetMapping("/readPost/{postID}")
-    public String toPostPage(@PathVariable("postID") int id, Model model, Map<String, Object> map){
-        map.put("postID",id);
+    public String toPostPage(@PathVariable("postID") int id,
+                             Model model,
+                             Map<String, Object> map){
+        map.put("postId",id);
         //查询该postID对应的帖子
         Post post=postService.findByPostID(id);
         model.addAttribute("post",post);
