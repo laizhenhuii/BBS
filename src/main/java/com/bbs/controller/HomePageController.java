@@ -1,7 +1,9 @@
 package com.bbs.controller;
 
+import com.bbs.entity.Information;
 import com.bbs.entity.Post;
 import com.bbs.entity.User;
+import com.bbs.mapper.InformationMapper;
 import com.bbs.service.PostService;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class HomePageController {
     public PostService postService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public InformationMapper informationMapper;
     //首页URL通用：localhost：8080，根据所传参数来判断跳转到哪个页面
     @GetMapping({"/","/index.html"})
     public String indexPost(Model model,
@@ -58,7 +62,7 @@ public class HomePageController {
             //左边页面显示的内容，"首页"
             if (indexType == 1) {
                 //左边页面显示的内容，查询所有帖子，并按时间排序--》“最新”
-                newPosts = postService.findAllByPage(1,pageNumber,6);
+                newPosts = postService.findAllByPage(1,pageNumber,12);
             } else {
                 //左边页面显示的内容，查询所有置顶帖子，并按时间排序--》“置顶”
                 newPosts = postService.findAllByPage(2,1,9);
@@ -66,11 +70,11 @@ public class HomePageController {
         }else if(postType==2){
             //左边页面显示的内容，"精品帖区"
             //左边页面显示的内容，查询所有加精帖子，并按时间排序--》“最新”
-            newPosts = postService.findAllByPage(3,pageNumber,6);
+            newPosts = postService.findAllByPage(3,pageNumber,12);
         } else if(postType==3){
             //左边页面显示的内容，"需求帖区"
             //左边页面显示的内容，查询所有需求帖子，并按时间排序--》“最新”
-            newPosts = postService.findAllByPage(4,pageNumber,6);
+            newPosts = postService.findAllByPage(4,pageNumber,12);
         }else if(postType==4){
             //左边页面显示的内容，"人气排行"
             //左边页面显示的内容，查询所有帖子，并按点赞数排序--》“最新”
@@ -85,15 +89,15 @@ public class HomePageController {
         }else if(postType==6){
             //左边页面显示的内容，"天健园"
             //左边页面显示的内容，查询所有天健园帖子，并按时间排序--》“最新”
-            newPosts = postService.findAllByPage(7,pageNumber,6);
+            newPosts = postService.findAllByPage(7,pageNumber,12);
         }else if(postType==7){
             //左边页面显示的内容，"休闲区"
             //左边页面显示的内容，查询所有休闲区帖子，并按时间排序--》“最新”
-            newPosts = postService.findAllByPage(8,pageNumber,6);
+            newPosts = postService.findAllByPage(8,pageNumber,12);
         }else if(postType==8){
             //左边页面显示的内容，"医学院"
             //左边页面显示的内容，查询所有医学院帖子，并按时间排序--》“最新”
-            newPosts = postService.findAllByPage(9,pageNumber,6);
+            newPosts = postService.findAllByPage(9,pageNumber,12);
         }
 
         //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
@@ -146,7 +150,9 @@ public class HomePageController {
 
     //帖子页面点击发表评论
     @PostMapping("/writeComment")
-    public String addCommit(@RequestParam("comment") String comment,@RequestParam("postId") int postId, HttpSession session){
+    public String addCommit(@RequestParam("comment") String comment,
+                            @RequestParam("postId") int postId,
+                            HttpSession session){
         if(session.getAttribute("username")==null){
             return "/login.html";
         }
@@ -157,8 +163,19 @@ public class HomePageController {
         newComment.setMainPost(postId);
         newComment.setPostTime(new Timestamp((new Date()).getTime()));
         newComment.setPostContent(comment);
-        //将新建的评论对象存入帖子表
-        postService.addPost(newComment);
+        postService.addPost(newComment);//将新建的评论对象存入帖子表
+
+        //根据主帖号查询帖子信息
+        Post post=postService.findByPostID(postId);
+
+        //新建一个消息对象
+        Information information=new Information();
+        information.setReceiverTel(post.getPosterID());       //接收方手机号
+        information.setPostTime(new Timestamp(new Date().getTime()));   //发送时间
+        information.setOriginTitle(post.getPostTitle());        //原帖标题
+        information.setPosterID(session.getAttribute("tel").toString());      //消息发送人id
+        information.setPostID(String.valueOf(postId));          //回应的帖子的id
+        informationMapper.addInformation(information);      //将新消息存入信息表
         return "redirect:/toPost?postId="+postId;
     }
 
@@ -215,6 +232,36 @@ public class HomePageController {
         System.out.println(jf);
         System.out.println(666666);
         return "redirect:/toPost?postId="+id;
+    }
+
+
+
+    //删除评论贴子
+    @GetMapping("/deleteComment")
+    public String deletePost(@RequestParam("id") int id,
+                             @RequestParam("postId") int postId,
+                             Model model,
+                             Map<String,Object> map){
+        postService.deleteByPostID(id);
+        map.put("postId",postId);
+        System.out.println(postId);
+        //查询该postID对应的帖子
+        Post post=postService.findByPostID(postId);
+        model.addAttribute("post",post);
+        //查询该postID相应的评论
+        List<Post> comments=postService.findPostByMainID(postId);
+        model.addAttribute("comments",comments);
+        //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
+        List<Post> hotMostPost=postService.findAllByPage(6,1,9);
+        model.addAttribute("hotPost",hotMostPost);
+        //右边页面显示的内容，查询点赞数最高的前6条帖子，在本周热点栏展示
+        List<Post> popularMostPost=postService.findAllByPage(5,1,6);
+        model.addAttribute("popularPost",popularMostPost);
+        //点击首页帖子标题跳转到该帖子详细界面
+        post.setPageView(post.getPageView() + 1);
+        postService.updatePost(post);
+        return "tiezi";
+
     }
 
 }

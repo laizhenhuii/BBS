@@ -24,7 +24,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
-//        registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images");
+        registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images");
         String path = "C:\\Users\\75812\\OneDrive\\作业\\大三上\\web程序设计\\期末大作业 (1)\\bbs\\BBS\\src\\main\\resources\\static\\images\\";
         registry.addResourceHandler("/images/**").addResourceLocations("file:" + path);
     }

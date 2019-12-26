@@ -2,64 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/5031abed-4ad9-4500-a479-64415ad283fehead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/6b616fd8-9ddc-41ef-81c5-d8623fbce831head.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/24e9f550-0ae9-4c38-984c-d5c33bbb8143timg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/4cbc9b64-9627-4df6-af2c-22a71bf2f3c213136c8506f89055fd05ec441855f8af9431c966.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/99c8f1c1-66aa-4fa6-8b75-45ed71e6bf36head.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/c1865bcf-5273-4ff5-a42f-56dd127335f42b1b917e59554d202407087f6dafa332fbff1201.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/ff796056-c4d0-43bc-a608-38a026d91f42timg.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$" beforeDir="false" afterPath="$PROJECT_DIR$" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/myMsg.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myMsg.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/SpringbootBbsApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/controller/MyWriteControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tiezi.html" afterDir="false" />
     </list>
-    <list id="f7892f10-b97b-469d-b8ec-4797b2fba35d" name="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/04589f8e-1b17-4f2f-8fa9-f195a307c37ahead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/1904af3d-d3f1-4f86-97b5-854ff83df588head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/2046ee01-ffc0-429c-ac15-5840bf0d66e9head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/273aefed-6556-49ba-899f-bb8eebaa886bhead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/4405ffc4-4796-442e-8e1b-ded847387e70head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/5fd66f8f-449b-4400-9b23-1fc5aed61c36head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/61ab3c05-52dc-4753-b542-3c689ef703c9head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/7480a1fb-97f6-4c7f-a7d4-0a461cf9b6e9head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/8c55c77d-67cc-4ba6-a502-9b0379a61f87head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/90ce2b70-61af-45a6-9482-33ebebe32fa1head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/a88c430e-73e7-4aec-853b-bb8b25cd7756head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/b6b3fcce-31e2-417e-be81-b4a59c378028head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/bdf7f3cf-61a4-41c5-a452-80de552872ffhead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/c87e6b36-c49e-4bdf-8a7f-0f93f4a52ab1head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/db012acb-47e7-4f59-af29-421e86fea560head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/e4513edd-1c62-47b5-b049-73fd9e5a5828head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/ea3eae69-07d5-4216-bad1-86b2a3144af4head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/efaf4518-2287-4986-a536-dc2c9f68f970head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/f232f18a-4072-4e7f-9b70-43c675f04070head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/f25805b6-8b9b-490a-aa62-7166cac0f80fhead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/f805cda3-9166-4e54-8baf-090422839984head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head0ba2e2d9-101f-4390-badb-5f7a621badf6head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head63246181-9d9e-40a1-9069-c1b4b49c5fd5head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head6aa37251-f095-431f-b168-729c0a542c91head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head6f97d7a4-eb07-4f7f-b172-53fbad1c8a9dhead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head75a96256-26ba-4c01-b063-2af443a618echead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head77b89de0-6473-4707-8154-77c9dcbf02b6head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/head9839ef4e-64fb-4938-a15e-128d7aa15fb747C6B7B06C9AD27633E6AF4F54D4717B.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headac0a19ab-9127-4caf-870d-dbb233d0a34fhead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headae3f413f-bfaf-43e9-a10b-faf1af3f2425head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headb429c3ba-aa0b-4200-9f2f-4eafc6ca6634timg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headc48552bd-d752-4ef0-a13a-b298899e3863head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headd2bc1aa2-8146-4c15-863e-09bcc2bb9d86timg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headd672c631-c4db-4322-9e00-862c5b023781140-16022z95925.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headdb22075d-6fcd-453d-9567-a215d4ecc7f7head.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/heade07e6bea-f61a-4b79-b029-a9f72328fd8chead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headfbda67e2-9114-4480-b96b-6c7bd38decfahead.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/headhead2ae80b7d-9144-4562-a954-055193b89aa1head.jpg" afterDir="false" />
-    </list>
+    <list id="f7892f10-b97b-469d-b8ec-4797b2fba35d" name="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -232,7 +192,7 @@
       <workItem from="1577329861926" duration="1454000" />
       <workItem from="1577338984424" duration="27000" />
       <workItem from="1577344197035" duration="2601000" />
-      <workItem from="1577366251252" duration="954000" />
+      <workItem from="1577366251252" duration="3553000" />
     </task>
     <task id="LOCAL-00001" summary="修复了一个非常stupid但是会导致搜索功能无法使用的bug">
       <created>1577080301879</created>
@@ -395,50 +355,50 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="189" y="220" key="FileChooserDialogImpl/0.0.1714.1103@0.0.1714.1103" timestamp="1577339008371" />
-    <state width="1671" height="303" key="GridCell.Tab.0.bottom" timestamp="1577366663964">
+    <state width="1671" height="303" key="GridCell.Tab.0.bottom" timestamp="1577369824656">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
-    <state width="1671" height="303" key="GridCell.Tab.0.center" timestamp="1577366663963">
+    <state width="1671" height="303" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824656" />
+    <state width="1671" height="303" key="GridCell.Tab.0.center" timestamp="1577369824654">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663963" />
-    <state width="1671" height="303" key="GridCell.Tab.0.left" timestamp="1577366663962">
+    <state width="1671" height="303" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824654" />
+    <state width="1671" height="303" key="GridCell.Tab.0.left" timestamp="1577369824650">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663962" />
-    <state width="1671" height="303" key="GridCell.Tab.0.right" timestamp="1577366663963">
+    <state width="1671" height="303" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824650" />
+    <state width="1671" height="303" key="GridCell.Tab.0.right" timestamp="1577369824656">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663963" />
-    <state width="1671" height="303" key="GridCell.Tab.1.bottom" timestamp="1577366663964">
+    <state width="1671" height="303" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824656" />
+    <state width="1671" height="303" key="GridCell.Tab.1.bottom" timestamp="1577369824659">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
-    <state width="1671" height="303" key="GridCell.Tab.1.center" timestamp="1577366663964">
+    <state width="1671" height="303" key="GridCell.Tab.1.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824659" />
+    <state width="1671" height="303" key="GridCell.Tab.1.center" timestamp="1577369824657">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
-    <state width="1671" height="303" key="GridCell.Tab.1.left" timestamp="1577366663964">
+    <state width="1671" height="303" key="GridCell.Tab.1.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824657" />
+    <state width="1671" height="303" key="GridCell.Tab.1.left" timestamp="1577369824656">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
-    <state width="1671" height="303" key="GridCell.Tab.1.right" timestamp="1577366663964">
+    <state width="1671" height="303" key="GridCell.Tab.1.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824656" />
+    <state width="1671" height="303" key="GridCell.Tab.1.right" timestamp="1577369824658">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
+    <state width="1671" height="303" key="GridCell.Tab.1.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577369824658" />
     <state x="388" y="210" key="Maven.ArtifactSearchDialog" timestamp="1577276885822">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="388" y="210" key="Maven.ArtifactSearchDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577276885822" />
-    <state x="165" y="99" key="MergeDialog" timestamp="1577278492752">
+    <state x="165" y="99" key="MergeDialog" timestamp="1577367705894">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="165" y="99" key="MergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577278492752" />
-    <state x="567" y="269" key="MultipleFileMergeDialog" timestamp="1577286339859">
+    <state x="165" y="99" key="MergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577367705894" />
+    <state x="567" y="269" key="MultipleFileMergeDialog" timestamp="1577367705907">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="567" y="269" key="MultipleFileMergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577286339859" />
+    <state x="567" y="269" key="MultipleFileMergeDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577367705907" />
     <state x="45" y="101" key="SettingsEditor" timestamp="1577276675256">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
@@ -455,18 +415,18 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="552" y="380" key="com.intellij.ide.util.TipDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577366251029" />
-    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577366838658">
+    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577367909350">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577366838658" />
+    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577367909349" />
     <state x="227" y="168" key="new project wizard" timestamp="1577275888132">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="227" y="168" key="new project wizard/0.0.1714.1103@0.0.1714.1103" timestamp="1577275888132" />
-    <state x="853" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1577269338226">
+    <state x="853" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1577369630977">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="853" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1577269338226" />
+    <state x="853" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1714.1103@0.0.1714.1103" timestamp="1577369630977" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BBS$test.ic" NAME="test Coverage Results" MODIFIED="1577277047394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

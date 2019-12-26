@@ -76,7 +76,7 @@ public class MyWriteController {
     public String saveChange(@RequestParam(value = "title",required = false) String title,
                              @RequestParam(value = "text",required = false) String text,
                              @RequestParam(value = "type",required = false) String type,
-                             //   @RequestParam(value = "file",required = false) MultipartFile file,
+                                @RequestParam(value = "reward",required = false) int reward,
                              @RequestParam(value = "id",required = false) Integer id,
                              HttpSession session, Map<String,Object> map)throws Exception{
         Integer postID=id;
@@ -92,8 +92,8 @@ public class MyWriteController {
         boolean homeTop=false; //是否首页置顶，为true时置顶
         String moduleType=type;//版块类型，如天健轶事
 
-        //   String imageAddress=null; //帖子图片地址
-
+//        String imageAddress=null; //帖子图片地址
+        post.setPostIntegral(reward);
         //将获取到的帖子信息放到实体类中
         post.setPostTitle(postTitle);
         post.setPostContent(postContent);

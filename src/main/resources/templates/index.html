@@ -202,30 +202,30 @@
             </div>
             <div class="indexPublic"  th:fragment="homePageRight2">
                 <div class="indexPublic_head">
-                    本周热议（浏览量前9条）
+                    本周热议
                 </div>
                 <div class="indexPublic_con">
                     <ul class="weekHot">
                         <li th:each="hot:${hotPost}" >
                             <a href="" th:href="@{/toPost(postId=${hot.getPostID()})}" th:text="${hot.getPostTitle()}">
                             </a>
-                            <span th:text="${hot.getPageView()}">（浏览量）</span>
+<!--                            <span th:text="${hot.getPageView()}">（浏览量）</span>-->
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="indexPublic" th:fragment="homePageRight3">
-                <div class="indexPublic_head">
-                    本周热点（点赞量前6条）
-                </div>
-                <div class="indexPublic_con">
-                    <ul class="indexLink">
-                        <li th:each="popular:${popularPost}" >
-                            <a href="" th:href="@{/toPost(postId=${popular.getPostID()})}" th:text="${popular.getPostTitle()}"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+<!--            <div class="indexPublic" th:fragment="homePageRight3">-->
+<!--                <div class="indexPublic_head">-->
+<!--                    本周热点（点赞量前6条）-->
+<!--                </div>-->
+<!--                <div class="indexPublic_con">-->
+<!--                    <ul class="indexLink">-->
+<!--                        <li th:each="popular:${popularPost}" >-->
+<!--                            <a href="" th:href="@{/toPost(postId=${popular.getPostID()})}" th:text="${popular.getPostTitle()}"></a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
     <div class="clear"></div>
