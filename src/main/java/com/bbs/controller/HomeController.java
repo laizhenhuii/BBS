@@ -187,7 +187,7 @@ public class HomeController {
         return "myMsg";
     }
 
-    @RequestMapping("/user/myMsg/detail")
+    @GetMapping("/user/myMsg/detail")
     /*
      * @Description 用户消息帖子详情
      * @Author Huang
