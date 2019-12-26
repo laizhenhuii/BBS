@@ -190,3 +190,18 @@
         $('[name="nice-select"] ul').hide();
     });
 </script>
+<script>
+    window.onscroll=function(){
+        var scrolls=document.body.scrollTop||document.documentElement.scrollTop;
+        var slided=60;
+        if(scrolls>=slided){
+            $(".appear").hide();
+            $(".navFix").show();
+            $(".ltHead").addClass("navTop");
+        }else{
+            $(".appear").show();
+            $(".navFix").hide();
+            $(".ltHead").removeClass("navTop");
+        }
+    };
+</script>
