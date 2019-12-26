@@ -1,5 +1,6 @@
 package com.bbs.controller;
 
+import com.bbs.entity.Information;
 import com.bbs.entity.Post;
 import com.bbs.entity.User;
 import com.bbs.service.PostService;
@@ -156,6 +157,7 @@ public class HomePageController {
         postService.updatePost(post);
         return "tiezi";
     }
+
     //点击搜素按钮,根据输入关键字进行模糊查询；
     @GetMapping("/search")
     public String toSearch(@RequestParam("keyword") String keyword, Model model, Map<String,Object> map, HttpServletRequest request){
@@ -180,6 +182,8 @@ public class HomePageController {
         newComment.setPostTime(new Timestamp((new Date()).getTime()));
         newComment.setPostContent(comment);
         postService.addPost(newComment);//将新建的评论对象存入帖子表
+
+//        Information information
         return "redirect:/toPost?postId="+postId;
     }
     //点击签到按钮
@@ -187,6 +191,7 @@ public class HomePageController {
     public String addIntegral(HttpSession session){
         return "redirect:/";
     }
+
 
     //    积分
     @RequestMapping(value = "/tiezi/cn",method = RequestMethod.GET)
@@ -204,6 +209,34 @@ public class HomePageController {
         System.out.println(jf);
         System.out.println(666666);
         return "redirect:/toPost?postId="+id;
+    }
+
+    //删除评论贴子
+    @GetMapping("/deleteComment")
+    public String deletePost(@RequestParam("id") int id,
+                             @RequestParam("postId") int postId,
+                             Model model,
+                             Map<String,Object> map){
+        postService.deleteByPostID(id);
+        map.put("postId",postId);
+        System.out.println(postId);
+        //查询该postID对应的帖子
+        Post post=postService.findByPostID(postId);
+        model.addAttribute("post",post);
+        //查询该postID相应的评论
+        List<Post> comments=postService.findPostByMainID(postId);
+        model.addAttribute("comments",comments);
+        //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
+        List<Post> hotMostPost=postService.findAllByPage(6,1,9);
+        model.addAttribute("hotPost",hotMostPost);
+        //右边页面显示的内容，查询点赞数最高的前6条帖子，在本周热点栏展示
+        List<Post> popularMostPost=postService.findAllByPage(5,1,6);
+        model.addAttribute("popularPost",popularMostPost);
+        //点击首页帖子标题跳转到该帖子详细界面
+        post.setPageView(post.getPageView() + 1);
+        postService.updatePost(post);
+        return "tiezi";
+
     }
 
 }

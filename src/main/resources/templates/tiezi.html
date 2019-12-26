@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body style="margin: 0">
+<body style="margin:0px;">
 <header th:replace="index::homePageTop"></header>
 <div class="indexMain">
     <div class="indexMain_left">
@@ -72,6 +72,7 @@
                     <div class="pendDetail_head">
                         <p th:text="${comment.getPosterName()}">评论者id<span th:text="${comment.getPostTime()}">评论时间</span></p>
                         <i th:text="${commentStart.count}+'楼'"></i>
+
                     </div>
                     <div class="pendDetail_con">
                         <p style="text-align: left" th:utext="${comment.getPostContent()}">评论内容</p>
@@ -86,6 +87,10 @@
                             <button class="btn-sm btn-danger" th:text="采纳"
                                     th:if="${session.tel == post.getPosterID()}" > </button>
                         </a>
+                        <a th:href="@{/deleteComment(postId=${post.getPostID()},id=${comment.getPostID()})}" th:if="${(post.getPosterID()==session.tel) || (comment.getPosterID()== session.tel)}">
+                            <button class="btn-sm" th:text="删除"></button>
+                        </a>
+
                         <p style="color: red"  th:if="${#lists.isEmpty(post.getPostIntegral())}">已采纳</p>
                     </div>
                 </div>
