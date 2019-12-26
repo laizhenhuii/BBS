@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题">
+    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/5031abed-4ad9-4500-a479-64415ad283fehead.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/6b616fd8-9ddc-41ef-81c5-d8623fbce831head.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$" beforeDir="false" afterPath="$PROJECT_DIR$" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myMsg.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myMsg.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/SpringbootBbsApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/controller/MyWriteControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/bbs/test.class" beforeDir="false" />
     </list>
     <list id="f7892f10-b97b-469d-b8ec-4797b2fba35d" name="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题">
       <change afterPath="$PROJECT_DIR$/src/main/resources/static/images/04589f8e-1b17-4f2f-8fa9-f195a307c37ahead.jpg" afterDir="false" />
@@ -60,6 +74,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -84,7 +99,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$/libs" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -214,7 +229,10 @@
       <workItem from="1577284394332" duration="592000" />
       <workItem from="1577285014085" duration="686000" />
       <workItem from="1577285726207" duration="1485000" />
-      <workItem from="1577329861926" duration="1151000" />
+      <workItem from="1577329861926" duration="1454000" />
+      <workItem from="1577338984424" duration="27000" />
+      <workItem from="1577344197035" duration="2601000" />
+      <workItem from="1577366251252" duration="954000" />
     </task>
     <task id="LOCAL-00001" summary="修复了一个非常stupid但是会导致搜索功能无法使用的bug">
       <created>1577080301879</created>
@@ -307,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577330150583</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="补充消息数据库接口的内容">
+      <created>1577331271837</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1577331271837</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +363,8 @@
     <MESSAGE value="实现了数据库的连接加密，增强了系统的安全性" />
     <MESSAGE value="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" />
     <MESSAGE value="将远程仓库和本地仓库同步" />
-    <option name="LAST_COMMIT_MESSAGE" value="将远程仓库和本地仓库同步" />
+    <MESSAGE value="补充消息数据库接口的内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="补充消息数据库接口的内容" />
   </component>
   <component name="WindowStateProjectService">
     <state x="21" y="231" key="#HTTP_Proxy" timestamp="1577276252302">
@@ -357,50 +383,50 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="644" y="419" width="426" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1714.1103@0.0.1714.1103" timestamp="1577277459685" />
-    <state x="371" y="148" key="CommitChangelistDialog2" timestamp="1577330256156">
+    <state x="371" y="148" key="CommitChangelistDialog2" timestamp="1577331269151">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="371" y="148" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1577330256156" />
+    <state x="371" y="148" key="CommitChangelistDialog2/0.0.1714.1103@0.0.1714.1103" timestamp="1577331269151" />
     <state x="165" y="99" key="DiffContextDialog" timestamp="1577330251817">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="165" y="99" key="DiffContextDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577330251817" />
-    <state x="189" y="220" key="FileChooserDialogImpl" timestamp="1577276402693">
+    <state x="189" y="220" key="FileChooserDialogImpl" timestamp="1577339008371">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="189" y="220" key="FileChooserDialogImpl/0.0.1714.1103@0.0.1714.1103" timestamp="1577276402693" />
-    <state width="1671" height="303" key="GridCell.Tab.0.bottom" timestamp="1577285701225">
+    <state x="189" y="220" key="FileChooserDialogImpl/0.0.1714.1103@0.0.1714.1103" timestamp="1577339008371" />
+    <state width="1671" height="303" key="GridCell.Tab.0.bottom" timestamp="1577366663964">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.0.center" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.0.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
+    <state width="1671" height="303" key="GridCell.Tab.0.center" timestamp="1577366663963">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.0.left" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.0.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663963" />
+    <state width="1671" height="303" key="GridCell.Tab.0.left" timestamp="1577366663962">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.0.right" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.0.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663962" />
+    <state width="1671" height="303" key="GridCell.Tab.0.right" timestamp="1577366663963">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.1.bottom" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.0.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663963" />
+    <state width="1671" height="303" key="GridCell.Tab.1.bottom" timestamp="1577366663964">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.1.center" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.1.bottom/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
+    <state width="1671" height="303" key="GridCell.Tab.1.center" timestamp="1577366663964">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.1.left" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.1.center/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
+    <state width="1671" height="303" key="GridCell.Tab.1.left" timestamp="1577366663964">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
-    <state width="1671" height="303" key="GridCell.Tab.1.right" timestamp="1577285701225">
+    <state width="1671" height="303" key="GridCell.Tab.1.left/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
+    <state width="1671" height="303" key="GridCell.Tab.1.right" timestamp="1577366663964">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state width="1671" height="303" key="GridCell.Tab.1.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577285701225" />
+    <state width="1671" height="303" key="GridCell.Tab.1.right/0.0.1714.1103@0.0.1714.1103" timestamp="1577366663964" />
     <state x="388" y="210" key="Maven.ArtifactSearchDialog" timestamp="1577276885822">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
@@ -421,18 +447,18 @@
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
     <state x="275" y="473" key="VCS.ChangelistChooser/0.0.1714.1103@0.0.1714.1103" timestamp="1577286011157" />
-    <state x="450" y="288" key="Vcs.Push.Dialog.v2" timestamp="1577330152491">
+    <state x="450" y="288" key="Vcs.Push.Dialog.v2" timestamp="1577331276640">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="450" y="288" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577330152491" />
-    <state x="552" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1577329863615">
+    <state x="450" y="288" key="Vcs.Push.Dialog.v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577331276640" />
+    <state x="552" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1577366251029">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="552" y="380" key="com.intellij.ide.util.TipDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577329863615" />
-    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577330308973">
+    <state x="552" y="380" key="com.intellij.ide.util.TipDialog/0.0.1714.1103@0.0.1714.1103" timestamp="1577366251029" />
+    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577366838658">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
-    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577330308973" />
+    <state x="654" y="470" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1714.1103@0.0.1714.1103" timestamp="1577366838658" />
     <state x="227" y="168" key="new project wizard" timestamp="1577275888132">
       <screen x="0" y="0" width="1714" height="1103" />
     </state>
