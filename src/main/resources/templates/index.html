@@ -204,7 +204,7 @@
                         <li th:each="hot:${hotPost}" >
                             <a href="" th:href="@{/toPost(postId=${hot.getPostID()})}" th:text="${hot.getPostTitle()}">
                             </a>
-                            <span th:text="${hot.getPostID()}"></span>
+<!--                            <span th:text="${hot.getPostID()}"></span>-->
                         </li>
                     </ul>
                 </div>

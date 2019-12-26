@@ -23,12 +23,11 @@
                     </div>
 
                     <div class="myMsgCon_detail">
-                       <a th:href="@{/user/myMsg/detail(postId=${infor.})}">
-
-                           <span th:text="${inforStart.count}+'、该帖子👉 “  '"></span>
-                           <span th:text="${infor.getOriginTitle()}" style="color: orangered;font-weight: bold;"></span>
-                           <span th:text="'  ”有新评论，请速来围观！！！'"></span>
-                       </a>
+<!--                       <a th:href="@{/user/myMsg/detail(postId=${infor.})}">-->
+<!--                       </a>-->
+                        <span th:text="${inforStart.count}+'、该帖子👉 “  '"></span>
+                        <span th:text="${infor.getOriginTitle()}" style="color: orangered;font-weight: bold;"></span>
+                        <span th:text="'  ”有新评论，请速来围观！！！'"></span>
                     </div>
                     <div>
                          <p class="myMsgCon_time" th:text="${infor.getPostTime()}"></p>

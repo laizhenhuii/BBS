@@ -3,6 +3,7 @@ package com.bbs.controller;
 import com.bbs.entity.Information;
 import com.bbs.entity.Post;
 import com.bbs.entity.User;
+import com.bbs.mapper.InformationMapper;
 import com.bbs.service.PostService;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class HomePageController {
     public PostService postService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public InformationMapper informationMapper;
     //首页URL通用：localhost：8080，根据所传参数来判断跳转到哪个页面
     @GetMapping({"/","/index.html"})
     public String indexPost(Model model,
@@ -183,7 +186,19 @@ public class HomePageController {
         newComment.setPostContent(comment);
         postService.addPost(newComment);//将新建的评论对象存入帖子表
 
-//        Information information
+        //根据主帖号查询帖子信息
+        Post post=postService.findByPostID(postId);
+
+        //新建一个消息对象
+        Information information=new Information();
+        information.setReceiverTel(post.getPosterID());       //接收方手机号
+        information.setPostTime(new Timestamp(new Date().getTime()));   //发送时间
+        information.setOriginTitle(post.getPostTitle());        //原帖标题
+        information.setPosterID(session.getAttribute("tel").toString());      //消息发送人id
+        information.setPostID(String.valueOf(postId));          //回应的帖子的id
+
+        informationMapper.addInformation(information);      //将新消息存入信息表
+
         return "redirect:/toPost?postId="+postId;
     }
     //点击签到按钮

@@ -18,17 +18,22 @@
             <p>我的消息</p>
         </div>
         <a href="/user/myMsg/delete" class="layui-btn layui-btn-danger">一键清空</a>
-            <div class="myMsgCon" th:each="infor:${information}">
+            <div class="myMsgCon" th:each="infor,inforStart:${information}">
                 <div class="myMsgCon_pic">
-                </div>
-                <div class="myMsgCon_detail">
-                    <p th:text="${'消息正文👉'+infor.getReason()}"></p>
-                    <p th:text="${'原帖标题❤“'+infor.getOriginTitle()+'”'}"></p>
+                    </div>
 
-                </div>
-                <p class="myMsgCon_time" th:text="${infor.getPostTime()}"></p>
+                    <div class="myMsgCon_detail">
+<!--                       <a th:href="@{/user/myMsg/detail(postId=${infor.})}">-->
+<!--                       </a>-->
+                        <span th:text="${inforStart.count}+'、该帖子👉 “  '"></span>
+                        <span th:text="${infor.getOriginTitle()}" style="color: orangered;font-weight: bold;"></span>
+                        <span th:text="'  ”有新评论，请速来围观！！！'"></span>
+                    </div>
+                    <div>
+                         <p class="myMsgCon_time" th:text="${infor.getPostTime()}"></p>
+                    </div>
 
-            </div>
+
         </div>
 
     </div>
