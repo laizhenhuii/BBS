@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>commons</title>
+    <link rel="stylesheet" href="/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/asserts/css/homePublic.css"/>
+    <link rel="stylesheet" href="/asserts/css/homeHead.css"/>
+    <link rel="stylesheet" href="/asserts/css/home.css"/>
+</head>
+<body>
+
+<!--topbar 公共顶部栏-->
+<header class="zyHead" id="topbar">
+    <div class="zyHead_cen">
+<!--        <a href=""><img src="/asserts/img/per-con.png" alt="" class="headPic1"/></a>-->
+        <a th:href="@{/user/index}" class="backIndex">返回首页</a>
+        <div class="lt_login">
+            <ul>
+                <li><a th:href="@{/user/home}" th:text="${session.username}"></a></li>
+                <li><a th:href="@{/user/exit}">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!--sidebar  公共侧边栏-->
+<div class="homeCen_left" id="sidebar">
+    <ul>
+        <li th:class="${active=='home'?'on':' '}"><a th:href="@{/user/home}">我的主页</a></li>
+        <li th:class="${active=='base'?'on':' '}"><a th:href="@{/user/base}">基本设置</a></li>
+        <li th:class="${active=='tiezi'?'on':' '}"><a th:href="@{/user/tiezi}">我的贴子</a></li>
+        <li th:class="${active=='myMsg'?'on':' '}"><a th:href="@{/user/myMsg}">我的消息</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

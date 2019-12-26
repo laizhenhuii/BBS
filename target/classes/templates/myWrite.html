@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" >
+    <meta charset="UTF-8">
+    <title>我的帖子</title>
+    <link rel="stylesheet" href="../static/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homeHead.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/homePublic.css"/>
+    <link rel="stylesheet" href="../static/asserts/css/myWrite.css"/>
+
+</head>
+<body>
+<div th:replace="common::#topbar"></div>
+<div class="homeCen">
+    <div th:replace="common::#sidebar(active='tiezi')" ></div>
+    <div class="homeCen_right">
+        <div class="baseHead">
+            <ul>
+                <li><a href="" class="on">我的发帖</a></li>
+            </ul>
+        </div>
+        <div class="myWrite_con">
+            <div class="writeHead">
+                <div class="writeHead1">帖子标题</div>
+                <div class="writeHead2">发表时间</div>
+                <div class="writeHead3">浏览量</div>
+                <div class="writeHead4">操作</div>
+            </div>
+            <div class="writeFoot" th:each="i:${posts}">
+                <div class="writeFoot1"><p><a th:href="@{/readPost/}+${i.postID}" th:text="${i.postTitle}"></a></p></div>
+                <div class="writeFoot2"><p><a th:text="${i.postTime}"></a></p></div>
+                <div class="writeFoot3"><p><a th:text="${i.pageView}"></a> </p>2601</div>
+<!--                <div class="writeFoot4"><button class="btn btn-sm btn-danger deleteBtn" onclick="changePost()">修改</button><button class="btn btn-sm btn-danger deleteBtn" onclick="deletePost()">删除</button><span id="postID" th:text="${i.postID}" STYLE="display: none"></span></div>-->
+                <div class="writeFoot4">
+                    <a th:href="@{/changePost/}+${i.postID}">
+                        <button class="btn btn-sm btn-danger deleteBtn">修改</button>
+                    </a>
+                    <a th:href="@{/deletePost/}+${i.postID}">
+                        <button class="btn btn-sm btn-danger deleteBtn">删除</button>
+                    </a>
+
+
+            </div>
+        </div>
+<!--        <div class="indexFooter">-->
+<!--            <div class="indexFooter_con">-->
+<!--                <a href="javascript:"></a>-->
+<!--                <a href="" class="on">1</a>-->
+<!--                <a href="">2</a>-->
+<!--                <a href="">3</a>-->
+<!--                <a href="javascript:">></a>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>
+</div>
+<script th:src="@{/static/asserts/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/static/asserts/js/1.js}"></script>
+<script>
+    function deletePost() {
+        var $id = $('#postID').text();
+        console.log($id);
+        var url = '/deletePost/' + $id;
+
+        $(location).attr('href',url);
+
+    }
+</script>
+
+<script>
+    function changePost() {
+        var $id = $('#postID').text();
+        var url = '/changePost/' + $id;
+        console.log($id);
+        $(location).attr('href',url);
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>帖子</title>
+    <link rel="stylesheet" href="/asserts/css/reset.css"/>
+    <link rel="stylesheet" href="/asserts/css/public.css"/>
+    <link rel="stylesheet" href="/asserts/css/index.css"/>
+    <link rel="stylesheet" href="/asserts/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/asserts/layui/css/layui.css">
+    <link rel="stylesheet" href="/asserts/layui/css/global.css">
+    <style>
+        #pre{
+            word-break:break-all;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="index::homePageTop"></header>
+<div class="indexMain">
+    <div class="indexMain_left">
+        <div class="tzCon">
+            <div class="tzCon_head">
+                <div class="tzCon_head_left">
+                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                </div>
+                <div class="tzCon_head_right">
+                    <h1 th:text="${post.getPostTitle()}">(帖子标题)</h1>
+                    <ul>
+                        <li th:text="${post.getPosterName()}">（发帖人）</li>
+                        <li th:text="${post.getPostTime()}">（发帖时间）</li>
+                        <li th:text="${post.getLikeNumber()}">（点赞量）</li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class=" detail-body" id="pre" th:utext="${post.getPostContent()}">
+<!--            <div class="detail-body">-->
+                帖子内容
+
+
+            </div>
+        </div>
+        <!--            <div class="tzCon_foot">-->
+        <!--                <div class="tzCollect">-->
+        <!--                    <div class="tzCollect_left">收藏</div>-->
+        <!--                    <div class="tzCollect_right">131</div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <div class="writePending">
+            <div class="newPending_head">
+                <div class="tzHeng"></div>
+                <div class="newPending_head_tittle">评论</div>
+            </div>
+            <form class="writePending_con" th:action="@{/writeComment}" method="post">
+                <input type="text" placeholder="写下你的评论..." name="comment"/>
+
+
+                <input type="hidden" th:value="${postId}" name="postId">
+                <input type="submit" value="评论"/>
+            </form>
+        </div>
+        <div class="newPending">
+            <div class="newPending_head">
+                <div class="tzHeng"></div>
+                <div class="newPending_head_tittle" th:text="'全部评论'+${comments.size()}"></div>
+            </div>
+            <div class="newPending_son" th:each="comment,commentStart:${comments}">
+                <div class="pendPic">
+                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                </div>
+                <div class="pendDetail">
+                    <div class="pendDetail_head">
+                        <p th:text="${comment.getPosterName()}">评论者id<span th:text="${comment.getPostTime()}">评论时间</span></p>
+                        <i th:text="${commentStart.count}+'楼'"></i>
+                    </div>
+                    <div class="pendDetail_con">
+                        <p style="text-align: left" th:utext="${comment.getPostContent()}">评论内容</p>
+                    </div>
+                    <div class="pendDetail_btn">
+                        <ul>
+                            <li th:text="${comment.getPageView()}">浏览量</li>
+                        </ul>
+                        <a th:href="@{/tiezi/cn(tel=${comment.getPosterID()},id=${post.getPostID()})}" th:if="${(post.getPostIntegral()>0) && (post.getPosterID()!=comment.getPosterID())}" >
+<!--                           <p th:text="${post.getPosterID()}"></p>-->
+<!--                            <p th:text="${comment.getPosterID()}"></p>-->
+                            <button class="btn-sm btn-danger" th:text="采纳"
+                                    th:if="${session.tel == post.getPosterID()}" > </button>
+                        </a>
+                        <p style="color: red"  th:if="${#lists.isEmpty(post.getPostIntegral())}">已采纳</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="indexMain_right">
+        <a th:href="@{/user/writePost}" class="newMsg">发新帖</a>
+        <div class="myMsg" th:replace="index::homePageRight0"></div>
+        <div th:replace="index::homePageRight1"></div>
+        <div th:replace="index::homePageRight2"></div>
+        <div th:replace="index::homePageRight3"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<footer class="publicFooter">
+    <p name="footer0">Copyright &copy; 2019-2020 BBS论坛 南昌大学信息工程学院计算机科学与技术专业JavaWeb程序设计课程期末大作业版权所有 version：1.0.0</p>
+</footer>
+</body>
+</html>
+<script src="/asserts/js/jquery-1.8.3.min.js"></script>
+<script src="/asserts/layui/layui.js" charset="utf-8"></script>
+
+<script>
+    layui.cache.page = 'jie';
+    layui.cache.user = {
+        username: '游客'
+        ,uid: -1
+        ,avatar: '../../res/images/avatar/00.jpg'
+        ,experience: 83
+        ,sex: '男'
+    };
+    layui.config({
+        version: "3.0.0"
+        ,base: '/asserts/layui/mods/'
+    }).extend({
+        fly: 'index'
+    }).use(['fly', 'face'], function(){
+        var $ = layui.$
+            ,fly = layui.fly;
+        //如果你是采用模版自带的编辑器，你需要开启以下语句来解析
+        $('.detail-body').each(function(){
+          var othis = $(this), html = othis.html();
+          othis.html(fly.content(html));
+        });
+    });
+</script>
+
+
+
+
+
+<script>
+    //动态日历js
+    function calendar(){
+        /*1.获取时间*/
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+
+        /*2.获取标签动态改变内容*/
+        document.getElementById('box_top').innerText = y + '年' + m + '月';
+        document.getElementById('box_bottom').innerText = d;
+    };
+</script>
