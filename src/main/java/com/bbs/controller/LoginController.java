@@ -51,6 +51,7 @@ public class LoginController {
             map.put("msg","亲！请不要输入空手机号哦");
             return "login";
         }else if(telephone.equals("12345")&&password.equals("12345")){
+            session.setAttribute("tel",telephone);
             session.setAttribute("username","我是管理员呀！");
             return "redirect:/administrator/userTable";
         }

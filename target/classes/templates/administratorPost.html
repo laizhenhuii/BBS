@@ -17,6 +17,9 @@
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
+                <a th:href="@{/}">前往主页</a>
+            </li>
+            <li class="layui-nav-item">
                 <a  th:text="${session.username}"></a>
             </li>
             <li class="layui-nav-item"><a th:href="@{/administrator/exit}">退出后台</a></li>
@@ -68,7 +71,9 @@
                     <tr>
                         <td th:text="${post.postID}">帖子ID</td>
                         <td th:text="${post.posterName}">发帖人</td>
-                        <td th:text="${post.postTitle}">帖子标题</td>
+                        <td >
+                            <a th:text="${post.postTitle}" th:href="@{/toPost(postId=${post.postID})}"></a>
+                        </td>
                         <td th:text="${!post.homeTop?'否':'是'}">置顶</td>
                         <td th:text="${!post.postBoutique?'否':'是'}">加精</td>
                         <td lass="layui-elem-field site-demo-button" style="margin-top: 30px;" >

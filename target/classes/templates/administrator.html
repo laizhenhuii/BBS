@@ -17,6 +17,9 @@
 
     <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item">
+            <a th:href="@{/}">前往主页</a>
+        </li>
+        <li class="layui-nav-item">
             <a  th:text="${session.username}"></a>
         </li>
         <li class="layui-nav-item"><a th:href="@{/administrator/exit}">退出后台</a></li>

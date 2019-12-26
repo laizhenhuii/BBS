@@ -35,7 +35,8 @@
         <!-- 登入开始，未登入时以下隐藏-->
         <div class="lt_login" th:if="${not #strings.isEmpty(session.username)}">
             <ul>
-                <li><a href="" th:text="${session.username}" th:href="@{/user/home}"></a></li>
+                <li th:if="${session.tel.equals('12345')}"><a th:href="@{/administrator/postTable}">返回管理界面</a> </li>
+                <li th:if="${not session.tel.equals('12345')}"><a href="" th:text="${session.username}" th:href="@{/user/home}"></a></li>
                 <li><a th:href="@{/user/exit}" >退出</a></li>
             </ul>
         </div>
