@@ -16,8 +16,8 @@ public class Information {
     private String originTitle;//原贴标题
     private boolean haveRead;//是否已读
     private int informationID;//消息id
-//    private String posterID;    //
-//    private String postID;      //
+    private String posterID; //消息发送人id
+    private String postID; //回应的帖子的id
 
     public Information(){};
 
@@ -75,5 +75,21 @@ public class Information {
 
     public void setInformationID(int informationID) {
         this.informationID = informationID;
+    }
+
+    public String getPosterID() {
+        return posterID;
+    }
+
+    public void setPosterID(String posterID) {
+        this.posterID = posterID;
+    }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
     }
 }

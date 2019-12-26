@@ -14,8 +14,8 @@ import java.util.List;
 public interface InformationMapper {
 
 
-    @Insert("insert into information_table(originContent, receiverTel, reason, postTime, originTitle, haveRead, informationID)" +
-            "values(#{originContent}, #{receiverTel}, #{reason}, #{postTime}, #{originTitle}, #{haveRead}, #{informationID})")
+    @Insert("insert into information_table(originContent, receiverTel, reason, postTime, originTitle, haveRead, informationID, posterID, postID)" +
+            "values(#{originContent}, #{receiverTel}, #{reason}, #{postTime}, #{originTitle}, #{haveRead}, #{informationID}, #{posterID}, #{postID})")
     int addInformation(Information information);
 
 

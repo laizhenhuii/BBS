@@ -26,6 +26,7 @@ public class Post {
     private Timestamp lastPost; //如果该贴是主贴，记录该贴的最后回帖时间
     private String imageAddress; //帖子图片地址
 
+
     public Post(){}
 
 
