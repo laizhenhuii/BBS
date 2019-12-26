@@ -107,7 +107,7 @@ public class PostPublish {
 //            post.setImageAddress(imageAddress);
             post.setLastPost(lastPost);
 //
-            postService.addPost(post);          //在数据库中插入新的帖子信息
+            int t=postService.addPost(post);          //在数据库中插入新的帖子信息
             return "redirect:/index.html";
         }
     }
