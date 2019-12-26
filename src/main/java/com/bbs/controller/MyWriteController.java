@@ -52,7 +52,15 @@ public class MyWriteController {
         //查询该postID相应的评论
         List<Post> comments=postService.findPostByMainID(id);
         model.addAttribute("comments",comments);
+        //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
+        List<Post> hotMostPost=postService.findAllByPage(6,1,9);
+        model.addAttribute("hotPost",hotMostPost);
+        //右边页面显示的内容，查询点赞数最高的前6条帖子，在本周热点栏展示
+        List<Post> popularMostPost=postService.findAllByPage(5,1,6);
+        model.addAttribute("popularPost",popularMostPost);
         //点击首页帖子标题跳转到该帖子详细界面
+        post.setPageView(post.getPageView() + 1);
+        postService.updatePost(post);
         return "tiezi";
     }
     //获取要修改贴子的id
