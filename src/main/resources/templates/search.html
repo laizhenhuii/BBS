@@ -25,24 +25,30 @@
     </div>
     <div class="indexMain_left_con">
         <!--有主题图循环开始-->
-        <div class="indexCon_msg" th:each="likelyPost0:${likelyPost}">
-            <div class="indexCon_msg_pic" th:text="${likelyPost0.getPostID()}">头像</div>
+        <div class="indexCon_msg" th:each="likelyPosts,likelyPostStat:${lPostUserMap}">
+            <div class="indexCon_msg_pic">
+                <img class="indexCon_msg_pic_img" th:src="${likelyPostStat.current.value.getHead()!=null}?${likelyPostStat.current.value.getHead()}:'/asserts/img/cs.png'">
+            </div>
             <div class="indexCon_msg_detail">
-                <a th:href="@{/toPost(postId=${likelyPost0.getPostID()})}">
+                <a th:href="@{/toPost(postId=${likelyPostStat.current.key.getPostID()})}">
                     <div class="indexCon_msg_detail_tittle">
-                        <span th:text="${likelyPost0.getModuleType()}">类别</span>
-                        <p th:text="${likelyPost0.getPostTitle()}">帖子标题</p>
+                        <span th:text="${likelyPostStat.current.key.getModuleType()}">类别</span>
+                        <p th:text="${likelyPostStat.current.key.getPostTitle()}">帖子标题</p>
                     </div>
                 </a>
-                <div class="havePic" th:if="${likelyPost0.getImageAddress()!=null}">
-                    <a href=""><div class="havePic_head">主题图</div></a>
+                <div class="havePic" th:if="${likelyPostStat.current.key.getImageAddress()!=null}">
+                    <a th:href="${likelyPostStat.current.key.getImageAddress()}">
+                        <div class="havePic_head">
+                            <img th:src="${likelyPostStat.current.key.getImageAddress()}" class="havePic_head img">
+                        </div>
+                    </a>
                 </div>
                 <div class="indexCon_msg_detail_other">
                     <ul>
-                        <li th:text="${likelyPost0.getPosterName()}">（发帖人）</li>
-                        <li th:text="${likelyPost0.getPostTime()}">（发表时间）</li>
-                        <li th:text="${likelyPost0.getPageView()}">（点赞量）</li>
-                        <li>（评论数）</li>
+                        <li th:text="${likelyPostStat.current.key.getPosterName()}">（发帖人）</li>
+                        <li th:text="${likelyPostStat.current.key.getPostTime()}">（发表时间）</li>
+                        <li th:text="${likelyPostStat.current.key.getPageView()}">（浏览量）</li>
+                        <!--                        <li>（评论数）</li>-->
                     </ul>
                 </div>
             </div>

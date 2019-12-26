@@ -16,14 +16,14 @@
         }
     </style>
 </head>
-<body style="margin:0px;">
+<body onload="calendar()" style="margin:0px;">
 <header th:replace="index::homePageTop"></header>
 <div class="indexMain">
     <div class="indexMain_left">
         <div class="tzCon">
             <div class="tzCon_head">
                 <div class="tzCon_head_left">
-                    <img src="/asserts/img/cs.png" class="indexCon_msg_pic_img ">
+                    <img class="indexCon_msg_pic_img " th:src="${theHead!=null}?${theHead}:'/asserts/img/cs.png'">
                 </div>
                 <div class="tzCon_head_right">
                     <h1 th:text="${post.getPostTitle()}">(帖子标题)</h1>

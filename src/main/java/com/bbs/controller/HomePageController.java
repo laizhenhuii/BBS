@@ -127,11 +127,18 @@ public class HomePageController {
 
     //点击首页上某个帖子的标题时，获取该帖子ID，并跳转到该帖子的详细界面
     @GetMapping("/toPost")
-    public String toPostPage(@RequestParam("postId") int postId, Model model,Map<String,Object> map){
+    public String toPostPage(@RequestParam("postId") int postId, Model model,Map<String,Object> map,HttpSession session){
         map.put("postId",postId);
+        //显示大头像
+        if(session.getAttribute("tel")!=null) {
+            User nowUser = userService.selectByTel(session.getAttribute("tel").toString());
+            map.put("userHead", nowUser.getHead());
+        }
         //查询该postID对应的帖子
         Post post=postService.findByPostID(postId);
         model.addAttribute("post",post);
+        User theUser=userService.selectByTel(post.getPosterID());
+        map.put("theHead",theUser.getHead());
         //查询该postID相应的评论
         List<Post> comments=postService.findPostByMainID(postId);
         model.addAttribute("comments",comments);
@@ -187,7 +194,7 @@ public class HomePageController {
         List<Post> lPosts = likelyPosts;
         List<User> lPosters = new ArrayList<>();
         Map<Post, User> lPostUserMap = new LinkedHashMap<>();
-
+        model.addAttribute("likelyPost",likelyPosts);
         if(lPosts!=null) {
             for (Post lPost : lPosts) {
                 User lUser = userService.selectByTel(lPost.getPosterID());
