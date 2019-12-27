@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="">
+    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="Default Changelist">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Information.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tiezi.html" afterDir="false" />
     </list>
     <list id="f7892f10-b97b-469d-b8ec-4797b2fba35d" name="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +31,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -29,9 +40,6 @@
     </option>
   </component>
   <component name="ProjectId" id="1VMlChJvIFL0bfEcJLQfGfFiw3j" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -39,6 +47,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -56,13 +68,6 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\libs" />
-      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\.idea\libraries" />
-      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static\asserts\layui" />
-      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static\asserts\layui\css" />
-      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.bbs" />
       <recent name="com.bbs.controller" />
@@ -70,6 +75,25 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static\asserts\layui\dist\lay\modules" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\libs" />
+      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\.idea\libraries" />
+      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static\asserts\layui" />
+      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static\asserts\layui\css" />
+      <recent name="C:\Users\75812\OneDrive\作业\大三上\web程序设计\期末大作业 (1)\bbs\BBS\src\main\resources\static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SpringbootBbsApplication">
     <configuration name="SpringbootBbsApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -136,18 +160,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -178,6 +190,7 @@
       <workItem from="1577338984424" duration="27000" />
       <workItem from="1577344197035" duration="2601000" />
       <workItem from="1577366251252" duration="6595000" />
+      <workItem from="1577411401384" duration="5109000" />
     </task>
     <task id="LOCAL-00001" summary="修复了一个非常stupid但是会导致搜索功能无法使用的bug">
       <created>1577080301879</created>
@@ -311,6 +324,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="修复了一个非常stupid但是会导致搜索功能无法使用的bug" />
     <MESSAGE value="实现了上传头像，并在上传时裁剪头像的功能" />
@@ -325,7 +340,8 @@
     <MESSAGE value="补充消息数据库接口的内容" />
     <MESSAGE value="整合了曾春和黄嘉翔的代码" />
     <MESSAGE value="曾春修了一些bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="曾春修了一些bug" />
+    <MESSAGE value="Default Changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
   <component name="WindowStateProjectService">
     <state x="21" y="231" key="#HTTP_Proxy" timestamp="1577276252302">

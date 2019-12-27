@@ -1,7 +1,9 @@
 package com.bbs.controller;
 
+import com.bbs.entity.Information;
 import com.bbs.entity.Post;
 import com.bbs.entity.User;
+import com.bbs.mapper.InformationMapper;
 import com.bbs.service.PostService;
 import com.bbs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class MyWriteController {
     PostService postService;
     @Autowired
     UserService userService;
+    @Autowired
+    InformationMapper informationMapper;
 
     //展示个人贴子页面
     @RequestMapping("/user/tiezi")

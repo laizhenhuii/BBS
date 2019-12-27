@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class Information {
     private String originContent; //原贴内容
     private String receiverTel;   //接收方手机号
-    private String reason;//修改原因
+    private String reason;      //修改原因
     private Timestamp postTime;//发送时间
     private String originTitle;//原贴标题
     private boolean haveRead;//是否已读

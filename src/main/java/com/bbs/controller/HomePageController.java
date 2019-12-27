@@ -142,6 +142,19 @@ public class HomePageController {
         //查询该postID相应的评论
         List<Post> comments=postService.findPostByMainID(postId);
         model.addAttribute("comments",comments);
+        List<User> commentUser= new ArrayList<>();
+        Map<Post, User> commentUserMap = new LinkedHashMap<>();
+
+        if(comments!=null) {
+            for (Post comment : comments) {
+                User user = userService.selectByTel(comment.getPosterID());
+                commentUser.add(user);
+            }
+            for (int i = 0; i < comments.size(); i++) {
+                commentUserMap.put(comments.get(i), commentUser.get(i));
+            }
+        }
+        model.addAttribute("commentAndUser",commentUserMap);
         //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
         List<Post> hotMostPost=postService.findAllByPage(6,1,9);
         model.addAttribute("hotPost",hotMostPost);
@@ -267,7 +280,7 @@ public class HomePageController {
         //点击首页帖子标题跳转到该帖子详细界面
         post.setPageView(post.getPageView() + 1);
         postService.updatePost(post);
-        return "tiezi";
+        return "redirect:/toPost?postId="+postId;
 
     }
 
