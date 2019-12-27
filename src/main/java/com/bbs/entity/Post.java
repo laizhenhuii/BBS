@@ -26,10 +26,23 @@ public class Post {
     private Timestamp lastPost; //如果该贴是主贴，记录该贴的最后回帖时间
     private String imageAddress; //帖子图片地址
 
+    public int getParentID() {
+        return parentID;
+    }
+
+    public void setParentID(int parentID) {
+        this.parentID = parentID;
+    }
+
+    private int parentID;   //上一级评论
+
 
     public Post(){}
 
 
+    public void setPostID(int postID) {
+        this.postID = postID;
+    }
 
     public boolean isHomeTop() {
         return homeTop;

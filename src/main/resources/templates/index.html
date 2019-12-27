@@ -76,13 +76,13 @@
                             <p th:text="${postAndUserStat.current.key.getPostTitle()}">（标题）</p>
                         </div>
                     </a>
-                    <div class="havePic" th:if="${postAndUserStat.current.key.getImageAddress()!=null}">
-                        <a th:href="${postAndUserStat.current.key.getImageAddress()}">
-                            <div class="havePic_head">
-                                <img th:src="${postAndUserStat.current.key.getImageAddress()}" class="havePic_head img">
-                            </div>
-                        </a>
-                    </div>
+<!--                    <div class="havePic" th:if="${postAndUserStat.current.key.getImageAddress()!=null}">-->
+<!--                        <a th:href="${postAndUserStat.current.key.getImageAddress()}">-->
+<!--                            <div class="havePic_head">-->
+<!--                                <img th:src="${postAndUserStat.current.key.getImageAddress()}" class="havePic_head img">-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
                     <div class="indexCon_msg_detail_other">
                         <ul>
                             <li th:text="${postAndUserStat.current.key.getPosterName()}">（发帖人）</li>
@@ -140,7 +140,7 @@
             <div class="clear"></div>
         </div>
         <!--排名积分前10循环结束-->
-        <div class="indexFooter" th:if="${indexType==1}">
+        <div class="indexFooter" th:if="${indexType==1&&postType!=4&&postType!=5}">
             <div class="indexFooter_con">
                 <a th:href="@{/(postType=${postType},pageNumber=1)}" th:class="${page==1}?'on'">1</a>
                 <a th:href="@{/(postType=${postType},pageNumber=2)}" th:class="${page==2}?'on'">2</a>

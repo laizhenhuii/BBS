@@ -55,7 +55,7 @@ public class MyMvcConfig implements  WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/webjars/**","/asserts/**","/","/index.html",
-                        "/register.html","/login.html","/user/login","/user/register","/user/index","/toPost","/search","/index/exit","/writeComment","/images/**");
+                        "/register.html","/login.html","/user/login","/user/register","/user/index","/toPost","/search","/index/exit","/writeComment","/images/**","/answerComment");
     }
 
     @Bean //向容器中添加组件

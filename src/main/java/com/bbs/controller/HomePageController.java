@@ -155,6 +155,22 @@ public class HomePageController {
             }
         }
         model.addAttribute("commentAndUser",commentUserMap);
+
+        //查询每一条评论对应的所有回复
+        List<List<Post>> addToComment= new ArrayList<>();
+        Map<Post,List<Post>> commentsAndComment=new LinkedHashMap<>();
+        if(comments!=null){
+            for(Post comment:comments){
+
+
+                addToComment.add(postService.findAnswerByParentID(comment.getPostID()));
+            }
+            for(int i=0;i<comments.size();++i){
+                commentsAndComment.put(comments.get(i), addToComment.get(i));
+            }
+            model.addAttribute("answers",commentsAndComment);
+        }
+
         //右边页面显示的内容，查询浏览量最高的前9条帖子，在本周热议栏展示
         List<Post> hotMostPost=postService.findAllByPage(6,1,9);
         model.addAttribute("hotPost",hotMostPost);
@@ -183,6 +199,8 @@ public class HomePageController {
         newComment.setMainPost(postId);
         newComment.setPostTime(new Timestamp((new Date()).getTime()));
         newComment.setPostContent(comment);
+        User user2=userService.selectByTel(session.getAttribute("tel").toString());
+        newComment.setImageAddress(user2.getHead());
         postService.addPost(newComment);//将新建的评论对象存入帖子表
 
         //根据主帖号查询帖子信息
@@ -196,6 +214,26 @@ public class HomePageController {
         information.setPosterID(session.getAttribute("tel").toString());      //消息发送人id
         information.setPostID(String.valueOf(postId));          //回应的帖子的id
         informationMapper.addInformation(information);      //将新消息存入信息表
+        return "redirect:/toPost?postId="+postId;
+    }
+
+    //评论回复
+    @PostMapping("/answerComment")
+    public String answerComment(@RequestParam("answerContent") String answerComment,
+                                @RequestParam("motherID") int postId,
+                                @RequestParam("parentID") int parentID,
+                                HttpSession session){
+        if(session.getAttribute("username")==null){
+            return "/login.html";
+        }
+        Post newAnswer=new Post();
+        newAnswer.setPosterID(session.getAttribute("tel").toString());
+        newAnswer.setPosterName(session.getAttribute("username").toString());
+        newAnswer.setMainPost(postId);
+        newAnswer.setParentID(parentID);
+        newAnswer.setPostTime(new Timestamp((new Date()).getTime()));
+        newAnswer.setPostContent(answerComment);
+        postService.addPost(newAnswer);//将新建的回复对象存入帖子表
         return "redirect:/toPost?postId="+postId;
     }
 

@@ -32,7 +32,7 @@ public class IndexController {
 
     @RequestMapping("/user/index")
     public String index(){
-        return "index";
+        return "redirect:/";
     }
 
 

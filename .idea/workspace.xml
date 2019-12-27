@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="d5b1e626-015b-4ba8-914a-d524561f4f53" name="Default Changelist" comment="评论者头像、删除评论">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/config/MyMvcConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/HomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/MyWriteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Information.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/controller/PostPublish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/controller/PostPublish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/mapper/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bbs/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bbs/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tiezi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/config/MyMvcConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/HomePageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/MyWriteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/IndexController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/controller/PostPublish.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/mapper/PostMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/mapper/PostMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/bbs/service/PostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/bbs/service/PostService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/tiezi.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tiezi.html" afterDir="false" />
     </list>
     <list id="f7892f10-b97b-469d-b8ec-4797b2fba35d" name="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" comment="上传了富文本编辑器所需要的组件，解决了无法使用富文本编辑器的问题" />
@@ -190,7 +195,7 @@
       <workItem from="1577338984424" duration="27000" />
       <workItem from="1577344197035" duration="2601000" />
       <workItem from="1577366251252" duration="6595000" />
-      <workItem from="1577411401384" duration="5109000" />
+      <workItem from="1577411401384" duration="13538000" />
     </task>
     <task id="LOCAL-00001" summary="修复了一个非常stupid但是会导致搜索功能无法使用的bug">
       <created>1577080301879</created>
@@ -304,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577372900615</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="评论者头像、删除评论">
+      <created>1577417116900</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1577417116900</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +353,8 @@
     <MESSAGE value="整合了曾春和黄嘉翔的代码" />
     <MESSAGE value="曾春修了一些bug" />
     <MESSAGE value="Default Changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
+    <MESSAGE value="评论者头像、删除评论" />
+    <option name="LAST_COMMIT_MESSAGE" value="评论者头像、删除评论" />
   </component>
   <component name="WindowStateProjectService">
     <state x="21" y="231" key="#HTTP_Proxy" timestamp="1577276252302">

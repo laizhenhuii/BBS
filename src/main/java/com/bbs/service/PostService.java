@@ -135,6 +135,10 @@ public class PostService {
             return 0;
     }
 
+    //根据父级id查找评论回复
+    public List<Post> findAnswerByParentID(int PostID){
+        return postMapper.findAnswerByParentID(PostID);
+    }
 
 
 }

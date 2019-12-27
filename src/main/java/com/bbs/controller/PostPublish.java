@@ -104,6 +104,8 @@ public class PostPublish {
             post.setPostBoutique(postBoutique);
             post.setPostIntegral(postIntegral);
             post.setModuleType(moduleType);
+            User user2=userService.selectByTel(session.getAttribute("tel").toString());
+            post.setImageAddress(user2.getHead());
 //            post.setImageAddress(imageAddress);
             post.setLastPost(lastPost);
 //
